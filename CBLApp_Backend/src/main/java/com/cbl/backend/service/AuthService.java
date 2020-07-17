@@ -1,7 +1,6 @@
 package com.cbl.backend.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class AuthService {
 	public void signup(RegisterRequest registerRequest) {
 
 		Employee employee = new Employee();
-		PhoneNumber phoneNumber = new PhoneNumber();
+		List<PhoneNumber> phoneList = new ArrayList<>();
 		
 		employee.setF_name(registerRequest.getFristName());
 		employee.setL_name(registerRequest.getLastName());
@@ -33,15 +32,18 @@ public class AuthService {
 		employee.setU_name(registerRequest.getUserName());
 		employee.setPass(registerRequest.getPassword());
 		
-		List<PhoneNumber> phoneList = new ArrayList<>();
+		int i=0;
 		
 		for(PhoneNumber pn : registerRequest.getPhoneNumbers())
 		{
+			PhoneNumber phoneNumber = new PhoneNumber();
+			
 			phoneNumber.setP_type(pn.getP_type());
 			phoneNumber.setP_num(pn.getP_num());
 			phoneNumber.setEmp(employee);
 			
-			phoneList = (Arrays.asList(phoneNumber)); // need to read all data into array list
+			phoneList.add(i,phoneNumber);
+			i++;
 		}
 		
 		employee.setP_nums(phoneList);
@@ -49,7 +51,4 @@ public class AuthService {
 		employeeRepository.save(employee);
 		
 	}
-
-	
-	
 }
