@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.RegisterRequest;
@@ -18,6 +19,9 @@ public class AuthService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	public void signup(RegisterRequest registerRequest) {
 
 		Employee employee = new Employee();
@@ -30,7 +34,7 @@ public class AuthService {
 		employee.setAdd_line_2(registerRequest.getAddressLine2());
 		employee.setAdd_line_3(registerRequest.getAddressLine3());
 		employee.setU_name(registerRequest.getUserName());
-		employee.setPass(registerRequest.getPassword());
+		employee.setPass(encodePassword(registerRequest.getPassword()));
 		
 		int i=0;
 		
@@ -51,4 +55,12 @@ public class AuthService {
 		employeeRepository.save(employee);
 		
 	}
+
+	private String encodePassword(String password) {
+
+		return passwordEncoder.encode(password);
+	}
+	
+	
+	
 }
