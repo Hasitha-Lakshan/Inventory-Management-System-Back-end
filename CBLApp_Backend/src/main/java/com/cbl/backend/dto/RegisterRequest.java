@@ -10,7 +10,7 @@ public class RegisterRequest {
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
-	private String userName;
+	private String username;
 	private String password;
 	private List<PhoneNumber> phoneNumbers;
 	
@@ -51,11 +51,11 @@ public class RegisterRequest {
 	public void setAddressLine3(String addressLine3) {
 		this.addressLine3 = addressLine3;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 	public String getPassword() {
 		return password;

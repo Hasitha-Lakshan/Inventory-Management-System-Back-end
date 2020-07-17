@@ -39,7 +39,7 @@ public class Employee {
 	private String add_line_3;
 	@NotEmpty
 	@Column
-	private String u_name;
+	private String username;
 	@NotEmpty
 	@Column
 	private String pass;
@@ -89,11 +89,12 @@ public class Employee {
 	public void setAdd_line_3(String add_line_3) {
 		this.add_line_3 = add_line_3;
 	}
-	public String getU_name() {
-		return u_name;
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setU_name(String u_name) {
-		this.u_name = u_name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPass() {
 		return pass;
@@ -107,12 +108,10 @@ public class Employee {
 	public void setP_nums(List<PhoneNumber> p_nums) {
 		this.p_nums = p_nums;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "Employee [emp_id=" + emp_id + ", f_name=" + f_name + ", l_name=" + l_name + ", rol=" + rol
 				+ ", add_line_1=" + add_line_1 + ", add_line_2=" + add_line_2 + ", add_line_3=" + add_line_3
-				+ ", u_name=" + u_name + ", pass=" + pass + ", p_nums=" + p_nums + "]";
+				+ ", username=" + username + ", pass=" + pass + ", p_nums=" + p_nums + "]";
 	}
 }
