@@ -4,9 +4,9 @@ import java.util.List;
 
 public class RegisterRequest {
 
-	private String fristName;
+	private String firstName;
 	private String lastName;
-	private String rol;
+	private String role;
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
@@ -15,11 +15,11 @@ public class RegisterRequest {
 	private List<PhoneNumber> phoneNumbers;
 	
 	
-	public String getFristName() {
-		return fristName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFristName(String fristName) {
-		this.fristName = fristName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
@@ -27,11 +27,11 @@ public class RegisterRequest {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getRol() {
-		return rol;
+	public String getRole() {
+		return role;
 	}
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public String getAddressLine1() {
 		return addressLine1;

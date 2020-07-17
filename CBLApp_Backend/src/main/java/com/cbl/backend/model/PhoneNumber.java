@@ -15,44 +15,44 @@ public class PhoneNumber {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int emp_p_id;
+	private int employeePhoneNumberID;
 	@NotEmpty
-	@Column(columnDefinition = "enum('office','home')")
-	private String p_type;
+	@Column(columnDefinition = "enum('Office','Home')")
+	private String phoneType;
 	@NotEmpty
 	@Column
-	private String p_num;
+	private String phoneNumber;
 	@ManyToOne
-	private Employee emp;
+	private Employee employee;
 	
 	
-	public int getEmp_p_id() {
-		return emp_p_id;
+	public int getEmployeePhoneNumberID() {
+		return employeePhoneNumberID;
 	}
-	public void setEmp_p_id(int emp_p_id) {
-		this.emp_p_id = emp_p_id;
+	public void setEmployeePhoneNumberID(int employeePhoneNumberID) {
+		this.employeePhoneNumberID = employeePhoneNumberID;
 	}
-	public String getP_type() {
-		return p_type;
+	public String getPhoneType() {
+		return phoneType;
 	}
-	public void setP_type(String p_type) {
-		this.p_type = p_type;
+	public void setPhoneType(String phoneType) {
+		this.phoneType = phoneType;
 	}
-	public String getP_num() {
-		return p_num;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setP_num(String p_num) {
-		this.p_num = p_num;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public Employee getEmp() {
-		return emp;
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmp(Employee emp) {
-		this.emp = emp;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
-	
 	@Override
 	public String toString() {
-		return "PhoneNumber [emp_p_id=" + emp_p_id + ", p_type=" + p_type + ", p_num=" + p_num + ", emp=" + emp + "]";
+		return "PhoneNumber [employeePhoneNumberID=" + employeePhoneNumberID + ", phoneType=" + phoneType
+				+ ", phoneNumber=" + phoneNumber + ", employee=" + employee + "]";
 	}
 }

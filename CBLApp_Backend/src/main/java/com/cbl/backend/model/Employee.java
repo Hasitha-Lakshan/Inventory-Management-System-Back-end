@@ -18,100 +18,100 @@ public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int emp_id;
+	private int employeeID;
 	@NotEmpty
 	@Column
-	private String f_name;
+	private String firstName;
 	@NotEmpty
 	@Column
-	private String l_name;
+	private String lastName;
 	@NotEmpty
 	@Column
-	private String rol;
+	private String role;
 	@NotEmpty
 	@Column
-	private String add_line_1;
+	private String addressLine1;
 	@NotEmpty
 	@Column
-	private String add_line_2;
+	private String addressLine2;
 	@NotEmpty
 	@Column
-	private String add_line_3;
+	private String addressLine3;
 	@NotEmpty
 	@Column
 	private String username;
 	@NotEmpty
 	@Column
-	private String pass;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "emp")
-	private List<PhoneNumber> p_nums;
+	private String password;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "employee")
+	private List<PhoneNumber> phoneNumbers;
 	
 	
-	public int getEmp_id() {
-		return emp_id;
+	public int getEmployeeID() {
+		return employeeID;
 	}
-	public void setEmp_id(int emp_id) {
-		this.emp_id = emp_id;
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
 	}
-	public String getF_name() {
-		return f_name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setF_name(String f_name) {
-		this.f_name = f_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getL_name() {
-		return l_name;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setL_name(String l_name) {
-		this.l_name = l_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getRol() {
-		return rol;
+	public String getRole() {
+		return role;
 	}
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public String getAdd_line_1() {
-		return add_line_1;
+	public String getAddressLine1() {
+		return addressLine1;
 	}
-	public void setAdd_line_1(String add_line_1) {
-		this.add_line_1 = add_line_1;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
 	}
-	public String getAdd_line_2() {
-		return add_line_2;
+	public String getAddressLine2() {
+		return addressLine2;
 	}
-	public void setAdd_line_2(String add_line_2) {
-		this.add_line_2 = add_line_2;
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
 	}
-	public String getAdd_line_3() {
-		return add_line_3;
+	public String getAddressLine3() {
+		return addressLine3;
 	}
-	public void setAdd_line_3(String add_line_3) {
-		this.add_line_3 = add_line_3;
+	public void setAddressLine3(String addressLine3) {
+		this.addressLine3 = addressLine3;
 	}
-	
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public List<PhoneNumber> getP_nums() {
-		return p_nums;
+	public List<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
 	}
-	public void setP_nums(List<PhoneNumber> p_nums) {
-		this.p_nums = p_nums;
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
 	}
 	@Override
 	public String toString() {
-		return "Employee [emp_id=" + emp_id + ", f_name=" + f_name + ", l_name=" + l_name + ", rol=" + rol
-				+ ", add_line_1=" + add_line_1 + ", add_line_2=" + add_line_2 + ", add_line_3=" + add_line_3
-				+ ", username=" + username + ", pass=" + pass + ", p_nums=" + p_nums + "]";
+		return "Employee [employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", role="
+				+ role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3="
+				+ addressLine3 + ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers
+				+ "]";
 	}
 }
