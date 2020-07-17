@@ -43,7 +43,7 @@ public class Employee {
 	@NotEmpty
 	@Column
 	private String pass;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "emp")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "emp") // find a way to insert both entity at same time
 	private List<PhoneNumber> p_nums;
 	
 	
