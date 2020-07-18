@@ -6,36 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.UserDetailsRequest;
-import com.cbl.backend.model.Employee;
-import com.cbl.backend.repository.EmployeeRepository;
+import com.cbl.backend.model.User;
+import com.cbl.backend.repository.UserRepository;
+
 import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
 	
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private UserRepository userRepository;
 
 	public List<UserDetailsRequest> getAllUsers() {
 		
-		List<Employee> employees = employeeRepository.findAll();
+		List<User> employees = userRepository.findAll();
 		
-		return employees.stream().map(this::mapFromEmployeeToDto).collect(Collectors.toList());
+		return employees.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
 	}
 	
-	private UserDetailsRequest mapFromEmployeeToDto(Employee employee) {
+	private UserDetailsRequest mapFromUserToDto(User user) {
 		
 		UserDetailsRequest userDetailsRequest = new UserDetailsRequest();
 		
-		userDetailsRequest.setFirstName(employee.getFirstName());
-		userDetailsRequest.setLastName(employee.getLastName());
-		userDetailsRequest.setRole(employee.getRole());
-		userDetailsRequest.setUsername(employee.getUsername());
-		userDetailsRequest.setPassword(employee.getPassword());
+		userDetailsRequest.setFirstName(user.getFirstName());
+		userDetailsRequest.setLastName(user.getLastName());
+		userDetailsRequest.setRole(user.getRole());
+		userDetailsRequest.setUsername(user.getUsername());
+		userDetailsRequest.setPassword(user.getPassword());
 		//userDetailsRequest.setPhoneNumbers(employee.getPhoneNumbers());
-		userDetailsRequest.setAddressLine1(employee.getAddressLine1());
-		userDetailsRequest.setAddressLine2(employee.getAddressLine2());
-		userDetailsRequest.setAddressLine3(employee.getAddressLine3());
+		userDetailsRequest.setAddressLine1(user.getAddressLine1());
+		userDetailsRequest.setAddressLine2(user.getAddressLine2());
+		userDetailsRequest.setAddressLine3(user.getAddressLine3());
 		
 		return userDetailsRequest;
 	}

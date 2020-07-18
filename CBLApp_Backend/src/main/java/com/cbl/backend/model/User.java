@@ -12,13 +12,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+
 @Entity
-@Table(name = "Employees")
-public class Employee {
+@Table(name = "Users")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int employeeID;
+	private int userID;
 	@NotEmpty
 	@Column
 	private String firstName;
@@ -43,15 +44,15 @@ public class Employee {
 	@NotEmpty
 	@Column
 	private String password;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "employee")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
 	private List<PhoneNumber> phoneNumbers;
 	
 	
-	public int getEmployeeID() {
-		return employeeID;
+	public int getUserID() {
+		return userID;
 	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -109,9 +110,8 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", role="
-				+ role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3="
-				+ addressLine3 + ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers
-				+ "]";
+		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3
+				+ ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers + "]";
 	}
 }

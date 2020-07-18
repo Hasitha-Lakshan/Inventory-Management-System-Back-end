@@ -15,7 +15,7 @@ public class PhoneNumber {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int employeePhoneNumberID;
+	private int userPhoneNumberID;
 	@NotEmpty
 	@Column(columnDefinition = "enum('Office','Home')")
 	private String phoneType;
@@ -23,14 +23,14 @@ public class PhoneNumber {
 	@Column
 	private String phoneNumber;
 	@ManyToOne
-	private Employee employee;
+	private User user;
 	
 	
-	public int getEmployeePhoneNumberID() {
-		return employeePhoneNumberID;
+	public int getUserPhoneNumberID() {
+		return userPhoneNumberID;
 	}
-	public void setEmployeePhoneNumberID(int employeePhoneNumberID) {
-		this.employeePhoneNumberID = employeePhoneNumberID;
+	public void setUserPhoneNumberID(int userPhoneNumberID) {
+		this.userPhoneNumberID = userPhoneNumberID;
 	}
 	public String getPhoneType() {
 		return phoneType;
@@ -44,15 +44,15 @@ public class PhoneNumber {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Employee getEmployee() {
-		return employee;
+	public User getUser() {
+		return user;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public String toString() {
-		return "PhoneNumber [employeePhoneNumberID=" + employeePhoneNumberID + ", phoneType=" + phoneType
-				+ ", phoneNumber=" + phoneNumber + ", employee=" + employee + "]";
+		return "PhoneNumber [userPhoneNumberID=" + userPhoneNumberID + ", phoneType=" + phoneType + ", phoneNumber="
+				+ phoneNumber + ", user=" + user + "]";
 	}
 }

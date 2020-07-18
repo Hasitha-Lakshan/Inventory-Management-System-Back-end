@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.LoginRequest;
 import com.cbl.backend.dto.RegisterRequest;
-import com.cbl.backend.model.Employee;
 import com.cbl.backend.model.PhoneNumber;
-import com.cbl.backend.repository.EmployeeRepository;
+import com.cbl.backend.model.User;
+import com.cbl.backend.repository.UserRepository;
 import com.cbl.backend.security.JwtProvider;
 
 @Service
@@ -23,7 +23,7 @@ public class AuthService {
 
 	
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -36,17 +36,17 @@ public class AuthService {
 	
 	public void signup(RegisterRequest registerRequest) {
 
-		Employee employee = new Employee();
+		User user = new User();
 		List<PhoneNumber> phoneList = new ArrayList<>();
 		
-		employee.setFirstName(registerRequest.getFirstName());
-		employee.setLastName(registerRequest.getLastName());
-		employee.setRole(registerRequest.getRole());
-		employee.setAddressLine1(registerRequest.getAddressLine1());
-		employee.setAddressLine2(registerRequest.getAddressLine2());
-		employee.setAddressLine3(registerRequest.getAddressLine3());
-		employee.setUsername(registerRequest.getUsername());
-		employee.setPassword(encodePassword(registerRequest.getPassword()));
+		user.setFirstName(registerRequest.getFirstName());
+		user.setLastName(registerRequest.getLastName());
+		user.setRole(registerRequest.getRole());
+		user.setAddressLine1(registerRequest.getAddressLine1());
+		user.setAddressLine2(registerRequest.getAddressLine2());
+		user.setAddressLine3(registerRequest.getAddressLine3());
+		user.setUsername(registerRequest.getUsername());
+		user.setPassword(encodePassword(registerRequest.getPassword()));
 		
 		int i=0;
 		
@@ -56,15 +56,15 @@ public class AuthService {
 			
 			phoneNumber.setPhoneType(phonenumber.getPhoneType());
 			phoneNumber.setPhoneNumber(phonenumber.getPhoneNumber());
-			phoneNumber.setEmployee(employee);
+			phoneNumber.setUser(user);
 			
 			phoneList.add(i,phoneNumber);
 			i++;
 		}
 		
-		employee.setPhoneNumbers(phoneList);
+		user.setPhoneNumbers(phoneList);
 
-		employeeRepository.save(employee);
+		userRepository.save(user);
 		
 	}
 

@@ -11,22 +11,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cbl.backend.model.Employee;
-import com.cbl.backend.repository.EmployeeRepository;
+import com.cbl.backend.model.User;
+import com.cbl.backend.repository.UserRepository;
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private UserRepository employeeRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Employee employee = employeeRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("No user found" + username));
+		User user = employeeRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("No user found" + username));
 		
-		return new org.springframework.security.core.userdetails.User(employee.getUsername(), employee.getPassword(), true, true, true, true, getAuthorities("ROLE_USER"));		
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true, true, true, getAuthorities("ROLE_USER"));		
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
