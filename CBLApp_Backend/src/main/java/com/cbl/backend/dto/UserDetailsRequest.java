@@ -6,6 +6,7 @@ import com.cbl.backend.model.PhoneNumber;
 
 public class UserDetailsRequest {
 
+	private int userID; 
 	private String firstName;
 	private String lastName;
 	private String role;
@@ -17,6 +18,12 @@ public class UserDetailsRequest {
 	private List<PhoneNumber> phoneNumbers;
 	
 	
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,5 +77,12 @@ public class UserDetailsRequest {
 	}
 	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
+	}
+	@Override
+	public String toString() {
+		return "UserDetailsRequest [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", role=" + role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
+				+ ", addressLine3=" + addressLine3 + ", username=" + username + ", password=" + password
+				+ ", phoneNumbers=" + phoneNumbers + "]";
 	}
 }
