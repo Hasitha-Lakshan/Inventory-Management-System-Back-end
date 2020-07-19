@@ -1,7 +1,7 @@
 package com.cbl.backend.service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +37,7 @@ public class AuthService {
 	public void signup(RegisterRequest registerRequest) {
 
 		User user = new User();
-		Set<PhoneNumber> phoneList = new HashSet<PhoneNumber>();
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 		
 		user.setFirstName(registerRequest.getFirstName());
 		user.setLastName(registerRequest.getLastName());

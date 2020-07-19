@@ -23,7 +23,7 @@ public class PhoneNumber {
 	@Column(columnDefinition = "enum('Office','Home')")
 	private String phoneType;
 	@NotEmpty
-	@Column
+	@Column(unique = true)
 	private String phoneNumber;
 	@ManyToOne
 	@JoinColumn(name = "userID")
