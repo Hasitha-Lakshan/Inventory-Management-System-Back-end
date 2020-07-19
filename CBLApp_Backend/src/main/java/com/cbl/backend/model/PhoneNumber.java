@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PhoneNumbers")
@@ -15,7 +18,7 @@ public class PhoneNumber {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userPhoneNumberID;
+	private int phoneNumberID;
 	@NotEmpty
 	@Column(columnDefinition = "enum('Office','Home')")
 	private String phoneType;
@@ -23,14 +26,16 @@ public class PhoneNumber {
 	@Column
 	private String phoneNumber;
 	@ManyToOne
+	@JoinColumn(name = "userID")
+	@JsonIgnore
 	private User user;
 	
 	
-	public int getUserPhoneNumberID() {
-		return userPhoneNumberID;
+	public int getPhoneNumberID() {
+		return phoneNumberID;
 	}
-	public void setUserPhoneNumberID(int userPhoneNumberID) {
-		this.userPhoneNumberID = userPhoneNumberID;
+	public void setPhoneNumberID(int phoneNumberID) {
+		this.phoneNumberID = phoneNumberID;
 	}
 	public String getPhoneType() {
 		return phoneType;
@@ -52,7 +57,7 @@ public class PhoneNumber {
 	}
 	@Override
 	public String toString() {
-		return "PhoneNumber [userPhoneNumberID=" + userPhoneNumberID + ", phoneType=" + phoneType + ", phoneNumber="
+		return "PhoneNumber [phoneNumberID=" + phoneNumberID + ", phoneType=" + phoneType + ", phoneNumber="
 				+ phoneNumber + ", user=" + user + "]";
 	}
 }

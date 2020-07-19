@@ -1,6 +1,7 @@
 package com.cbl.backend.dto;
+import java.util.Set;
+
 import com.cbl.backend.model.PhoneNumber;
-import java.util.List;
 
 public class RegisterRequest {
 
@@ -12,7 +13,7 @@ public class RegisterRequest {
 	private String addressLine3;
 	private String username;
 	private String password;
-	private List<PhoneNumber> phoneNumbers;
+	private Set<PhoneNumber> phoneNumbers;
 	
 	
 	public String getFirstName() {
@@ -63,10 +64,10 @@ public class RegisterRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<PhoneNumber> getPhoneNumbers() {
+	public Set<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
 }

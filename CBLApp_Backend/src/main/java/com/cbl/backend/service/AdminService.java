@@ -22,21 +22,21 @@ public class AdminService {
 		
 		return users.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
 	}
-	
+
 	private UserDetailsRequest mapFromUserToDto(User user) {
 		
 		UserDetailsRequest userDetailsRequest = new UserDetailsRequest();
-		
+
 		userDetailsRequest.setUserID(user.getUserID());
 		userDetailsRequest.setFirstName(user.getFirstName());
 		userDetailsRequest.setLastName(user.getLastName());
 		userDetailsRequest.setRole(user.getRole());
 		userDetailsRequest.setUsername(user.getUsername());
 		userDetailsRequest.setPassword(user.getPassword());
-		//userDetailsRequest.setPhoneNumbers(user.getPhoneNumbers());
 		userDetailsRequest.setAddressLine1(user.getAddressLine1());
 		userDetailsRequest.setAddressLine2(user.getAddressLine2());
 		userDetailsRequest.setAddressLine3(user.getAddressLine3());
+		userDetailsRequest.setPhoneNumbers(user.getPhoneNumbers());
 		
 		return userDetailsRequest;
 	}

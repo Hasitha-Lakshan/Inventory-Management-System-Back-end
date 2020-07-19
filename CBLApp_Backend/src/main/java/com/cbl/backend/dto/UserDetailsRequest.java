@@ -1,6 +1,6 @@
 package com.cbl.backend.dto;
 
-import java.util.List;
+import java.util.Set;
 
 import com.cbl.backend.model.PhoneNumber;
 
@@ -15,7 +15,7 @@ public class UserDetailsRequest {
 	private String addressLine3;
 	private String username;
 	private String password;
-	private List<PhoneNumber> phoneNumbers;
+	private Set<PhoneNumber> phoneNumbers;
 	
 	
 	public int getUserID() {
@@ -72,10 +72,10 @@ public class UserDetailsRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<PhoneNumber> getPhoneNumbers() {
+	public Set<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
 	@Override

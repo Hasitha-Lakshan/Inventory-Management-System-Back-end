@@ -1,10 +1,11 @@
 package com.cbl.backend.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +45,8 @@ public class User {
 	@NotEmpty
 	@Column
 	private String password;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
-	private List<PhoneNumber> phoneNumbers;
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "user")
+	private Set<PhoneNumber> phoneNumbers;
 	
 	
 	public int getUserID() {
@@ -102,10 +103,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<PhoneNumber> getPhoneNumbers() {
+	public Set<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
 	@Override
