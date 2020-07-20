@@ -28,7 +28,7 @@ public class User {
 	@Column
 	private String lastName;
 	@NotEmpty
-	@Column(columnDefinition = "enum('Admin','Analyzer','Inventory Manager','Cash Collector')")
+	@Column(columnDefinition = "enum('ADMIN','ANALYZER','INVENTORY_MANAGER','CASH_COLLECTOR')")
 	private String role;
 	@NotEmpty
 	@Column
@@ -45,6 +45,9 @@ public class User {
 	@NotEmpty
 	@Column
 	private String password;
+	@NotEmpty
+	@Column
+	private boolean accountStatus;
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "user")
 	private List<PhoneNumber> phoneNumbers;
 	
@@ -108,6 +111,12 @@ public class User {
 	}
 	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
+	}
+	public boolean isAccountStatus() {
+		return accountStatus;
+	}
+	public void setAccountStatus(boolean accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 	@Override
 	public String toString() {

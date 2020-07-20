@@ -32,7 +32,7 @@ public class AdminService {
 		userDetailsRequest.setLastName(user.getLastName());
 		userDetailsRequest.setRole(user.getRole());
 		userDetailsRequest.setUsername(user.getUsername());
-		//userDetailsRequest.setPassword(user.getPassword());
+		userDetailsRequest.setAccountStatus(user.isAccountStatus());
 		userDetailsRequest.setAddressLine1(user.getAddressLine1());
 		userDetailsRequest.setAddressLine2(user.getAddressLine2());
 		userDetailsRequest.setAddressLine3(user.getAddressLine3());

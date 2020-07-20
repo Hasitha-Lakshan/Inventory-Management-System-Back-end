@@ -14,7 +14,7 @@ public class UserDetailsRequest {
 	private String addressLine2;
 	private String addressLine3;
 	private String username;
-	//private String password;
+	private boolean accountStatus;
 	private List<PhoneNumber> phoneNumbers;
 	
 	
@@ -66,14 +66,14 @@ public class UserDetailsRequest {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	/*public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}*/
 	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
+	}
+	public boolean isAccountStatus() {
+		return accountStatus;
+	}
+	public void setAccountStatus(boolean accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;

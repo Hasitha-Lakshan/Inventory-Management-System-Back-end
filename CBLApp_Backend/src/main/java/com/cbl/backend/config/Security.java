@@ -2,6 +2,7 @@ package com.cbl.backend.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.cbl.backend.security.JwtAuthenticationFilter;
 
+@Configuration
 @EnableWebSecurity
 public class Security extends WebSecurityConfigurerAdapter{
 	
@@ -36,7 +38,12 @@ public class Security extends WebSecurityConfigurerAdapter{
 
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/auth/**").permitAll().anyRequest().authenticated();
+		
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/auth/**").permitAll();
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/admin/**").hasRole("ADMIN");
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/analyzer/**").hasRole("ANALYZER");
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/inventoryManager/**").hasRole("INVENTORY_MANAGER");
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/cashCollector/**").hasRole("CASH_COLLECTOR");
 		
 		httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
