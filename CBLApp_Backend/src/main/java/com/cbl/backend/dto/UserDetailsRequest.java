@@ -69,14 +69,14 @@ public class UserDetailsRequest {
 	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
 	public boolean isAccountStatus() {
 		return accountStatus;
 	}
 	public void setAccountStatus(boolean accountStatus) {
 		this.accountStatus = accountStatus;
-	}
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
 	}
 	@Override
 	public String toString() {
