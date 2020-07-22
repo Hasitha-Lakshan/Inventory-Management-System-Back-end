@@ -20,7 +20,7 @@ public class PhoneNumber {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int phoneNumberID;
 	@NotEmpty
-	@Column(columnDefinition = "enum('Office','Home')")
+	@Column(columnDefinition = "enum('Office','Home', 'Other')")
 	private String phoneType;
 	@NotEmpty
 	@Column(unique = true)
