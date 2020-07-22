@@ -30,7 +30,6 @@ public class PhoneNumber {
 	@JsonIgnore
 	private User user;
 	
-	
 	public int getPhoneNumberID() {
 		return phoneNumberID;
 	}

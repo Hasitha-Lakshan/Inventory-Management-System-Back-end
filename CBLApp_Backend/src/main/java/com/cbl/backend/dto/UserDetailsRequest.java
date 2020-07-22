@@ -17,7 +17,6 @@ public class UserDetailsRequest {
 	private boolean accountStatus;
 	private List<PhoneNumber> phoneNumbers;
 	
-	
 	public int getUserID() {
 		return userID;
 	}

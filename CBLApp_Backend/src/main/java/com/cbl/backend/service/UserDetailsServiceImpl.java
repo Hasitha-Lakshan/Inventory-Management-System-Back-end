@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
