@@ -36,6 +36,8 @@ This repository is created for the development of the back-end of a web-based In
 * Java Persistence API
 * Java Database Connectivity
 * Apache Maven
+* JSON Web Tokens
+* Java KeyStore
 * MySQL
 
 ## Authors
