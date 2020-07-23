@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cbl.backend.model.PhoneNumber;
 
-public class UserDetailsRequest {
+public class UserDetailsResponse {
 
 	private int userID; 
 	private String firstName;
@@ -16,7 +16,6 @@ public class UserDetailsRequest {
 	private String username;
 	private boolean accountStatus;
 	private List<PhoneNumber> phoneNumbers;
-	
 	
 	public int getUserID() {
 		return userID;

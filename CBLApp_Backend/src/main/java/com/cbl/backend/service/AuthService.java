@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.cbl.backend.dto.AuthenticationResponse;
 import com.cbl.backend.dto.LoginRequest;
 import com.cbl.backend.dto.RegisterRequest;
 import com.cbl.backend.model.PhoneNumber;
@@ -20,7 +21,6 @@ import com.cbl.backend.security.JwtProvider;
 
 @Service
 public class AuthService {
-
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -48,9 +48,7 @@ public class AuthService {
 		user.setUsername(registerRequest.getUsername());
 		user.setPassword(encodePassword(registerRequest.getPassword()));
 		
-		
-		for(PhoneNumber phonenumber : registerRequest.getPhoneNumbers())
-		{
+		for(PhoneNumber phonenumber : registerRequest.getPhoneNumbers()) {
 			PhoneNumber phoneNumber = new PhoneNumber();
 			
 			phoneNumber.setPhoneType(phonenumber.getPhoneType());
@@ -71,13 +69,15 @@ public class AuthService {
 		return passwordEncoder.encode(password);
 	}
 
-	public String login(LoginRequest loginRequest) {
+	public AuthenticationResponse login(LoginRequest loginRequest) {
+		
+		AuthenticationResponse authenticationResponse = new AuthenticationResponse();
 		
 		Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authenticate);
-		return jwtProvider.generateToken(authenticate);
+		authenticationResponse.setAuthenticationToken(jwtProvider.generateToken(authenticate));
+		authenticationResponse.setUsername(loginRequest.getUsername());
+		
+		return authenticationResponse;
 	}
-	
-	
-	
 }
