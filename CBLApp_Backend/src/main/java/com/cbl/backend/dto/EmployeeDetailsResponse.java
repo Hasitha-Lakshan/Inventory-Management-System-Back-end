@@ -1,14 +1,17 @@
 package com.cbl.backend.dto;
 
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+
 import com.cbl.backend.model.PhoneNumber;
 
 @Entity
+
 public class EmployeeDetailsResponse 
 {
 	@Id
@@ -19,9 +22,10 @@ public class EmployeeDetailsResponse
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
-	private Set<PhoneNumber> phoneNumbers;
+	private List<PhoneNumber> phoneNumbers;
 	
-	
+
+
 	public int getUserID() {
 		return userID;
 	}
@@ -66,12 +70,14 @@ public class EmployeeDetailsResponse
 	}
 	
 	
-	public Set<PhoneNumber> getPhoneNumbers() {
+
+	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
-	public void setPhoneNumbers(Set<PhoneNumber> phoneNumbers) {
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
+
 	@Override
 	public String toString() {
 		return "EmployeeDetailsResponse [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName

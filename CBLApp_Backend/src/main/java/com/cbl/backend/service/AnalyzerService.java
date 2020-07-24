@@ -1,67 +1,83 @@
 package com.cbl.backend.service;
 
-import java.util.ArrayList;
-import java.util.List;
 
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.EmployeeDetailsResponse;
 
+import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
-import com.jayway.jsonpath.Predicate;
+
 
 @Service
+@Component
 public class AnalyzerService 
 {
 	 @Autowired
-	 UserRepository userRepository ;
+	private UserRepository userRepository;
+
+	
+	
+	/* public AnalyzerService(UserRepository rep)
+	 {
+		 this.repo = rep;
+	 }*/
+	 
+	 
+	// private UserRepository userRepository;
 	
 	
 	public List<EmployeeDetailsResponse> getAllEmployees() 
 	{
-		List<EmployeeDetailsResponse> employees = new ArrayList<EmployeeDetailsResponse>();
-		userRepository.findAll();
+		List<User> users =userRepository.findAll(); 
 		
-		return employees;
-	}
-	
-/*	public EmployeeDetailsResponse getEmployeesById(int UserID)
-	{
-		return userRepository.findOne(UserID);
-	}
-	
-	
-	public EmployeeDetailsResponse getEmployeeById(int id)
-	{
-		Predicateate<EmployeeDetailsResponse> byId = p -> p.getId().equals(id);
-		return filterEmployees(byId);
-	}
-	
-	private EmployeeDetailsResponse filterEmployees(Predicate strategy)
-	{
-		return getAllEmployees().stream().filter((java.util.function.Predicate<? super EmployeeDetailsResponse>) strategy).findFirst().orElse(null);
-	}
-*/
-	
-	
-	
-	
-/*	private EmployeeDetailsResponse mapFromUserToDto(User user) {
+		return users.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
 		
-		EmployeeDetailsResponse employeeDetailsResponse = new EmployeeDetailsResponse();
+		
+	}
+	
+		private EmployeeDetailsResponse mapFromUserToDto(User user) 
+		{
+		
+			EmployeeDetailsResponse employeeDetailsResponse= new EmployeeDetailsResponse();
 
-		employeeDetailsResponse.getUserID(user.getUserID());
-		employeeDetailsResponse.getFirstName(user.getFirstName());
-		employeeDetailsRequest.getLastName(user.getLastName());
-		employeeDetailsRequest.getRole(user.getRole());
-		employeeDetailsRequest.getAddressLine1(user.getAddressLine1());
-		employeeDetailsRequest.getAddressLine2(user.getAddressLine2());
-		employeeDetailsRequest.getAddressLine3(user.getAddressLine3());
-		employeeDetailsRequest.getPhoneNumbers(user.getPhoneNumbers());
+			employeeDetailsResponse.setUserID(user.getUserID());
+			employeeDetailsResponse.setFirstName(user.getFirstName());
+			employeeDetailsResponse.setLastName(user.getLastName());
+			employeeDetailsResponse.setRole(user.getRole());
+			employeeDetailsResponse.setAddressLine1(user.getAddressLine1());
+			employeeDetailsResponse.setAddressLine2(user.getAddressLine2());
+			employeeDetailsResponse.setAddressLine3(user.getAddressLine3());
+			employeeDetailsResponse.setPhoneNumbers(user.getPhoneNumbers());
 		
-		return employeeDetailsRequest;
+		return employeeDetailsResponse;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*public Optional<User> getEmployee(Integer userID)
+	{
+		return userRepository.findById(userID);
 	}*/
+
+	
+	
+	
+
 
 }
