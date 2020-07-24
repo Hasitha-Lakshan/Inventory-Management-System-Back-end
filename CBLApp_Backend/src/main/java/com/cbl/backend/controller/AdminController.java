@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cbl.backend.dto.UserDetailsRequest;
+import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.service.AdminService;
 
 @RestController
@@ -20,7 +20,7 @@ public class AdminController {
 	AdminService adminService;
 
 	@GetMapping("/users")
-	public ResponseEntity<List<UserDetailsRequest>> getAllUsers(){
+	public ResponseEntity<List<UserDetailsResponse>> getAllUsers(){
 		
 		return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
 	}

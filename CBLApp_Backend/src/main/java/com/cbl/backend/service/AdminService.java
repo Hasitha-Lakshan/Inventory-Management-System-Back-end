@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cbl.backend.dto.UserDetailsRequest;
+import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 
@@ -16,16 +16,16 @@ public class AdminService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public List<UserDetailsRequest> getAllUsers() {
+	public List<UserDetailsResponse> getAllUsers() {
 		
 		List<User> users = userRepository.findAll();
 		
 		return users.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
 	}
 
-	private UserDetailsRequest mapFromUserToDto(User user) {
+	private UserDetailsResponse mapFromUserToDto(User user) {
 		
-		UserDetailsRequest userDetailsRequest = new UserDetailsRequest();
+		UserDetailsResponse userDetailsRequest = new UserDetailsResponse();
 
 		userDetailsRequest.setUserID(user.getUserID());
 		userDetailsRequest.setFirstName(user.getFirstName());
