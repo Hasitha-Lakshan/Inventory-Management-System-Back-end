@@ -25,19 +25,19 @@ public class AdminService {
 
 	private UserDetailsResponse mapFromUserToDto(User user) {
 		
-		UserDetailsResponse userDetailsRequest = new UserDetailsResponse();
+		UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
 
-		userDetailsRequest.setUserID(user.getUserID());
-		userDetailsRequest.setFirstName(user.getFirstName());
-		userDetailsRequest.setLastName(user.getLastName());
-		userDetailsRequest.setRole(user.getRole());
-		userDetailsRequest.setUsername(user.getUsername());
-		userDetailsRequest.setAccountStatus(user.isAccountStatus());
-		userDetailsRequest.setAddressLine1(user.getAddressLine1());
-		userDetailsRequest.setAddressLine2(user.getAddressLine2());
-		userDetailsRequest.setAddressLine3(user.getAddressLine3());
-		userDetailsRequest.setPhoneNumbers(user.getPhoneNumbers());
+		userDetailsResponse.setUserID(user.getUserID());
+		userDetailsResponse.setFirstName(user.getFirstName());
+		userDetailsResponse.setLastName(user.getLastName());
+		userDetailsResponse.setRole(user.getRole());
+		userDetailsResponse.setUsername(user.getUsername());
+		userDetailsResponse.setAccountStatus(user.isAccountStatus());
+		userDetailsResponse.setAddressLine1(user.getAddressLine1());
+		userDetailsResponse.setAddressLine2(user.getAddressLine2());
+		userDetailsResponse.setAddressLine3(user.getAddressLine3());
+		userDetailsResponse.setPhoneNumbers(user.getPhoneNumbers());
 		
-		return userDetailsRequest;
+		return userDetailsResponse;
 	}
 }
