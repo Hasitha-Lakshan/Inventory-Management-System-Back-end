@@ -9,6 +9,7 @@ public class AuthenticationResponse {
 
 	private String authenticationToken;
 	private String username;
+	private String role;
 	
 	public String getAuthenticationToken() {
 		return authenticationToken;
@@ -21,5 +22,11 @@ public class AuthenticationResponse {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
