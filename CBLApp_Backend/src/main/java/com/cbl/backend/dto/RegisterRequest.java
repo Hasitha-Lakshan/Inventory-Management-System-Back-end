@@ -15,7 +15,6 @@ public class RegisterRequest {
 	private String password;
 	private Set<PhoneNumber> phoneNumbers;
 	
-	
 	public String getFirstName() {
 		return firstName;
 	}

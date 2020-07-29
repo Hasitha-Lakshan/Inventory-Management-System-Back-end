@@ -20,16 +20,15 @@ public class PhoneNumber {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int phoneNumberID;
 	@NotEmpty
-	@Column(columnDefinition = "enum('Office','Home')")
+	@Column(columnDefinition = "enum('Office','Home', 'Other')")
 	private String phoneType;
 	@NotEmpty
-	@Column(unique = true)
+	@Column
 	private String phoneNumber;
 	@ManyToOne
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
-	
 	
 	public int getPhoneNumberID() {
 		return phoneNumberID;
