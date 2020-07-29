@@ -6,7 +6,7 @@ import com.cbl.backend.model.PhoneNumber;
 
 public class UserInfoUpdateRequest {
 
-	private int userID; 
+	
 	private String firstName;
 	private String lastName;
 	private String role;
@@ -14,16 +14,11 @@ public class UserInfoUpdateRequest {
 	private String addressLine2;
 	private String addressLine3;
 	private String username;
-	private boolean accountStatus;
 	private List<PhoneNumber> phoneNumbers;
 	
 	
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -72,15 +67,10 @@ public class UserInfoUpdateRequest {
 	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
-	public boolean isAccountStatus() {
-		return accountStatus;
-	}
-	public void setAccountStatus(boolean accountStatus) {
-		this.accountStatus = accountStatus;
-	}
+	
 	@Override
 	public String toString() {
-		return "UserDetailsRequest [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
+		return "UserDetailsRequest [ firstName=" + firstName + ", lastName=" + lastName
 				+ ", role=" + role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
 				+ ", addressLine3=" + addressLine3 + ", username=" + username + /*", password=" + password
 				+ */", phoneNumbers=" + phoneNumbers + "]";

@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cbl.backend.dto.DeleteRequest;
+import com.cbl.backend.dto.RegisterRequest;
+import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserDetailsRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
+import com.cbl.backend.model.User;
 import com.cbl.backend.service.AdminService;
 
 @RestController
@@ -35,38 +39,39 @@ public class AdminController {
 	@PutMapping("/updateuser")
 	public ResponseEntity updateUserInfo(@RequestBody UserInfoUpdateRequest rq) {
 		
-		UserInfoUpdateRequest Obj = adminService.updateUserInfo(rq);
-		if(Obj!=null) {
-			return new ResponseEntity<>(rq, HttpStatus.OK);
+		boolean successful=adminService.updateUserInfo(rq);
+		if(successful) {
+			return new ResponseEntity(HttpStatus.OK);
 		}else {
-			return new ResponseEntity<>(rq, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-			
 		
 	} 
 	
-	@PutMapping("/setaccountstatus/{id}")
-	public ResponseEntity swapAccountStatus(@PathVariable int id) {
-			
-		boolean succesful = adminService.swapAccountStatus(id);
-		if(succesful) {
-			return new ResponseEntity<>(succesful, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(succesful, HttpStatus.BAD_REQUEST);
+	@PutMapping("/setaccountstatus")
+	public ResponseEntity setAccountStatus(@RequestBody SetAccountStatusRequest rq) {
+	
+	    boolean successful=adminService.setAccountStatus(rq);
+	    if(successful) {
+	    	 return new ResponseEntity(HttpStatus.OK);
+	    }else {
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	   
+	
+	}
+	
+	@PutMapping("/deleteuser")
+	public ResponseEntity deleteUserByUsername(@RequestBody DeleteRequest rq) {
+			
+		boolean successful=adminService.deleteUser(rq);
+	    if(successful) {
+	    	 return new ResponseEntity(HttpStatus.OK);
+	    }else {
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}	
 	
-	@DeleteMapping("/deleteuser/{id}")
-	public ResponseEntity deleteUserById(@PathVariable int id) {
-			
-		boolean succesful = adminService.deleteUserById(id);
-		if(succesful) {
-			return new ResponseEntity<>(succesful, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(succesful, HttpStatus.BAD_REQUEST);
-		}
-	}	
 	
-
 }

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.cbl.backend.dto.DeleteRequest;
+import com.cbl.backend.dto.RegisterRequest;
+import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserDetailsRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.model.User;
@@ -46,17 +49,18 @@ public class AdminService {
 		return userDetailsRequest;
 	}
 	
-	public UserInfoUpdateRequest updateUserInfo(@RequestBody UserInfoUpdateRequest rq) {
+	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
 		
-		User user = userRepository.findById(rq.getUserID()).orElse(null);
+		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		
 		if(user!=null) {
+			
 			/* Updatable attributes */
 			user.setFirstName(rq.getFirstName());
 			user.setLastName(rq.getLastName());
 			user.setAddressLine1(rq.getAddressLine1());
 			user.setAddressLine2(rq.getAddressLine2());
 			user.setAddressLine3(rq.getAddressLine3());
-			user.setAccountStatus(rq.isAccountStatus());
 			user.setRole(rq.getRole());
 			user.setPhoneNumbers(rq.getPhoneNumbers());
 			
@@ -66,32 +70,40 @@ public class AdminService {
 			user.setUsername(user.getUsername());
 			
 			userRepository.save(user);
-			return rq;
-		} 
-			return null;	
-		
+			return true;
+			
+		}else {
+			return false;
+		}
+			
 	}
 	
-	public boolean swapAccountStatus(int id) {
+	public boolean setAccountStatus(SetAccountStatusRequest rq) {
 		
-		User user = userRepository.findById(id).orElse(null);
+		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		
 		if(user!=null) {
-			/*swap the boolean status of the user account status*/
-			user.setAccountStatus(!user.isAccountStatus());			
+			
+			user.setAccountStatus(rq.isAccountStatus());			
 			userRepository.save(user);
 			return true;
-		} 
-			return false;	
+		}else {
+			return false;
+		}
+		
+			
 	}
 	
-	public boolean deleteUserById(int id) {
+	public boolean deleteUser(DeleteRequest rq) {
 		
-		Optional<User> user = userRepository.findById(id);
+		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		System.out.println(rq.getUsername());
 		if(user!=null) {
-			userRepository.deleteById(id);
-			return true;  
+			userRepository.delete(user);
+			return true;
 		}else {
 			return false;
 		}
 	}
+	
 }
