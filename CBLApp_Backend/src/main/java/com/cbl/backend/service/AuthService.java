@@ -42,7 +42,7 @@ public class AuthService {
 		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 		Optional<User> checkUser= userRepository.findByUsername(registerRequest.getUsername());
 		
-		if(checkUser.isPresent()) {
+		if(checkUser.isPresent() || registerRequest.getPassword() == null) {
 			return false;
 		}
 		else {
