@@ -2,7 +2,7 @@ package com.cbl.backend.dto;
 
 import java.util.Date;
 
-public class ReportResponse{
+public class StoredItemsReportRequest{
 	
 	private int report_Id;
 	private Date date;
@@ -66,13 +66,6 @@ public class ReportResponse{
 	}
 	public void setProfit(int profit) {
 		this.profit = profit;
-	}
-	@Override
-	public String toString() {
-		return "ReportResponse [report_Id=" + report_Id + ", date=" + date + ", product_name=" + product_name
-				+ ", one_buying_price=" + one_buying_price + ", one_selling_price=" + one_selling_price + ", quantity="
-				+ quantity + ", buying_price=" + buying_price + ", selling_price=" + selling_price + ", profit="
-				+ profit + "]";
 	}
 	
 	
