@@ -52,7 +52,7 @@ public class AdminService {
 	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
 		
 		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
-		
+		System.out.println(rq.getUsername()+"Services");
 		if(user!=null) {
 			
 			/* Updatable attributes */
@@ -62,7 +62,7 @@ public class AdminService {
 			user.setAddressLine2(rq.getAddressLine2());
 			user.setAddressLine3(rq.getAddressLine3());
 			user.setRole(rq.getRole());
-			user.setPhoneNumbers(rq.getPhoneNumbers());
+			
 			
 			/* Non updatable attributes */
 			user.setPassword(user.getPassword());
@@ -99,7 +99,7 @@ public class AdminService {
 		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
 		System.out.println(rq.getUsername());
 		if(user!=null) {
-			userRepository.delete(user);
+			userRepository.deleteById(user.getUserID());
 			return true;
 		}else {
 			return false;
