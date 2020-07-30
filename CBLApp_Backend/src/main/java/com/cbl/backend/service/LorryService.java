@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cbl.backend.dto.LorryInfoUpdateRequest;
 import com.cbl.backend.dto.LorryRequest;
 import com.cbl.backend.dto.LorryResponse;
+import com.cbl.backend.dto.SetAccountStatusRequest1;
 import com.cbl.backend.model.Lorry;
 import com.cbl.backend.repository.LorryRepository;
 
@@ -64,10 +65,13 @@ public boolean updateLorryInfo(LorryInfoUpdateRequest rq) {
 		
 		if(lorry!=null) {
 			
-			lorry.setLorryID(rq.getLorryID());
+			/* Updatable attributes */
 			lorry.setFirstName(rq.getFirstName());
 			lorry.setLastName(rq.getLastName());
 			lorry.setPhonenumber(rq.getPhonenumber());
+			
+			/* Non updatable attributes */
+            lorry.setLorryID(rq.getLorryID());
 			
 			
 			lorryRepository.save(lorry);
@@ -78,6 +82,23 @@ public boolean updateLorryInfo(LorryInfoUpdateRequest rq) {
 		}
 			
 	}
+
+
+public boolean setAccountStatus(SetAccountStatusRequest1 rq) {
+	
+	Lorry lorry = lorryRepository.findByLorryID(rq.getLorryID()).orElse(null);
+	
+	if(lorry!=null) {
+		
+		lorry.setAccountStatus(rq.isAccountStatus());			
+		lorryRepository.save(lorry);
+		return true;
+	}else {
+		return false;
+	}
+	
+		
+}
 	
 	
 	}

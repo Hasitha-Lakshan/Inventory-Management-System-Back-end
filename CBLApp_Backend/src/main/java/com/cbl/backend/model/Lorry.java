@@ -29,7 +29,7 @@ import javax.validation.constraints.NotEmpty;
 		private int phonenumber;
 		@NotEmpty
 		@Column
-		private boolean Status;
+		private boolean accountStatus;
 		
 		
 		public int getLorryID() {
@@ -57,11 +57,12 @@ import javax.validation.constraints.NotEmpty;
 			this.phonenumber = phonenumber;
 		}
 		
-		public boolean isStatus() {
-			return Status;
+		
+		public boolean isAccountStatus() {
+			return accountStatus;
 		}
-		public void setStatus(boolean status) {
-			Status = status;
+		public void setAccountStatus(boolean accountStatus) {
+			this.accountStatus = accountStatus;
 		}
 		@Override
 		public String toString() {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cbl.backend.dto.LorryInfoUpdateRequest;
 import com.cbl.backend.dto.LorryRequest;
 import com.cbl.backend.dto.LorryResponse;
-
+import com.cbl.backend.dto.SetAccountStatusRequest1;
 import com.cbl.backend.service.LorryService;
 
 
@@ -47,8 +47,19 @@ public class LorryController {
 		boolean successful=lorryService.updateLorryInfo(rq);
 		if(successful) {
 			return new ResponseEntity(HttpStatus.OK);
-		}else {
+		}else 
+		{
 			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-}
+	}
+		@PutMapping("/setaccountstatus")
+		public ResponseEntity setAccountStatus(@RequestBody SetAccountStatusRequest1 rq) {
+		
+		    boolean successful=lorryService.setAccountStatus(rq);
+		    if(successful) {
+		    	 return new ResponseEntity(HttpStatus.OK);
+		    }else {
+				return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
 }

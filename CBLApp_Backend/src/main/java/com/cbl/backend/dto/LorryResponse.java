@@ -44,7 +44,7 @@ public class LorryResponse {
 	}
 	@Override
 	public String toString() {
-		return "LorryResponce [lorryID=" + lorryID + ", firstName=" + firstName + ", lastName=" + lastName
+		return "LorryResponse [lorryID=" + lorryID + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", phonenumber=" + phonenumber + "]";
 	}
 

@@ -1,7 +1,7 @@
 package com.cbl.backend.dto;
 
 public class LorryRequest {
-
+	
 	private String firstName;
 	private String lastName;
 	private int phonenumber;
