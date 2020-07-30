@@ -1,8 +1,5 @@
 package com.cbl.backend.dto;
 
-import java.util.List;
-
-import com.cbl.backend.model.PhoneNumber;
 
 public class ShopDetailsResponse {
 
@@ -11,7 +8,7 @@ public class ShopDetailsResponse {
 	private String ownerFName;
 	private String ownerLName;
 	private String address;
-	private List<PhoneNumber> phoneNumbers;
+	private String phoneNumber;
 	
 	
 	public int getShopID() {
@@ -64,19 +61,22 @@ public class ShopDetailsResponse {
 	}
 
 
-	public List<PhoneNumber> getPhoneNumbers() {
-		return phoneNumbers;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 
 	@Override
 	public String toString() {
 		return "ShopDetailsRequest [shopID=" +shopID +", shopName="+shopName + ", firstName=" + ownerFName + ", lastName=" + ownerLName
-				+ ", shopaddress=" + address + ", phoneNumbers=" + phoneNumbers + "]";
+				+ ", shopaddress=" + address + ", phoneNumbers=" + phoneNumber + "]";
 	}
+
+
+	
 }

@@ -33,7 +33,7 @@ public class ShopService {
 		shopDetailsRequest.setOwnerFName(shop.getOwnerFName());
 		shopDetailsRequest.setOwnerLName(shop.getOwnerLName());
 		shopDetailsRequest.setAddress(shop.getAddress());
-		shopDetailsRequest.setPhoneNumbers(shop.getPhoneNumbers());
+		shopDetailsRequest.setPhoneNumber(shop.getPhoneNumber());
 		
 		return shopDetailsRequest;
 	}
