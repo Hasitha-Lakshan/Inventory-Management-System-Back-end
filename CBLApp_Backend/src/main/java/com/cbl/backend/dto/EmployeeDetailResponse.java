@@ -2,19 +2,11 @@ package com.cbl.backend.dto;
 
 import java.util.List;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-
-
+import com.cbl.backend.exception.EmployeeNotFoundException;
 import com.cbl.backend.model.PhoneNumber;
 
-@Entity
-
-public class EmployeeDetailsResponse 
+public class EmployeeDetailResponse 
 {
-	@Id
 	private int userID;
 	private String firstName;
 	private String lastName;
@@ -24,7 +16,6 @@ public class EmployeeDetailsResponse
 	private String addressLine3;
 	private List<PhoneNumber> phoneNumbers;
 	
-
 
 	public int getUserID() {
 		return userID;
@@ -68,22 +59,20 @@ public class EmployeeDetailsResponse
 	public void setAddressLine3(String addressLine3) {
 		this.addressLine3 = addressLine3;
 	}
-	
-	
-
 	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
 	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
 	}
-
 	@Override
 	public String toString() {
-		return "EmployeeDetailsResponse [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
+		return "EmployeeDetailResponse [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", role=" + role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
 				+ ", addressLine3=" + addressLine3 + ", phoneNumbers=" + phoneNumbers + "]";
 	}
+
+	
 	
 	
 }
