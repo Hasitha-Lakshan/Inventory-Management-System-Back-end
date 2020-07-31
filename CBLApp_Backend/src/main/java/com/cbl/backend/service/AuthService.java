@@ -16,8 +16,16 @@ import org.springframework.stereotype.Service;
 import com.cbl.backend.dto.AuthenticationResponse;
 import com.cbl.backend.dto.LoginRequest;
 import com.cbl.backend.dto.RegisterRequest;
+import com.cbl.backend.model.Admin;
+import com.cbl.backend.model.Analyzer;
+import com.cbl.backend.model.CashCollector;
+import com.cbl.backend.model.InventoryManager;
 import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.User;
+import com.cbl.backend.repository.AdminRepository;
+import com.cbl.backend.repository.AnalyzerRepository;
+import com.cbl.backend.repository.CashCollectorRepository;
+import com.cbl.backend.repository.InventoryManagerRepository;
 import com.cbl.backend.repository.UserRepository;
 import com.cbl.backend.security.JwtProvider;
 
@@ -26,6 +34,18 @@ public class AuthService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	AdminRepository adminRepository;
+	
+	@Autowired
+	AnalyzerRepository analyzerRepository;
+	
+	@Autowired
+	InventoryManagerRepository inventoryManagerRepository;
+	
+	@Autowired
+	CashCollectorRepository cashCollectorRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -38,14 +58,16 @@ public class AuthService {
 	
 	public boolean signup(RegisterRequest registerRequest) {
 
-		User user = new User();
-		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 		Optional<User> checkUser= userRepository.findByUsername(registerRequest.getUsername());
 		
 		if(checkUser.isPresent() || registerRequest.getPassword() == null) {
 			return false;
 		}
 		else {
+			
+			User user = new User();
+			List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+			
 			user.setFirstName(registerRequest.getFirstName());
 			user.setLastName(registerRequest.getLastName());
 			user.setRole(registerRequest.getRole());
@@ -62,12 +84,36 @@ public class AuthService {
 				phoneNumber.setPhoneType(phonenumber.getPhoneType());
 				phoneNumber.setPhoneNumber(phonenumber.getPhoneNumber());
 				phoneNumber.setUser(user);
-				
 				phoneList.add(phoneNumber);
 			}
 			
 			user.setPhoneNumbers(phoneList);
 			userRepository.save(user);
+			
+			if(user.getRole().equals("ADMIN")){
+				
+				Admin admin = new Admin();
+				admin.setUser(user);
+				adminRepository.save(admin);
+			}
+			else if(user.getRole().equals("ANALYZER")) {
+				
+				Analyzer analyzer = new Analyzer();
+				analyzer.setUser(user);
+				analyzerRepository.save(analyzer);
+			}
+			else if(user.getRole().equals("INVENTORY_MANAGER")) {
+				
+				InventoryManager inventoryManager = new InventoryManager();
+				inventoryManager.setUser(user);
+				inventoryManagerRepository.save(inventoryManager);
+			}
+			else if(user.getRole().equals("CASH_COLLECTOR")) {
+				
+				CashCollector cashCollector = new CashCollector();
+				cashCollector.setUser(user);
+				cashCollectorRepository.save(cashCollector);
+			}
 			
 			return true;
 		}
