@@ -1,8 +1,5 @@
 package com.cbl.backend.dto;
 
-import java.util.List;
-
-import com.cbl.backend.model.PhoneNumber;
 
 public class UserInfoUpdateRequest {
 
