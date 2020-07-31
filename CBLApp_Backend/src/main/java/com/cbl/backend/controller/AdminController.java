@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.cbl.backend.dto.DeleteRequest;
 import com.cbl.backend.dto.RegisterRequest;
 import com.cbl.backend.dto.SetAccountStatusRequest;
-import com.cbl.backend.dto.UserDetailsRequest;
+
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.model.User;
+import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.service.AdminService;
 
 @RestController
@@ -30,7 +32,7 @@ public class AdminController {
 	AdminService adminService;
 
 	@GetMapping("/users")
-	public ResponseEntity<List<UserDetailsRequest>> getAllUsers(){
+	public ResponseEntity<List<UserDetailsResponse>> getAllUsers(){
 		
 		return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
 	}
