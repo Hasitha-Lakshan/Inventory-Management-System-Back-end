@@ -7,6 +7,8 @@ public class AvailableItemsRequest {
 	private Float BuyingPrice;
 	private Integer Boxes;
 	private Integer Pieces;
+	
+	
 	public String getProductName() {
 		return ProductName;
 	}
@@ -37,5 +39,4 @@ public class AvailableItemsRequest {
 	public void setPieces(Integer pieces) {
 		Pieces = pieces;
 	}
-	
 }

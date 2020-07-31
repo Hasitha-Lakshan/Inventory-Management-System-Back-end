@@ -1,11 +1,22 @@
 package com.cbl.backend.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cbl.backend.dto.AvailableItemsRequest;
+import com.cbl.backend.model.Product;
 
-
-public class AvailableItemsService<AvailableItemsRepository> {
+public class AvailableItemsService {
 	
-	@Autowired
-	private AvailableItemsRepository AvailableItemsRepository;
+	public boolean submit(AvailableItemsRequest AvailableItemsRequest) {
+
+		Product Product = new Product();
+		
+	        Product.setProductName(Product.getProductName());
+	        Product.setSellingPriceOf1(Product.getSellingPriceOf1());
+	        Product.setBuyingPriceOf1(Product.getBuyingPriceOf1());
+	        Product.setBoxes(Product.getBoxes());
+	        Product.setPieces(Product.getPieces());
+			return true;
+		
+}
+
 
 }

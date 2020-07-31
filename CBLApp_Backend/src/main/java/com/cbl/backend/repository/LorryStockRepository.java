@@ -7,12 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cbl.backend.model.LorryStock;
 
-
 @Repository
-public interface AvailableItemsRepository extends JpaRepository<LorryStock, Integer>{
-
-	Optional<LorryStock> findByProductName(String ProductName);
+public interface LorryStockRepository extends JpaRepository<LorryStock, Integer>{
+	
+	Optional<LorryStock> findByStockName (String StockName);
+	
 }
-
-
-
