@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cbl.backend.entity.Report;
+import com.cbl.backend.model.Invoice;
 import com.cbl.backend.reports.service.ReportService;
 import com.cbl.backend.repository.ReportRepository;
 
@@ -24,30 +24,30 @@ public class ReportsRestController {
     private ReportService service;
 	
 	@PostMapping("/savereport")
-    public Report addReport(@RequestBody Report report){
-        return service.saveReport(report);
+    public Invoice addReport(@RequestBody Invoice invoice){
+        return service.saveReport(invoice);
     }
     @PostMapping("/savereports")
-    public List<Report> addReport(@RequestBody List<Report> report){
-        return service.saveReport(report);
+    public List<Invoice> addReport(@RequestBody List<Invoice> invoice){
+        return service.saveReport(invoice);
     }
 
     @GetMapping("/getreports")
-    public List<Report> getAllReports(){
+    public List<Invoice> getAllReports(){
         return service.getReports();
     }
     @GetMapping("/findreportbyid/{id}")
-    public Report findReportbyId(@PathVariable int id){
+    public Invoice findReportbyId(@PathVariable int id){
         return service.getReportById(id);
     }
     @GetMapping("/findreportbyshopname/{name}")
-    public Report findReportByName(@PathVariable String name){
+    public Invoice findReportByName(@PathVariable String name){
         return service.getReportByShopName(name);
     }
 
     @PutMapping("/update")
-    public Report updateReport(@RequestBody Report report){
-        return service.updateReport(report);
+    public Invoice updateReport(@RequestBody Invoice invoice){
+        return service.updateReport(invoice);
     }
     @DeleteMapping("/delete/{id}")
     public String deleteReport(@PathVariable int id){

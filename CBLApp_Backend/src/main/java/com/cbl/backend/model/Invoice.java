@@ -1,4 +1,4 @@
-package com.cbl.backend.entity;
+package com.cbl.backend.model;
 
 import java.util.Date;
 
@@ -18,8 +18,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="reports")
-public class Report {
+@Table
+public class Invoice {
 	
 	@Id
 	@GeneratedValue

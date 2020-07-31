@@ -1,12 +1,14 @@
 package com.cbl.backend.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cbl.backend.entity.Report;
+import com.cbl.backend.model.Invoice;
 
-public interface ReportRepository extends JpaRepository<Report, Integer> {
+public interface ReportRepository extends JpaRepository<Invoice, Integer> {
 
-	Report findByShopName(String name);
+	Invoice findByShopName(String shopName);
 
 	
 	
