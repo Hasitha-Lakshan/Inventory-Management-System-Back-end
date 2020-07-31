@@ -1,18 +1,12 @@
 package com.cbl.backend.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 import com.cbl.backend.dto.DeleteRequest;
-import com.cbl.backend.dto.RegisterRequest;
 import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.dto.UserDetailsResponse;
