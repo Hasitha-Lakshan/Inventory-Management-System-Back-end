@@ -2,22 +2,22 @@ package com.cbl.backend.dto;
 
 import java.util.Date;
 
-public class ResponseOfReports{
+public class SalesItemsReportResponse{
 	
-	private int report_Id;
+	private int salesItemsReport_Id;
 	private Date date;
-	private String product_name;
+	private String salesProduct_name;
 	private int unit_buying_price;
 	private int unit_selling_price;
 	private int quantity;
 	private int buying_price;
 	private int selling_price;
 	private int profit;
-	public int getReport_Id() {
-		return report_Id;
+	public int getSalesItemsReport_Id() {
+		return salesItemsReport_Id;
 	}
-	public void setReport_Id(int report_Id) {
-		this.report_Id = report_Id;
+	public void setSalesItemsReport_Id(int salesItemsReport_Id) {
+		this.salesItemsReport_Id = salesItemsReport_Id;
 	}
 	public Date getDate() {
 		return date;
@@ -25,23 +25,23 @@ public class ResponseOfReports{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getProduct_name() {
-		return product_name;
+	public String getSalesProduct_name() {
+		return salesProduct_name;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setSalesProduct_name(String salesProduct_name) {
+		this.salesProduct_name = salesProduct_name;
 	}
-	public int getOne_buying_price() {
+	public int getUnit_buying_price() {
 		return unit_buying_price;
 	}
-	public void setOne_buying_price(int one_buying_price) {
-		this.unit_buying_price = one_buying_price;
+	public void setUnit_buying_price(int unit_buying_price) {
+		this.unit_buying_price = unit_buying_price;
 	}
-	public int getOne_selling_price() {
+	public int getUnit_selling_price() {
 		return unit_selling_price;
 	}
-	public void setOne_selling_price(int one_selling_price) {
-		this.unit_selling_price = one_selling_price;
+	public void setUnit_selling_price(int unit_selling_price) {
+		this.unit_selling_price = unit_selling_price;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -69,11 +69,12 @@ public class ResponseOfReports{
 	}
 	@Override
 	public String toString() {
-		return "ReportResponse [report_Id=" + report_Id + ", date=" + date + ", product_name=" + product_name
+		return "ReportResponse [salesItemsReport_Id=" + salesItemsReport_Id + ", date=" + date + ", salesProduct_name=" + salesProduct_name
 				+ ", unit_buying_price=" + unit_buying_price + ", unit_selling_price=" + unit_selling_price + ", quantity="
 				+ quantity + ", buying_price=" + buying_price + ", selling_price=" + selling_price + ", profit="
 				+ profit + "]";
 	}
-	
+
+
 	
 }
