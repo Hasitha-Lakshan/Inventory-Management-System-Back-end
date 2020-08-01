@@ -44,7 +44,7 @@ public class SalesProduct{
 
 	
 	@ManyToOne
-	@JoinColumn(name = "SalesItemReportID")
+	@JoinColumn(name = "salesItemsReportID")
 	@JsonIgnore
 	//private SalesItemsReport;
 	
