@@ -27,8 +27,8 @@ public class SalesItemsReport{
 	@NotEmpty
 	@Column
 	private String salesItemsReportName;
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "salesItemsReport")
-	private List<SalesItemsReport> salesItemsReport;
+//	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "salesItemsReport")
+//	private List<SalesItemsReport> salesItemsReport;
 
 	public int getSalesItemsReportID() {
 		return salesItemsReportID;
@@ -54,10 +54,10 @@ public class SalesItemsReport{
 		this.salesItemsReportName = salesItemsReportName;
 	}
 
-	@Override
-	public String toString() {
-		return "SalesItemsReport [salesItemsReportID=" + salesItemsReportID + ", dateTime=" + dateTime + ", salesItemsReportName=" + salesItemsReport + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "SalesItemsReport [salesItemsReportID=" + salesItemsReportID + ", dateTime=" + dateTime + ", salesItemsReportName=" + salesItemsReport + "]";
+//	}
 
 	
 	
