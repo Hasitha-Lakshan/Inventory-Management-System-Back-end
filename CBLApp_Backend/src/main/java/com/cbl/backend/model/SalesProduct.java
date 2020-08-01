@@ -15,15 +15,15 @@ import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Product")
-public class Product{
+@Table(name="SalesProduct")
+public class SalesProduct{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productID;
+	private int salesProductID;
 	@NotEmpty
 	@Column
-	private String productName;
+	private String salesProductName;
 	@NotEmpty
 	@Column
 	private int unitBuyingPrice;
@@ -41,36 +41,37 @@ public class Product{
 	private int sellingPrice;
 	@Column
 	private int profit=sellingPrice-buyingPrice;
+
 	
 	@ManyToOne
-	@JoinColumn(name = "reportsID")
+	@JoinColumn(name = "SalesItemReportID")
 	@JsonIgnore
-	private Reports reports;
+	//private SalesItemsReport;
 	
 	
-	public int getProductID() {
-		return productID;
+	public int getSalesProductID() {
+		return salesProductID;
 	}
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setSalesProductID(int salesProductID) {
+		this.salesProductID = salesProductID;
 	}
-	public String getProductName() {
-		return productName;
+	public String getSalesProductName() {
+		return salesProductName;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setSalesProductName(String salesProductName) {
+		this.salesProductName = salesProductName;
 	}
 	public int getUnitBuyingPrice() {
-		return buyingPriceOf1;
+		return unitBuyingPrice;
 	}
-	public void setUnitBuyingPrice(int buyingPriceOf1) {
-		this.buyingPriceOf1 = buyingPriceOf1;
+	public void setUnitBuyingPrice(int unitBuyingPrice) {
+		this.unitBuyingPrice = unitBuyingPrice;
 	}
 	public int getUnitSellingPrice() {
-		return sellingPriceOf1;
+		return unitSellingPrice;
 	}
-	public void setUnitSellingPrice(int sellingPriceOf1) {
-		this.sellingPriceOf1 = sellingPriceOf1;
+	public void setUnitSellingPrice(int unitSellingPrice) {
+		this.unitSellingPrice = unitSellingPrice;
 	}
 	
 	public Date getDate() {
