@@ -36,6 +36,8 @@ public class SalesProduct{
 	@Column
 	private int pieces;
 	@Column
+	private int boxes;
+	@Column
 	private int buyingPrice;
 	@Column
 	private int sellingPrice;

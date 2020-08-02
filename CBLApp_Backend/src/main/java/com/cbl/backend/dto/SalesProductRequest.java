@@ -2,7 +2,7 @@ package com.cbl.backend.dto;
 
 import java.util.Date;
 
-public class SalesProductResponse {
+public class SalesProductRequest {
 	
 	private int salesProductID;
 	private String salesProductName;
@@ -64,13 +64,6 @@ public class SalesProductResponse {
 	public void setBoxes(int boxes) {
 		this.boxes = boxes;
 	}
-	@Override
-	public String toString() {
-		return "ProductResponse [salesProductID=" + salesProductID + ", salesProductName=" + salesProductName + ", date=" + date + 
-				", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",pieces=" + pieces + 
-				", boxes="+ boxes + ", buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit +" ]";
-	} 
-	
 
 	
 	 
