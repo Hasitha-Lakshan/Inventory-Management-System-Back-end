@@ -45,8 +45,6 @@ public class JwtProvider {
 		
 		User princlipal = (User) authentication.getPrincipal();
 		
-		System.out.println(princlipal.getAuthorities());
-		
 		return Jwts.builder()
 				.setSubject(princlipal.getUsername())
 				.claim("authorities", princlipal.getAuthorities())
