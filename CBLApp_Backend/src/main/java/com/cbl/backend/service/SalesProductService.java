@@ -7,27 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.UserDetailsResponse;
-import com.cbl.backend.model.SalesItemsReport;
+import com.cbl.backend.model.SalesProduct;
 import com.cbl.backend.model.User;
-import com.cbl.backend.repository.ReportRepository;
+import com.cbl.backend.repository.ProductRepository;
 import com.cbl.backend.repository.UserRepository;
 @Service
-public class SalesItemsReportService {
+public class SalesProductService {
 	
 	@Autowired
-	private ReportRepository reportRepository;
+	private ProductRepository userRepository;
 
-	public List<SalesItemsReport> getAll() {
-		List<SalesItemsReport> list = reportRepository.findAll();
+	public List<SalesProduct> getAll() {
+		List<SalesProduct> list = userRepository.findAll();
 		return list;
 	}
 	
-	public SalesItemsReport save(SalesItemsReport report) {
-		return reportRepository.save(report);
+	public SalesProduct save(SalesProduct product) {
+		return userRepository.save(product);
 	}
 	
 	public String delete(int id) {
-		reportRepository.deleteById(id);
+		userRepository.deleteById(id);
 		return "deleted";
 	}
 	

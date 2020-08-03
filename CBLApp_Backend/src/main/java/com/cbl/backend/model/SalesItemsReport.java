@@ -23,10 +23,11 @@ public class SalesItemsReport{
 	private int salesItemsReportID;
 	@NotEmpty
 	@Column
-	private LocalDateTime dateTime;
+	private String salesItemsReportName;
 	@NotEmpty
 	@Column
-	private String salesItemsReportName;
+	private LocalDateTime dateTime;
+
 //	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "salesItemsReport")
 //	private List<SalesItemsReport> salesItemsReport;
 

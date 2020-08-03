@@ -20,29 +20,29 @@ import com.cbl.backend.service.SalesItemsReportService;
 import antlr.collections.List;
 
 @RestController
-public class SalesItemController {
+public class SalesItemsReportController {
 
 	@Autowired
-	private final SalesItemsReportService salesService;
+	private final SalesItemsReportService reportService;
 	
-	public SalesItemController(SalesItemsReportService ser) {
-		this.salesService=ser;
+	public SalesItemsReportController(SalesItemsReportService report) {
+		this.reportService=report;
 	}
 	
 	
 	@GetMapping("/report")
 	public java.util.List<SalesItemsReport> getAll() {
-		return salesService.getAll();
+		return reportService.getAll();
 	}
 	
 	@PostMapping("/report")
 	public SalesItemsReport save(@RequestBody SalesItemsReport report) {
-		return salesService.save(report);
+		return reportService.save(report);
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable int id) {
-		return "hiu";
+		return "report";
 		
 	}
 }
