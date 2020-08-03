@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.cbl.backend.dto.DeleteRequest;
+
 import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.dto.UserDetailsResponse;
@@ -46,7 +46,7 @@ public class AdminService {
 	
 	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
 		
-		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
+		User user = userRepository.findByusername(rq.getUsername());
 		System.out.println(rq.getUsername()+"Services");
 		if(user!=null) {
 			
@@ -75,7 +75,7 @@ public class AdminService {
 	
 	public boolean setAccountStatus(SetAccountStatusRequest rq) {
 		
-		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
+		User user = userRepository.findByusername(rq.getUsername());
 		
 		if(user!=null) {
 			
@@ -89,10 +89,10 @@ public class AdminService {
 			
 	}
 	
-	public boolean deleteUser(DeleteRequest rq) {
+	public boolean deleteUser(int id) {
 		
-		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
-		System.out.println(rq.getUsername());
+		User user = userRepository.findByUserID(id);
+		
 		if(user!=null) {
 			userRepository.deleteById(user.getUserID());
 			return true;

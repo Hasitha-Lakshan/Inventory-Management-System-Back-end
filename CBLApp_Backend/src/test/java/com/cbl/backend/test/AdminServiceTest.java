@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.cbl.backend.dto.DeleteRequest;
+
 import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
-
+import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 import com.cbl.backend.service.AdminService;
@@ -37,9 +37,16 @@ public class AdminServiceTest {
 		rq.setAddressLine1("addressLine1");
 		rq.setAddressLine2("addressLine2");
 		rq.setAddressLine3("addressLine3");
+		
 		User user=new User();
+		user.setFirstName("firstName");
+		user.setLastName("lastName");
+		user.setRole("role");
 		user.setUsername("ADMIN");
-		when(repository.findbyUsernameReturnUser(rq.getUsername())).thenReturn(user);
+		user.setAddressLine1("addressLine1");
+		user.setAddressLine2("addressLine2");
+		user.setAddressLine3("addressLine3");
+		when(repository.findByusername(rq.getUsername())).thenReturn(user);
 		assertEquals(true,service.updateUserInfo(rq));
 	}
 	@Test
@@ -47,24 +54,67 @@ public class AdminServiceTest {
 		SetAccountStatusRequest rq=new SetAccountStatusRequest();
 		rq.setUsername("ADMIN");
 		rq.setAccountStatus(true);
+
+		User user = new User();
 		
-		User user=new User();
-		user.setUsername("ADMIN");
-		when(repository.findbyUsernameReturnUser(rq.getUsername())).thenReturn(user);
+		PhoneNumber phoneNumber = new PhoneNumber();
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+		
+		phoneNumber.setPhoneType("Home");
+		phoneNumber.setPhoneNumber("0111111111");
+		phoneNumber.setUser(user);
+		phoneList.add(phoneNumber);
+		
+		user.setFirstName("firstName");
+		user.setLastName("lastName");
+		user.setRole("Admin");
+		user.setAddressLine1("addressLine1");
+		user.setAddressLine2("addressLine2");
+		user.setAddressLine3("addressLine3");
+		user.setUsername("username");
+		user.setPassword("password");
+		user.setPhoneNumbers(phoneList);
+		user.setAccountStatus(false);
+		
+		
+		when(repository.findByusername(rq.getUsername())).thenReturn(user);
 		assertEquals(true,service.setAccountStatus(rq));
+		System.out.println(user.isAccountStatus());
 		
 		
 	}
 	
 	@Test
 	public void deleteUser() {
-		DeleteRequest rq=new DeleteRequest();
-		rq.setUsername("ADMIN");
 		
-		User user=new User();
-		user.setUsername("ADMIN");
-		when(repository.findbyUsernameReturnUser(rq.getUsername())).thenReturn(user);
-		assertEquals(true,service.deleteUser(rq));
+		
+		
+		User user = new User();
+		
+		PhoneNumber phoneNumber = new PhoneNumber();
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+		
+		phoneNumber.setPhoneType("Home");
+		phoneNumber.setPhoneNumber("0111111111");
+		phoneNumber.setUser(user);
+		phoneList.add(phoneNumber);
+		
+		user.setFirstName("firstName");
+		user.setLastName("lastName");
+		user.setRole("Admin");
+		user.setAddressLine1("addressLine1");
+		user.setAddressLine2("addressLine2");
+		user.setAddressLine3("addressLine3");
+		user.setUsername("username");
+		user.setPassword("password");
+		user.setPhoneNumbers(phoneList);
+		user.setAccountStatus(false);
+		
+		
+		
+		
+		when(repository.findByUserID(1)).thenReturn(user);
+		assertEquals(true,service.deleteUser(1));
 		
 		
 	}
@@ -72,8 +122,29 @@ public class AdminServiceTest {
 	public void getAllUsers() {
 		
 		List<User> users=new ArrayList<User>();
+		
+		User user = new User();
+		
+		PhoneNumber phoneNumber = new PhoneNumber();
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+		
+		phoneNumber.setPhoneType("Home");
+		phoneNumber.setPhoneNumber("0111111111");
+		phoneNumber.setUser(user);
+		phoneList.add(phoneNumber);
+		
+		user.setFirstName("firstName");
+		user.setLastName("lastName");
+		user.setRole("Admin");
+		user.setAddressLine1("addressLine1");
+		user.setAddressLine2("addressLine2");
+		user.setAddressLine3("addressLine3");
+		user.setUsername("username");
+		user.setPassword("password");
+		user.setPhoneNumbers(phoneList);
+		users.add(user);
 		when(repository.findAll()).thenReturn(users);
-		assertEquals(0,service.getAllUsers().size());
+		assertEquals(1,service.getAllUsers().size());
 		
 		
 	}
