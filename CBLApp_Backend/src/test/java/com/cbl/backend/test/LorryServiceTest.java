@@ -48,8 +48,14 @@ public class LorryServiceTest {
 	public void getAllLorries() {
 		
 		List<Lorry> lorries=new ArrayList<Lorry>();
+		Lorry lorry = new Lorry();
+		
+		lorry.setFirstName("firstName");
+		lorry.setLastName("lastName");
+		lorry.setPhonenumber(778869699);
+		lorries.add(lorry);
 		when(lorryRepository.findAll()).thenReturn(lorries);
-		assertEquals(0,lorryService.getAllLorries().size());
+		assertEquals(1,lorryService.getAllLorries().size());
 		
 	}
 
