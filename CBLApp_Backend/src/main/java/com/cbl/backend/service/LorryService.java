@@ -61,7 +61,7 @@ public List<LorryResponse> getAllLorries() {
 	
 public boolean updateLorryInfo(LorryInfoUpdateRequest rq) {
 		
-		Lorry lorry = lorryRepository.findByLorryID(rq.getLorryID()).orElse(null);
+		Lorry lorry = lorryRepository.findByLorryID(rq.getLorryID());
 		
 		if(lorry!=null) {
 			
@@ -86,7 +86,7 @@ public boolean updateLorryInfo(LorryInfoUpdateRequest rq) {
 
 public boolean setAccountStatus(SetAccountStatusRequest1 rq) {
 	
-	Lorry lorry = lorryRepository.findByLorryID(rq.getLorryID()).orElse(null);
+	Lorry lorry = lorryRepository.findByLorryID(rq.getLorryID());
 	
 	if(lorry!=null) {
 		

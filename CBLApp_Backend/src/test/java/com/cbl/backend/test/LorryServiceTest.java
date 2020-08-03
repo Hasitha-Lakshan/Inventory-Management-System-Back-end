@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +34,14 @@ public class LorryServiceTest {
     public void addlorryTest() {
 		
 		Lorry lorry = new Lorry();
-		LorryRequest lorryRequest = new LorryRequest();
+		LorryRequest rq = new LorryRequest();
 		
-		lorryRequest.setFirstName("test_firstName");
-		lorryRequest.setLastName("test_lastName");
-		lorryRequest.setPhonenumber(778869697);
+		rq.setFirstName("test_firstName");
+		rq.setLastName("test_lastName");
+		rq.setPhonenumber(778869697);
 	
 		when(lorryRepository.save(lorry)).thenReturn(lorry);
-		assertEquals(true, lorryService.add(lorryRequest));
+		assertEquals(true, lorryService.add(rq));
 	}
 	
 	@Test
@@ -53,27 +53,42 @@ public class LorryServiceTest {
 		
 	}
 
+	
 	@Test
 	public void updateLorryInfotest() {
-		Optional<Lorry> lorry = Optional.ofNullable(new Lorry());
 		LorryInfoUpdateRequest rq=new LorryInfoUpdateRequest();
 		rq.setFirstName("firstName");
 		rq.setLastName("lastName");
 		rq.setPhonenumber(779625905);
 		
+		
+		Lorry lorry=new Lorry();
+		lorry.setFirstName("firstNamenew");
+		lorry.setLastName("lastNamenew");
+		lorry.setPhonenumber(779625900);
+		
 		when(lorryRepository.findByLorryID(rq.getLorryID())).thenReturn(lorry);
 		assertEquals(true,lorryService.updateLorryInfo(rq));
 	}
-
+	
 	@Test
 	public void setAccountStatusTest() {
 		SetAccountStatusRequest1 rq=new SetAccountStatusRequest1();
 		rq.setLorryID(1);
 		rq.setAccountStatus(true);
+
+		Lorry lorry = new Lorry();
+		lorry.setFirstName("firstName");
+		lorry.setLastName("lastName");
+		lorry.setPhonenumber(779625905);
+		lorry.setAccountStatus(false);
 		
-		Optional<Lorry> lorry=Optional.ofNullable(new Lorry());
+		
 		when(lorryRepository.findByLorryID(rq.getLorryID())).thenReturn(lorry);
 		assertEquals(true,lorryService.setAccountStatus(rq));
-	
+		System.out.println(lorry.isAccountStatus());
+		
+		
+	}
 }
-}
+
