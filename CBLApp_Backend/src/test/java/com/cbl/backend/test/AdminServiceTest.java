@@ -30,6 +30,7 @@ public class AdminServiceTest {
 	@Test
 	public void updateUserInfotest() {
 		UserInfoUpdateRequest rq=new UserInfoUpdateRequest();
+		User user=new User();
 		rq.setFirstName("firstName");
 		rq.setLastName("lastName");
 		rq.setRole("role");
@@ -37,8 +38,17 @@ public class AdminServiceTest {
 		rq.setAddressLine1("addressLine1");
 		rq.setAddressLine2("addressLine2");
 		rq.setAddressLine3("addressLine3");
+		PhoneNumber phoneNumber = new PhoneNumber();
+		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 		
-		User user=new User();
+		phoneNumber.setPhoneType("Home");
+		phoneNumber.setPhoneNumber("0111111111");
+		phoneNumber.setUser(user);
+		phoneList.add(phoneNumber);
+		
+		rq.setPhoneNumbers(phoneList);
+		
+		
 		user.setFirstName("firstName");
 		user.setLastName("lastName");
 		user.setRole("role");
@@ -46,6 +56,7 @@ public class AdminServiceTest {
 		user.setAddressLine1("addressLine1");
 		user.setAddressLine2("addressLine2");
 		user.setAddressLine3("addressLine3");
+		user.setPhoneNumbers(phoneList);
 		when(repository.findByusername(rq.getUsername())).thenReturn(user);
 		assertEquals(true,service.updateUserInfo(rq));
 	}
