@@ -46,7 +46,7 @@ public class AdminService {
 	
 	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
 		
-		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
 		System.out.println(rq.getUsername()+"Services");
 		if(user!=null) {
 			
@@ -75,7 +75,7 @@ public class AdminService {
 	
 	public boolean setAccountStatus(SetAccountStatusRequest rq) {
 		
-		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
 		
 		if(user!=null) {
 			
@@ -91,7 +91,7 @@ public class AdminService {
 	
 	public boolean deleteUser(DeleteRequest rq) {
 		
-		User user = userRepository.findByUsername(rq.getUsername()).orElse(null);
+		User user = userRepository.findbyUsernameReturnUser(rq.getUsername());
 		System.out.println(rq.getUsername());
 		if(user!=null) {
 			userRepository.deleteById(user.getUserID());
