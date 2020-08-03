@@ -105,16 +105,7 @@ public class Product {
 	}
 	public void setProfit(int profit) {
 		this.profit = profit;
-	}
-	public int getBoxes() {
-		return boxes;
-	}
-	public void setBoxes(int boxes) {
-		this.boxes = boxes;
-	}
-	
-	
-	
+	}	
 }
 	
 

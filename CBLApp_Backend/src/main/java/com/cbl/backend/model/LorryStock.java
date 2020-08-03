@@ -9,12 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.stereotype.Component;
 
 
+@Component
 @Entity
 @Table(name = "LorryStock")
 public class LorryStock {
@@ -25,15 +28,16 @@ public class LorryStock {
 	@Column
 	private LocalDateTime DateTime;
 	@NotEmpty
-	@Column
+	@Column(unique = true)
 	private String LorryStockName;
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "report")
-	private List<LorryStock> LorryStock;
-	public int getLorryStocktID() {
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "LorryStock")
+	private List<Product> Products;
+	
+	public int getLorryStockID() {
 		return LorryStockID;
 	}
-	public void setLorryStocktID(int lorryStocktID) {
-		LorryStockID = lorryStocktID;
+	public void setLorryStockID(int lorryStockID) {
+		LorryStockID = lorryStockID;
 	}
 	public LocalDateTime getDateTime() {
 		return DateTime;
@@ -47,16 +51,16 @@ public class LorryStock {
 	public void setLorryStockName(String lorryStockName) {
 		LorryStockName = lorryStockName;
 	}
-	public List<LorryStock> getLorryStock() {
-		return LorryStock;
+	public List<Product> getProduct() {
+		return Products;
 	}
-	public void setLorryStock(List<LorryStock> lorryStock) {
-		LorryStock = lorryStock;
+	public void setProduct(List<Product> product) {
+		Products = product;
 	}
 	
 	@Override
 	public String toString() {
-		return "LorryStock [LorryStockID=" + LorryStockID + ", DateTime=" + DateTime + ", LorryStockName=" + LorryStockName + "]";
+		return "LorryStock [LorryStockID=" + LorryStockID + ", DatTime=" + DateTime + ", LorryStockName=" +
+	LorryStockName + ", Products=" + Products+"]";
 	}
 }
-	

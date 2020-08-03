@@ -9,7 +9,8 @@ public class LorryStockRequest {
 	private int LorryStockID;
 	private LocalDateTime DateTime;
 	private String LorryStockName;
-	private List<Product> Product;
+	private List<Product> Products;
+	
 	
 	public int getLorryStockID() {
 		return LorryStockID;
@@ -30,12 +31,10 @@ public class LorryStockRequest {
 		LorryStockName = lorryStockName;
 	}
 	public List<Product> getProduct() {
-		return Product;
+		return Products;
 	}
 	public void setProduct(List<Product> product) {
-		Product = product;
+		Products = product;
 	}
 	
-	
-
 }

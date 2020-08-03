@@ -10,6 +10,6 @@ import com.cbl.backend.model.LorryStock;
 @Repository
 public interface LorryStockRepository extends JpaRepository<LorryStock, Integer>{
 	
-	Optional<LorryStock> findByStockName (String StockName);
+	Optional<LorryStock> findByLorryStockName (String LorryStockName);
 	
 }
