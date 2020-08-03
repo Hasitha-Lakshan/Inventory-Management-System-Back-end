@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,13 +20,15 @@ import com.cbl.backend.dto.SetAccountStatusRequest1;
 import com.cbl.backend.service.LorryService;
 
 
-
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 @RequestMapping("/api/lorry/")
 public class LorryController {
 	
 	@Autowired
 	private LorryService lorryService;
+	
 	
 	@PostMapping("/add")
 	public boolean add(@RequestBody LorryRequest lorryRequest) {
@@ -41,8 +44,8 @@ public class LorryController {
 	}
 	
 	
-	@PutMapping("/updatelorry")
-	public ResponseEntity updateLorryInfo(@RequestBody LorryInfoUpdateRequest rq) {
+		@PutMapping("/updatelorry")
+	    public ResponseEntity updateLorryInfo(@RequestBody LorryInfoUpdateRequest rq) {
 		
 		boolean successful=lorryService.updateLorryInfo(rq);
 		if(successful) {
@@ -52,6 +55,7 @@ public class LorryController {
 			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
 		@PutMapping("/setaccountstatus")
 		public ResponseEntity setAccountStatus(@RequestBody SetAccountStatusRequest1 rq) {
 		

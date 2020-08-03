@@ -11,5 +11,6 @@ import com.cbl.backend.model.Lorry;
 public interface LorryRepository extends JpaRepository<Lorry, Integer>{
 
 	Optional<Lorry> findByLorryID(int lorryID);
+	
 }
 
