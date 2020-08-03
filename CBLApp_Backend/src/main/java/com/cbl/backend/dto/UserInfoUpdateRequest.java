@@ -1,5 +1,8 @@
 package com.cbl.backend.dto;
 
+import java.util.List;
+
+import com.cbl.backend.model.PhoneNumber;
 
 public class UserInfoUpdateRequest {
 
@@ -11,6 +14,7 @@ public class UserInfoUpdateRequest {
 	private String addressLine2;
 	private String addressLine3;
 	private String username;
+	private List<PhoneNumber> phoneNumbers;
 	
 	
 	
@@ -59,6 +63,13 @@ public class UserInfoUpdateRequest {
 		this.username = username;
 	}
 	
+	
+	public List<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
 	@Override
 	public String toString() {
 		return "UserDetailsRequest [ firstName=" + firstName + ", lastName=" + lastName
