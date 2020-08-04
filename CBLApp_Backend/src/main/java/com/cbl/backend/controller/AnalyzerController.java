@@ -35,11 +35,4 @@ public class AnalyzerController {
 	public Optional<User> getEmployee(@PathVariable("userID") int userID) {
 		return analyzerService.getEmployee(userID);
 	}
-
-	/*
-	 * @RequestMapping(value="/employee/{userID}",method=RequestMethod.GET) public
-	 * Optional<User> getEmployee(@PathVariable("userID") int userID) { return
-	 * analyzerService.getEmployee(userID); }
-	 */
-
 }

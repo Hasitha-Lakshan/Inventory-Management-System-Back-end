@@ -17,30 +17,6 @@ public class AnalyzerService {
 	@Autowired
 	private UserRepository userRepo;
 
-	/*
-	 * public List<EmployeeDetailResponse> getAllEmployees() {
-	 * 
-	 * List<EmployeeDetailResponse> empl = userRepo.findAll();
-	 * 
-	 * return
-	 * empl.stream().map(this::mapFromUserToDto).collect(Collectors.toList()); }
-	 * 
-	 * private EmployeeDetailResponse mapFromUserToDto(EmployeeDetailResponse ) {
-	 * 
-	 * EmployeeDetailResponse employeeDetailResponse = new EmployeeDetailResponse();
-	 * 
-	 * employeeDetailResponse.setUserID(user.getUserID());
-	 * employeeDetailResponse.setFirstName(user.getFirstName());
-	 * employeeDetailResponse.setLastName(user.getLastName());
-	 * employeeDetailResponse.setRole(user.getRole());
-	 * employeeDetailResponse.setAddressLine1(user.getAddressLine1());
-	 * employeeDetailResponse.setAddressLine2(user.getAddressLine2());
-	 * employeeDetailResponse.setAddressLine3(user.getAddressLine3());
-	 * employeeDetailResponse.setPhoneNumbers(user.getPhoneNumbers());
-	 * 
-	 * return employeeDetailResponse; }
-	 */
-
 	public List<EmployeeDetailResponse> getAllEmployees() {
 
 		List<User> users = userRepo.findAll();
@@ -66,25 +42,9 @@ public class AnalyzerService {
 
 	public Optional<User> getEmployee(int userID) throws EmployeeNotFoundException {
 
-		Optional<User> user = Optional.ofNullable(userRepo.findById(userID)
-				.orElseThrow(() -> new EmployeeNotFoundException("No employee found" + userID)));
-
-		if (user.isPresent()) {
-			return userRepo.findById(userID);
-		}
-		return null;
-		// User ur = userRepo.findById(userID).orElseThrow(()->new
-		// EmployeeNotFoundException("No employee found" + userID));
-		// return Optional.ofNullable(user);
+		//User user = (userRepo.findByUserID(userID));
+		return Optional.of(userRepo.findByUserID(userID));
 
 	}
-
-	/*
-	 * public Optional<EmployeeDetailResponse> getEmployee(int userID) {
-	 * 
-	 * return userRepo.findById(userID);
-	 * 
-	 * }
-	 */
 
 }
