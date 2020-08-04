@@ -53,7 +53,7 @@ public class CashCollector {
 
 	@Override
 	public String toString() {
-		return "CashCollector [cashCollectorID=" + cashCollectorID + ",lorry=" + lorry + "]";
+		return "CashCollector [cashCollectorID=" + cashCollectorID + ", user=" + user + ",lorry=" + lorry + "]";
 	}
 }
 
