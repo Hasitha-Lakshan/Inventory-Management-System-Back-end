@@ -13,6 +13,10 @@ import com.cbl.backend.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 	Optional<User> findByUsername(String username);
+	User findByusername(String username);
+	User findByUserID(int userID);
+
 	Optional<User> findById(int userID);
+	
 
 }

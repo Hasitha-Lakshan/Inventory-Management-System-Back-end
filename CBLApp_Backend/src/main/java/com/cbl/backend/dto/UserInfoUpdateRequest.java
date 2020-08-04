@@ -1,10 +1,12 @@
 package com.cbl.backend.dto;
+
 import java.util.List;
 
 import com.cbl.backend.model.PhoneNumber;
 
-public class RegisterRequest {
+public class UserInfoUpdateRequest {
 
+	
 	private String firstName;
 	private String lastName;
 	private String role;
@@ -12,8 +14,11 @@ public class RegisterRequest {
 	private String addressLine2;
 	private String addressLine3;
 	private String username;
-	private String password;
 	private List<PhoneNumber> phoneNumbers;
+	
+	
+	
+	
 	
 	public String getFirstName() {
 		return firstName;
@@ -54,19 +59,22 @@ public class RegisterRequest {
 	public String getUsername() {
 		return username;
 	}
-	public void setUsername(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
+	
 	public List<PhoneNumber> getPhoneNumbers() {
 		return phoneNumbers;
 	}
-	public void setPhoneNumbers(List<PhoneNumber> phoneList) {
-		this.phoneNumbers = phoneList;
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
+	@Override
+	public String toString() {
+		return "UserDetailsRequest [ firstName=" + firstName + ", lastName=" + lastName
+				+ ", role=" + role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
+				+ ", addressLine3=" + addressLine3 + ", username=" + username + /*", password=" + password
+				+ */", phoneNumbers="  + "]";
 	}
 }
