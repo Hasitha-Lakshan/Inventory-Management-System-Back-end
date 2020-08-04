@@ -50,17 +50,4 @@ public class AnalyzerController
 	
 	
 	
-	
-	
-	
-	/*@RequestMapping(value="/employee/{userID}",method=RequestMethod.GET)
-	public Optional<User> getEmployee(@PathVariable("userID") int userID)
-	{
-		return analyzerService.getEmployee(userID);
-	}*/
-
-	
-
-	
-
 }
