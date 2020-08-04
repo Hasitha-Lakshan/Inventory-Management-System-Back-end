@@ -3,12 +3,14 @@ package com.cbl.backend.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.cbl.backend.dto.ShopDetailsResponse;
 import com.cbl.backend.model.Shops;
 import com.cbl.backend.repository.ShopRepository;
 import com.cbl.backend.service.ShopService;
@@ -17,26 +19,46 @@ import com.cbl.backend.service.ShopService;
 public class ShopServiceTest {
 
 	@Autowired
-	ShopService shopService;
-	
+	private ShopService shopService;
 	@MockBean
 	private ShopRepository shopRepository;
 	
 	@Test
-	public void getAllShopsTest() {
+	public void getAllShops() {
+		
+		List<Shops> shops=new ArrayList<Shops>();
 		
 		Shops shop = new Shops();
-		ShopDetailsResponse shopResponse = new ShopDetailsResponse();
+		shop.setShopID(11111);
+		shop.setShopName("shopName");
+		shop.setOwnerFName("ownerFName");
+		shop.setOwnerLName("ownerLName");
+		shop.setAddress("address");
+		shop.setPhoneNumber("phoneNumber");
 		
-		shopResponse.setShopID(1234);
-		shopResponse.setShopName("test_shopName");
-		shopResponse.setOwnerFName("test_ownerFName");
-		shopResponse.setOwnerLName("test_ownerLName");
-		shopResponse.setAddress("test_address");
-		shopResponse.setPhoneNumber("test_phoneNumber");
+		shops.add(shop);
+		when(shopRepository.findAll()).thenReturn(shops);
+		assertEquals(1,shopService.getAllShops().size());
 		
-		
-		when(shopRepository.save(shop)).thenReturn(shop);
-		assertEquals(true, shopService.getAllShops());
 	}
+	
+	@Test
+	public void getShopTest() {
+		
+		List<Shops> shops=new ArrayList<Shops>();
+		
+		Shops shop = new Shops();
+		shop.setShopID(11111);
+		shop.setShopName("shopName");
+		shop.setOwnerFName("ownerFName");
+		shop.setOwnerLName("ownerLName");
+		shop.setAddress("address");
+		shop.setPhoneNumber("phoneNumber");
+		
+		shops.add(shop);
+		String shopName="polgahawela";
+		when(shopRepository.findByShopName(shopName)).thenReturn(shops);
+		assertEquals(1,shopService.getShop(shopName).size());
+	}
+	
 }
