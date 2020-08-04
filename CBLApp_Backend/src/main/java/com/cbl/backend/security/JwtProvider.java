@@ -47,6 +47,7 @@ public class JwtProvider {
 		
 		return Jwts.builder()
 				.setSubject(princlipal.getUsername())
+				.claim("authorities", princlipal.getAuthorities())
 				.signWith(getPrivateKey())
 				.compact();
 	}
