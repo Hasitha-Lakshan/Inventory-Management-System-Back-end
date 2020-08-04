@@ -1,5 +1,6 @@
 package com.cbl.backend.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "InventoryManagers")
-
 public class InventoryManager {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int inventoryManagerID;
@@ -26,12 +25,10 @@ public class InventoryManager {
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
-	
-	@OneToMany(mappedBy = "inventoryManager")
+    @OneToMany(mappedBy = "inventoryManager")
 	private List<Lorry> lorry =new ArrayList<Lorry>();
 	
-	
-	public int getInventoryManagerID() {
+    public int getInventoryManagerID() {
 		return inventoryManagerID;
 	}
 	public void setInventoryManagerID(int inventoryManagerID) {
@@ -51,12 +48,14 @@ public class InventoryManager {
 		this.lorry = lorry;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "InventoryManager [inventoryManagerID=" + inventoryManagerID + ", user=" + user + ", lorry=" + lorry + "]";
 	}
 	
 }
+
+
+
 
 

@@ -14,6 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
+
+import javassist.bytecode.analysis.Analyzer;
+
 @Entity
 @Table(name = "Users")
 public class User {
@@ -51,6 +55,12 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "user")
 	private List<PhoneNumber> phoneNumbers;
 	@OneToOne(mappedBy = "user")
+
+	private Admin admin;
+	@OneToOne(mappedBy = "user")
+	private Analyzer analyzer;
+	@OneToOne(mappedBy = "user")
+
 	private CashCollector cashCollector;
 	@OneToOne(mappedBy = "user")
 	private InventoryManager inventoryManager;
@@ -122,8 +132,20 @@ public class User {
 	public void setAccountStatus(boolean accountStatus) {
 		this.accountStatus = accountStatus;
 	}
-	
-	
+
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	public Analyzer getAnalyzer() {
+		return analyzer;
+	}
+	public void setAnalyzer(Analyzer analyzer) {
+		this.analyzer = analyzer;
+	}
+
 	public CashCollector getCashCollector() {
 		return cashCollector;
 	}
@@ -136,10 +158,15 @@ public class User {
 	public void setInventoryManager(InventoryManager inventoryManager) {
 		this.inventoryManager = inventoryManager;
 	}
+
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
 				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3
-				+ ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers + ",cashCollector="+ cashCollector + ", inventoryManager=" + inventoryManager + "]";
+				+ ", username=" + username + ", password=" + password + ", accountStatus=" + accountStatus
+				+ ", phoneNumbers=" + phoneNumbers + ", admin=" + admin + ", analyzer=" + analyzer + ", cashCollector="
+				+ cashCollector + ", inventoryManager=" + inventoryManager + "]";
 	}
+
+	
 }

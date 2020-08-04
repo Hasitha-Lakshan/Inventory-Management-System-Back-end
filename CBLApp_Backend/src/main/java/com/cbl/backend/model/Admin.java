@@ -11,28 +11,24 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "CashCollectors")
-public class CashCollector {
+@Table(name = "Admins")
+public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cashCollectorID;
+	private int adminID;
+	
 	@OneToOne
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
-	
-	@OneToOne
-	@JoinColumn(name = "lorryID")
-	@JsonIgnore
-	private Lorry lorry;
-	
-	public int getCashCollectorID() {
-		return cashCollectorID;
+
+	public int getAdminID() {
+		return adminID;
 	}
 
-	public void setCashCollectorID(int cashCollectorID) {
-		this.cashCollectorID = cashCollectorID;
+	public void setAdminID(int adminID) {
+		this.adminID = adminID;
 	}
 
 	public User getUser() {
@@ -42,21 +38,9 @@ public class CashCollector {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-    public Lorry getLorry() {
-		return lorry;
-	}
-
-	public void setLorry(Lorry lorry) {
-		this.lorry = lorry;
-	}
 
 	@Override
 	public String toString() {
-		return "CashCollector [cashCollectorID=" + cashCollectorID + ",lorry=" + lorry + "]";
+		return "Admin [adminID=" + adminID + ", user=" + user + "]";
 	}
 }
-
-
-
-
