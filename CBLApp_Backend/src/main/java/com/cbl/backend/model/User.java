@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -49,6 +50,10 @@ public class User {
 	private boolean accountStatus;
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "user")
 	private List<PhoneNumber> phoneNumbers;
+	@OneToOne(mappedBy = "user")
+	private CashCollector cashCollector;
+	@OneToOne(mappedBy = "user")
+	private InventoryManager inventoryManager;
 	
 	
 	public int getUserID() {
@@ -117,10 +122,24 @@ public class User {
 	public void setAccountStatus(boolean accountStatus) {
 		this.accountStatus = accountStatus;
 	}
+	
+	
+	public CashCollector getCashCollector() {
+		return cashCollector;
+	}
+	public void setCashCollector(CashCollector cashCollector) {
+		this.cashCollector = cashCollector;
+	}
+	public InventoryManager getInventoryManager() {
+		return inventoryManager;
+	}
+	public void setInventoryManager(InventoryManager inventoryManager) {
+		this.inventoryManager = inventoryManager;
+	}
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
 				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3
-				+ ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers + "]";
+				+ ", username=" + username + ", password=" + password + ", phoneNumbers=" + phoneNumbers + ",cashCollector="+ cashCollector + ", inventoryManager=" + inventoryManager + "]";
 	}
 }
