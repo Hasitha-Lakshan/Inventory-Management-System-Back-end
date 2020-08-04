@@ -32,7 +32,6 @@ public class Shops {
 	@Column
 	private String phoneNumber;
 	
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

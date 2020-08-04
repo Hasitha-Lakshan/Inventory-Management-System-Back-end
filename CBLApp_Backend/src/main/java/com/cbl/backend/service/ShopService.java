@@ -36,5 +36,11 @@ public class ShopService {
 		shopDetailsRequest.setPhoneNumber(shop.getPhoneNumber());
 		
 		return shopDetailsRequest;
+		
+	}
+
+	public List<Shops> getShop(String shopName){
+		return shopRepository.findByShopName(shopName);
+
 	}
 }
