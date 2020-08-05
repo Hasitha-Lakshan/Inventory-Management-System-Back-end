@@ -22,12 +22,12 @@ public class ShopServiceTest {
 	private ShopService shopService;
 	@MockBean
 	private ShopRepository shopRepository;
-	
+
 	@Test
 	public void getAllShops() {
-		
-		List<Shops> shops=new ArrayList<Shops>();
-		
+
+		List<Shops> shops = new ArrayList<Shops>();
+
 		Shops shop = new Shops();
 		shop.setShopID(11111);
 		shop.setShopName("shopName");
@@ -35,18 +35,18 @@ public class ShopServiceTest {
 		shop.setOwnerLName("ownerLName");
 		shop.setAddress("address");
 		shop.setPhoneNumber("phoneNumber");
-		
+
 		shops.add(shop);
 		when(shopRepository.findAll()).thenReturn(shops);
-		assertEquals(1,shopService.getAllShops().size());
-		
+		assertEquals(1, shopService.getAllShops().size());
+
 	}
-	
+
 	@Test
 	public void getShopTest() {
-		
-		List<Shops> shops=new ArrayList<Shops>();
-		
+
+		List<Shops> shops = new ArrayList<Shops>();
+
 		Shops shop = new Shops();
 		shop.setShopID(11111);
 		shop.setShopName("shopName");
@@ -54,11 +54,11 @@ public class ShopServiceTest {
 		shop.setOwnerLName("ownerLName");
 		shop.setAddress("address");
 		shop.setPhoneNumber("phoneNumber");
-		
+
 		shops.add(shop);
-		String shopName="polgahawela";
+		String shopName = "polgahawela";
 		when(shopRepository.findByShopName(shopName)).thenReturn(shops);
-		assertEquals(1,shopService.getShop(shopName).size());
+		assertEquals(1, shopService.getShop(shopName).size());
 	}
-	
+
 }

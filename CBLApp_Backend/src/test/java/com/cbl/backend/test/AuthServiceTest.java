@@ -22,23 +22,23 @@ public class AuthServiceTest {
 
 	@Autowired
 	AuthService authService;
-	
+
 	@MockBean
 	private UserRepository userRepository;
-	
+
 	@Test
 	public void signupTest() {
-		
+
 		User user = new User();
 		RegisterRequest registerRequest = new RegisterRequest();
 		PhoneNumber phoneNumber = new PhoneNumber();
 		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
-		
+
 		phoneNumber.setPhoneType("Home");
 		phoneNumber.setPhoneNumber("0111111111");
 		phoneNumber.setUser(user);
 		phoneList.add(phoneNumber);
-		
+
 		registerRequest.setFirstName("test_firstName");
 		registerRequest.setLastName("test_lastName");
 		registerRequest.setRole("Admin");
@@ -48,7 +48,7 @@ public class AuthServiceTest {
 		registerRequest.setUsername("test_username");
 		registerRequest.setPassword("test_password");
 		registerRequest.setPhoneNumbers(phoneList);
-		
+
 		when(userRepository.save(user)).thenReturn(user);
 		assertEquals(true, authService.signup(registerRequest));
 	}

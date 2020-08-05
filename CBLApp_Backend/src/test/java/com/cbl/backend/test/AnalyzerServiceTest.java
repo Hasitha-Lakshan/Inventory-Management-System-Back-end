@@ -70,7 +70,7 @@ public class AnalyzerServiceTest {
 		user.setPassword("password");
 		phoneNumber.setPhoneType("Home");
 		phoneNumber.setPhoneNumber("0111111111");
-		
+
 		phoneList.add(phoneNumber);
 		user.setPhoneNumbers(phoneList);
 		phoneNumber.setUser(user);

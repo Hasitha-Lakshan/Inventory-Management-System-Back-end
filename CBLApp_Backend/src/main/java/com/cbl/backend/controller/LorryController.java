@@ -19,51 +19,46 @@ import com.cbl.backend.dto.LorryResponse;
 import com.cbl.backend.dto.SetAccountStatusRequest1;
 import com.cbl.backend.service.LorryService;
 
-
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
 @RequestMapping("/api/lorry/")
 public class LorryController {
-	
+
 	@Autowired
 	private LorryService lorryService;
-	
-	
+
 	@PostMapping("/add")
 	public boolean add(@RequestBody LorryRequest lorryRequest) {
-		
+
 		return lorryService.add(lorryRequest);
 	}
-	
-	
+
 	@GetMapping("/lorries")
-	public ResponseEntity<List<LorryResponse>> getAllLorries(){
-		
+	public ResponseEntity<List<LorryResponse>> getAllLorries() {
+
 		return new ResponseEntity<>(lorryService.getAllLorries(), HttpStatus.OK);
 	}
-	
-	
-		@PutMapping("/updatelorry")
-	    public ResponseEntity updateLorryInfo(@RequestBody LorryInfoUpdateRequest rq) {
-		
-		boolean successful=lorryService.updateLorryInfo(rq);
-		if(successful) {
-			return new ResponseEntity(HttpStatus.OK);
-		}else 
-		{
-			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+
+	@PutMapping("/updatelorry")
+	public ResponseEntity<?> updateLorryInfo(@RequestBody LorryInfoUpdateRequest rq) {
+
+		boolean successful = lorryService.updateLorryInfo(rq);
+		if (successful) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-		@PutMapping("/setaccountstatus")
-		public ResponseEntity setAccountStatus(@RequestBody SetAccountStatusRequest1 rq) {
-		
-		    boolean successful=lorryService.setAccountStatus(rq);
-		    if(successful) {
-		    	 return new ResponseEntity(HttpStatus.OK);
-		    }else {
-				return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+
+	@PutMapping("/setaccountstatus")
+	public ResponseEntity<?> setAccountStatus(@RequestBody SetAccountStatusRequest1 rq) {
+
+		boolean successful = lorryService.setAccountStatus(rq);
+		if (successful) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
 }
