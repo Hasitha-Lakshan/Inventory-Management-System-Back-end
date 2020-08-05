@@ -21,6 +21,11 @@ public class CashCollector {
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
+	
+	@OneToOne
+	@JoinColumn(name = "lorryID")
+	@JsonIgnore
+	private Lorry lorry;
 
 	public int getCashCollectorID() {
 		return cashCollectorID;
@@ -37,9 +42,16 @@ public class CashCollector {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public Lorry getLorry() {
+		return lorry;
+	}
+
+	public void setLorry(Lorry lorry) {
+		this.lorry = lorry;
+	}
 
 	@Override
 	public String toString() {
-		return "CashCollector [cashCollectorID=" + cashCollectorID + ", user=" + user + "]";
+		return "CashCollector [cashCollectorID=" + cashCollectorID + ", user=" + user + ",lorry=" + lorry + "]";
 	}
 }
