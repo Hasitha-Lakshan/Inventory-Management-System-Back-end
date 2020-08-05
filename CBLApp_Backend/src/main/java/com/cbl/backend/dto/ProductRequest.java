@@ -1,51 +1,19 @@
-package com.cbl.backend.model;
+package com.cbl.backend.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Table(name="Product")
-public class Product{
+public class ProductRequest {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productID;
-	@NotEmpty
-	@Column
 	private String productName;
-	@NotEmpty
-	@Column
 	private int unitBuyingPrice;
-	@NotEmpty
-	@Column
 	private int unitSellingPrice;
-	@NotEmpty
-	@Column
 	private Date date;
-	@Column
 	private int pieces;
-	@Column
 	private int buyingPrice;
-	@Column
 	private int sellingPrice;
-	@Column
 	private int profit=sellingPrice-buyingPrice;
-	
-	@ManyToOne
-	@JoinColumn(name = "reportID")
-	@JsonIgnore
-	//private Report;
+//	private SalesItemsReport salesItemsReport;
 	
 	public int getProductID() {
 		return productID;
@@ -101,6 +69,5 @@ public class Product{
 	public void setProfit(int profit) {
 		this.profit = profit;
 	}
-	
 	
 }
