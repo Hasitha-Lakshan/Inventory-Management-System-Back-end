@@ -187,4 +187,5 @@ public class User {
 				+ ", phoneNumbers=" + phoneNumbers + ", admin=" + admin + ", analyzer=" + analyzer + ", cashCollector="
 				+ cashCollector + ", inventoryManager=" + inventoryManager + "]";
 	}
+
 }
