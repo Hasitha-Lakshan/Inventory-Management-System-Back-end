@@ -5,44 +5,39 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.util.Optionals;
 
-import com.cbl.backend.dto.EmployeeDetailResponse;
 import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 import com.cbl.backend.service.AnalyzerService;
 
 @SpringBootTest
-public class AnalyzerServiceTest
-{
+public class AnalyzerServiceTest {
 	@Autowired
 	private AnalyzerService service;
-	
+
 	@MockBean
 	private UserRepository repository;
-	
+
 	@Test
-	public void getAllEmployees()
-	{
-		List<User> users=new ArrayList<User>();
-		
+	public void getAllEmployees() {
+		List<User> users = new ArrayList<User>();
+
 		User user = new User();
-		
+
 		PhoneNumber phoneNumber = new PhoneNumber();
 		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
-		
+
 		phoneNumber.setPhoneType("Home");
 		phoneNumber.setPhoneNumber("0111111111");
 		phoneNumber.setUser(user);
 		phoneList.add(phoneNumber);
-		
+
 		user.setFirstName("firstName");
 		user.setLastName("lastName");
 		user.setRole("Admin");
@@ -54,26 +49,18 @@ public class AnalyzerServiceTest
 		user.setPhoneNumbers(phoneList);
 		users.add(user);
 		when(repository.findAll()).thenReturn(users);
-		assertEquals(1,service.getAllEmployees().size());
+		assertEquals(1, service.getAllEmployees().size());
 	}
-	
+
 	@Test
-	public void getEmployeeTest()
-	{
-		
+	public void getEmployeeTest() {
+
 		User user = new User();
-		//EmployeeDetailResponse employeeDetailResponse = new EmployeeDetailResponse();
-	
 		PhoneNumber phoneNumber = new PhoneNumber();
 		List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
-		
-		phoneNumber.setPhoneType("Home");
-		phoneNumber.setPhoneNumber("0111111111");
-		phoneNumber.setUser(user);
-		phoneList.add(phoneNumber);
-		
-		user.setFirstName("firstName");
+
 		user.setUserID(1);
+		user.setFirstName("firstName");
 		user.setLastName("lastName");
 		user.setRole("Admin");
 		user.setAddressLine1("addressLine1");
@@ -81,14 +68,17 @@ public class AnalyzerServiceTest
 		user.setAddressLine3("addressLine3");
 		user.setUsername("username");
 		user.setPassword("password");
+		phoneNumber.setPhoneType("Home");
+		phoneNumber.setPhoneNumber("0111111111");
+		
+		phoneList.add(phoneNumber);
 		user.setPhoneNumbers(phoneList);
-		
-		
+		phoneNumber.setUser(user);
+
 		int userID = 1;
-	
+
 		when(repository.findByUserID(userID)).thenReturn(user);
-		assertEquals(user,service.getEmployee(userID));
-		
-		
+		assertEquals(1, service.getEmployee(userID).getUserID());
+
 	}
 }
