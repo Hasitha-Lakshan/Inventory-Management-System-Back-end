@@ -1,12 +1,17 @@
 package com.cbl.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
+import com.cbl.backend.dto.SetAccountStatusRequest;
+import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.dto.UserDetailsResponse;
+import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 
@@ -40,4 +45,73 @@ public class AdminService {
 		
 		return userDetailsResponse;
 	}
+	
+	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
+		
+		User user = userRepository.findByusername(rq.getUsername());
+		System.out.println(rq.getUsername()+"Services");
+		if(user!=null) {
+			
+			/* Updatable attributes */
+			user.setFirstName(rq.getFirstName());
+			user.setLastName(rq.getLastName());
+			user.setAddressLine1(rq.getAddressLine1());
+			user.setAddressLine2(rq.getAddressLine2());
+			user.setAddressLine3(rq.getAddressLine3());
+			user.setRole(rq.getRole());
+			List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
+			for(PhoneNumber phonenumber : rq.getPhoneNumbers()) {
+				
+				PhoneNumber phoneNumber = new PhoneNumber();
+				
+				phoneNumber.setPhoneType(phonenumber.getPhoneType());
+				phoneNumber.setPhoneNumber(phonenumber.getPhoneNumber());
+				phoneNumber.setUser(user);
+				phoneList.add(phoneNumber);
+			}
+			
+			user.setPhoneNumbers(phoneList);
+			
+			/* Non updatable attributes */
+			user.setPassword(user.getPassword());
+			user.setUserID(user.getUserID());
+			user.setUsername(user.getUsername());
+			
+			userRepository.save(user);
+			return true;
+			
+		}else {
+			return false;
+		}
+			
+	}
+	
+	public boolean setAccountStatus(SetAccountStatusRequest rq) {
+		
+		User user = userRepository.findByusername(rq.getUsername());
+		
+		if(user!=null) {
+			
+			user.setAccountStatus(rq.isAccountStatus());			
+			userRepository.save(user);
+			return true;
+		}else {
+			return false;
+		}
+		
+			
+	}
+	
+	public boolean deleteUser(int id) {
+		
+		User user = userRepository.findByUserID(id);
+		
+		if(user!=null) {
+			userRepository.deleteById(user.getUserID());
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }
