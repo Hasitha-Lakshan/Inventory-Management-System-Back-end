@@ -1,14 +1,12 @@
 package com.cbl.backend.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.dto.EmployeeDetailResponse;
-import com.cbl.backend.exception.EmployeeNotFoundException;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.UserRepository;
 
@@ -40,10 +38,11 @@ public class AnalyzerService {
 		return employeeDetailResponse;
 	}
 
-	public Optional<User> getEmployee(int userID) throws EmployeeNotFoundException {
+	public EmployeeDetailResponse getEmployee(int userID) {
 
-		//User user = (userRepo.findByUserID(userID));
-		return Optional.of(userRepo.findByUserID(userID));
+		User user = userRepo.findByUserID(userID);
+
+		return this.mapFromUserToDto(user);
 
 	}
 

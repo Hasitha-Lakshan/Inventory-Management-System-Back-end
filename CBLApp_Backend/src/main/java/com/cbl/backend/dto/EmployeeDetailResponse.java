@@ -2,8 +2,6 @@ package com.cbl.backend.dto;
 
 import java.util.List;
 
-import javax.persistence.Transient;
-
 import com.cbl.backend.model.PhoneNumber;
 
 public class EmployeeDetailResponse {
@@ -15,13 +13,6 @@ public class EmployeeDetailResponse {
 	private String addressLine2;
 	private String addressLine3;
 	private List<PhoneNumber> phoneNumbers;
-
-	@Transient
-	private String username;
-	@Transient
-	private String password;
-	@Transient
-	private boolean accountStatus;
 
 	public int getUserID() {
 		return userID;
@@ -91,8 +82,7 @@ public class EmployeeDetailResponse {
 	public String toString() {
 		return "EmployeeDetailResponse [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", role=" + role + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
-				+ ", addressLine3=" + addressLine3 + ", phoneNumbers=" + phoneNumbers + ", username=" + username
-				+ ", password=" + password + ", accountStatus=" + accountStatus + "]";
+				+ ", addressLine3=" + addressLine3 + ", phoneNumbers=" + phoneNumbers + "]";
 	}
 
 }
