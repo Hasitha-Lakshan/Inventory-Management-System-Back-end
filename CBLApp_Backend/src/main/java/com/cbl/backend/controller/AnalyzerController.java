@@ -31,8 +31,14 @@ public class AnalyzerController {
 		return new ResponseEntity<>(analyzerService.getAllEmployees(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/employee/{userID}", method = RequestMethod.GET)
-	public Optional<User> getEmployee(@PathVariable("userID") int userID) {
+	
+
+	
+	@GetMapping(value="/employee/{userID}")
+	public EmployeeDetailResponse getEmployee(@PathVariable("userID") int userID) {
 		return analyzerService.getEmployee(userID);
 	}
+	
+	
+	
 }

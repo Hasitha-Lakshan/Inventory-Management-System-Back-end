@@ -1,6 +1,7 @@
 package com.cbl.backend.model;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -187,4 +188,7 @@ public class User {
 				+ ", phoneNumbers=" + phoneNumbers + ", admin=" + admin + ", analyzer=" + analyzer + ", cashCollector="
 				+ cashCollector + ", inventoryManager=" + inventoryManager + "]";
 	}
-}
+
+
+	
+	}

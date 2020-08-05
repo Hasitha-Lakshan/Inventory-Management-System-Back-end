@@ -40,11 +40,27 @@ public class AnalyzerService {
 		return employeeDetailResponse;
 	}
 
-	public Optional<User> getEmployee(int userID) throws EmployeeNotFoundException {
 
-		//User user = (userRepo.findByUserID(userID));
-		return Optional.of(userRepo.findByUserID(userID));
 
+	
+	public EmployeeDetailResponse getEmployee(int userID)
+	{
+		User user = userRepo.findByUserID(userID);
+		
+		EmployeeDetailResponse employee = new EmployeeDetailResponse();
+		
+		employee.setUserID(user.getUserID());
+		employee.setFirstName(user.getFirstName());
+		employee.setLastName(user.getLastName());
+		employee.setRole(user.getRole());
+		employee.setAddressLine1(user.getAddressLine1());
+		employee.setAddressLine2(user.getAddressLine2());
+		employee.setAddressLine3(user.getAddressLine3());
+		employee.setPhoneNumbers(user.getPhoneNumbers());
+		
+		return employee;
 	}
-
+	
+	
+	
 }
