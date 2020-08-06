@@ -1,5 +1,6 @@
 package com.cbl.backend.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ProductResponse {
@@ -8,10 +9,10 @@ public class ProductResponse {
 	private String productName;
 	private int unitBuyingPrice;
 	private int unitSellingPrice;
-	private Date date;
+	private LocalDate date;
 	private int pieces;
-	private int buyingPrice;
-	private int sellingPrice;
+	private int buyingPrice=unitBuyingPrice*pieces;
+	private int sellingPrice=unitSellingPrice*pieces;
 	private int profit=sellingPrice-buyingPrice;
 //	private SalesItemsReport salesItemsReport;
 	
@@ -46,12 +47,12 @@ public class ProductResponse {
 	public void setUnitSellingPrice(int unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
-
-	public Date getDate() {
+	
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
