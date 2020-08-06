@@ -7,14 +7,15 @@ public class ProductRequest {
 	
 	private int productID;
 	private String productName;
-	private int unitBuyingPrice;
-	private int unitSellingPrice;
+	private float unitBuyingPrice;
+	private float unitSellingPrice;
 	private LocalDate date;
 	private int pieces;
-	private int buyingPrice=unitBuyingPrice*pieces;
-	private int sellingPrice=unitSellingPrice*pieces;
-	private int profit=sellingPrice-buyingPrice;
+	private float buyingPrice=unitBuyingPrice*pieces;
+	private float sellingPrice=unitSellingPrice*pieces;
+	private float profit=sellingPrice-buyingPrice;
 //	private SalesItemsReport salesItemsReport;
+	
 	
 	public int getProductID() {
 		return productID;
@@ -28,19 +29,18 @@ public class ProductRequest {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public int getUnitBuyingPrice() {
+	public float getUnitBuyingPrice() {
 		return unitBuyingPrice;
 	}
-	public void setUnitBuyingPrice(int unitBuyingPrice) {
+	public void setUnitBuyingPrice(float unitBuyingPrice) {
 		this.unitBuyingPrice = unitBuyingPrice;
 	}
-	public int getUnitSellingPrice() {
+	public float getUnitSellingPrice() {
 		return unitSellingPrice;
 	}
-	public void setUnitSellingPrice(int unitSellingPrice) {
+	public void setUnitSellingPrice(float unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
-	
 	public LocalDate getDate() {
 		return date;
 	}
@@ -53,23 +53,25 @@ public class ProductRequest {
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
-	public int getBuyingPrice() {
+	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(int buyingPrice) {
+	public void setBuyingPrice(float buyingPrice) {
 		this.buyingPrice = buyingPrice;
 	}
-	public int getSellingPrice() {
+	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(int sellingPrice) {
+	public void setSellingPrice(float sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
-	public int getProfit() {
+	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(int profit) {
+	public void setProfit(float profit) {
 		this.profit = profit;
 	}
+	
+	
 	
 }
