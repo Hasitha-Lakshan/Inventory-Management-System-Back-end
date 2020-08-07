@@ -7,5 +7,5 @@ import com.cbl.backend.model.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer>{
-
+	public Admin findByuser(int userID);
 }

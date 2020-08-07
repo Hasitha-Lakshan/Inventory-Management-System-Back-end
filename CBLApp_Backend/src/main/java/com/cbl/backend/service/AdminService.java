@@ -11,8 +11,17 @@ import org.springframework.stereotype.Service;
 import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.dto.UserDetailsResponse;
+import com.cbl.backend.model.Admin;
+import com.cbl.backend.model.Analyzer;
+import com.cbl.backend.model.CashCollector;
+import com.cbl.backend.model.InventoryManager;
 import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.User;
+import com.cbl.backend.repository.AdminRepository;
+import com.cbl.backend.repository.AnalyzerRepository;
+import com.cbl.backend.repository.CashCollectorRepository;
+import com.cbl.backend.repository.InventoryManagerRepository;
+import com.cbl.backend.repository.PhoneNumberRepository;
 import com.cbl.backend.repository.UserRepository;
 
 @Service
@@ -20,7 +29,17 @@ public class AdminService {
 	
 	@Autowired
 	private UserRepository userRepository;
-
+	@Autowired
+	private AdminRepository adminRepository;
+	@Autowired 
+	private AnalyzerRepository analyzerRepository;
+	@Autowired
+	private CashCollectorRepository cashCollectorRepository;
+	@Autowired
+	private InventoryManagerRepository inventoryManagerRepository;
+	@Autowired
+	private PhoneNumberRepository phonenumberRepository;
+	
 	public List<UserDetailsResponse> getAllUsers() {
 		
 		List<User> users = userRepository.findAll();
@@ -107,8 +126,55 @@ public class AdminService {
 		User user = userRepository.findByUserID(id);
 		
 		if(user!=null) {
-			userRepository.deleteById(user.getUserID());
-			return true;
+			int userId=user.getUserID();
+			
+			Admin admin=adminRepository.findByuser(userId);
+			Analyzer analyzer=analyzerRepository.findByuser(userId);
+			CashCollector cashcollector=cashCollectorRepository.findByuser(userId);
+			InventoryManager inventoryManager=inventoryManagerRepository.findByuser(userId);
+		
+			
+			if(admin!=null) {
+				
+				admin.setAdminID(admin.getAdminID());
+				admin.setUser(null);
+				adminRepository.save(admin);
+				userRepository.deleteById(user.getUserID());
+				
+			}
+
+			if(analyzer!=null) {
+				
+				analyzer.setAnalyzerID(analyzer.getAnalyzerID());
+				analyzer.setUser(null);
+				analyzerRepository.save(analyzer);
+				userRepository.deleteById(user.getUserID());
+				
+			}
+			
+			if(cashcollector!=null) {
+				
+				cashcollector.setCashCollectorID(cashcollector.getCashCollectorID());
+				cashcollector.setUser(null);
+				cashCollectorRepository.save(cashcollector);
+				userRepository.deleteById(user.getUserID());
+				
+			}
+			
+
+			if(inventoryManager!=null) {
+				
+				inventoryManager.setInventoryManagerID(inventoryManager.getInventoryManagerID());
+				inventoryManager.setUser(null);
+				inventoryManagerRepository.save(inventoryManager);
+				userRepository.deleteById(user.getUserID());
+				
+			}
+		
+			phonenumberRepository.deleteByuser(userId);
+				
+			return true;		
+			
 		}else {
 			return false;
 		}

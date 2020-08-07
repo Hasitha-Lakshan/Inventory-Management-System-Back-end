@@ -7,5 +7,5 @@ import com.cbl.backend.model.InventoryManager;
 
 @Repository
 public interface InventoryManagerRepository extends JpaRepository<InventoryManager, Integer>{
-
+	public InventoryManager findByuser(int userID);
 }
