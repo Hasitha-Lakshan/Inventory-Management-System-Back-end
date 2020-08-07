@@ -1,23 +1,21 @@
 package com.cbl.backend.model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="Product")
-
-public class Product {
+public class Product{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productID;
@@ -26,33 +24,30 @@ public class Product {
 	private String productName;
 	@NotEmpty
 	@Column
-	private int buyingPriceOf1;
+	private float unitBuyingPrice;
 	@NotEmpty
 	@Column
-	private int sellingPriceOf1;
+	private float unitSellingPrice;
 	@NotEmpty
 	@Column
-	private Date date;
-	@Column
-	private int boxes;
+	private LocalDate date;
 	@Column
 	private int pieces;
 	@Column
-	private int buyingPrice;
+	private float buyingPrice=unitBuyingPrice*pieces;
 	@Column
-	private int sellingPrice;
+	private float sellingPrice=unitSellingPrice*pieces;
 	@Column
-	private int profit=sellingPrice-buyingPrice;
+	private float profit=sellingPrice-buyingPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "LorryStockID")
-	@JsonIgnore
 	private LorryStock LorryStock;
 	
 	
 	public int getProductID() {
 		return productID;
 	}
+	
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
@@ -62,51 +57,57 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public int getBuyingPriceOf1() {
-		return buyingPriceOf1;
+	public float getUnitBuyingPrice() {
+		return unitBuyingPrice;
 	}
-	public void setBuyingPriceOf1(int buyingPriceOf1) {
-		this.buyingPriceOf1 = buyingPriceOf1;
+	public void setUnitBuyingPrice(float unitBuyingPrice) {
+		this.unitBuyingPrice = unitBuyingPrice;
 	}
-	public int getSellingPriceOf1() {
-		return sellingPriceOf1;
+	public float getUnitSellingPrice() {
+		return unitSellingPrice;
 	}
-	public void setSellingPriceOf1(int sellingPriceOf1) {
-		this.sellingPriceOf1 = sellingPriceOf1;
+	public void setUnitSellingPrice(float unitSellingPrice) {
+		this.unitSellingPrice = unitSellingPrice;
 	}
-	
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
 	public int getPieces() {
 		return pieces;
 	}
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
-	public int getBuyingPrice() {
+	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(int buyingPrice) {
+	public void setBuyingPrice(float buyingPrice) {
 		this.buyingPrice = buyingPrice;
 	}
-	public int getSellingPrice() {
+	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(int sellingPrice) {
+	public void setSellingPrice(float sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
-	public int getProfit() {
+	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(int profit) {
+	public void setProfit(float profit) {
 		this.profit = profit;
-	}	
-}
+	}
+	public LorryStock getLorryStock() {
+		return LorryStock;
+	}
+	public void setLorryStock(LorryStock lorryStock) {
+		LorryStock = lorryStock;
+	}
 	
-
-
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", productName=" + productName + ", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",date="+ date + ",pieces="+ pieces + ",buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit + "LorryStock=" + LorryStock + "]";
+	}
+}

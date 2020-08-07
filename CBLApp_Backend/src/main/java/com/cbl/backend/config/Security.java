@@ -38,6 +38,8 @@ public class Security extends WebSecurityConfigurerAdapter{
 
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		
+		//httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/**").permitAll().anyRequest().authenticated();
+		
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/auth/**").permitAll();
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/admin/**").hasRole("ADMIN");
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/analyzer/**").hasRole("ANALYZER");

@@ -13,7 +13,7 @@ import com.cbl.backend.dto.LorryStockRequest;
 import com.cbl.backend.service.LorryStockService;
 
 @RestController
-@RequestMapping("/api/inventoryManager/LorryStock")
+@RequestMapping("/api/inventoryManager/")
 public class LorryStockController {
 	
 	@Autowired

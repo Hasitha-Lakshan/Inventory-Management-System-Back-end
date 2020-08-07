@@ -2,22 +2,16 @@ package com.cbl.backend.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.stereotype.Component;
-
-
-@Component
 @Entity
 @Table(name = "LorryStock")
 public class LorryStock {
@@ -30,8 +24,12 @@ public class LorryStock {
 	@NotEmpty
 	@Column(unique = true)
 	private String LorryStockName;
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "LorryStock")
+	@OneToMany
 	private List<Product> Products;
+	@ManyToOne
+	private InventoryManager inventoryManager;
+	@ManyToOne
+	private Lorry Lorry;
 	
 	public int getLorryStockID() {
 		return LorryStockID;
@@ -54,13 +52,24 @@ public class LorryStock {
 	public List<Product> getProduct() {
 		return Products;
 	}
-	public void setProduct(List<Product> product) {
-		Products = product;
+	public void setProduct(List<Product> products) {
+		Products = products;
 	}
-	
+	public InventoryManager getInventoryManager() {
+		return inventoryManager;
+	}
+	public void setInventoryManager(InventoryManager inventoryManager) {
+		this.inventoryManager = inventoryManager;
+	}
+	public Lorry getLorry() {
+		return Lorry;
+	}
+	public void setLorry(Lorry lorry) {
+		Lorry = lorry;
+	}
 	@Override
 	public String toString() {
 		return "LorryStock [LorryStockID=" + LorryStockID + ", DatTime=" + DateTime + ", LorryStockName=" +
-	LorryStockName + ", Products=" + Products+"]";
+	LorryStockName + ", Products=" + Products+", lorry=" + Lorry + ", inventoryManager=" + inventoryManager+"]";
 	}
 }
