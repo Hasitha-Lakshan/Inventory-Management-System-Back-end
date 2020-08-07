@@ -27,9 +27,10 @@ public class SalesItemsReport{
 	@NotEmpty
 	@Column
 	private LocalDateTime dateTime;
+  
 
 //	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "salesItemsReport")
-//	private List<SalesItemsReport> salesItemsReport;
+//	private List<SalesProduct> products;
 
 	public int getSalesItemsReportID() {
 		return salesItemsReportID;

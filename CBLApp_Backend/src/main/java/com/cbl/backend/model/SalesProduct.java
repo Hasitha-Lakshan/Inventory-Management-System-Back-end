@@ -1,5 +1,7 @@
 package com.cbl.backend.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,7 +34,7 @@ public class SalesProduct{
 	private int unitSellingPrice;
 	@NotEmpty
 	@Column
-	private Date date;
+	private LocalDate date;
 	@Column
 	private int pieces;
 	@Column
@@ -76,10 +78,10 @@ public class SalesProduct{
 		this.unitSellingPrice = unitSellingPrice;
 	}
 	
-	public Date getDate() {
+	public @NotEmpty LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(@NotEmpty @NotEmpty LocalDate date) {
 		this.date = date;
 	}
 	
