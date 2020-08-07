@@ -10,5 +10,5 @@ import com.cbl.backend.model.Invoice;
 @Repository
 public interface InvoiceRepository extends JpaRepository< Invoice, Integer> {
     
-	Invoice FindByShopName(String shopName);
+	
 }

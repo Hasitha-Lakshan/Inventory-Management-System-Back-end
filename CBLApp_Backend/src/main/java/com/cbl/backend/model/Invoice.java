@@ -1,11 +1,18 @@
 package com.cbl.backend.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,11 +25,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table
+@Table(name = "invoices")
 public class Invoice {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int invoiceId;
 	private String shopName;
 	private Date issuedDate;
@@ -32,6 +39,13 @@ public class Invoice {
 	private int cheque;
 	private int cash;
 	private int credits;
+	
+	@ManyToOne
+	private CashCollector cashCollector;
+	
+	@ManyToOne
+	private Shops shops;
+	
 	
 	
 	
@@ -89,6 +103,29 @@ public class Invoice {
 	public void setCredits(int credits) {
 		this.credits = credits;
 	}
+	public CashCollector getCashCollector() {
+		return cashCollector;
+	}
+	public void setCashCollector(CashCollector cashCollector) {
+		this.cashCollector = cashCollector;
+	}
+	public Shops getShops() {
+		return shops;
+	}
+	public void setShops(Shops shops) {
+		this.shops = shops;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Invoice [invoiceId=" + invoiceId + ", shopName=" + shopName + ", issuedDate=" + issuedDate
+				+ ", expireDate=" + expireDate + ", status=" + status + ", value=" + value + ", cheque=" + cheque
+				+ ", cash=" + cash + ", credits=" + credits + ", cashCollector=" + cashCollector + ", shops=" + shops
+				+ "]";
+	}
+	
+	
 	
 
 }

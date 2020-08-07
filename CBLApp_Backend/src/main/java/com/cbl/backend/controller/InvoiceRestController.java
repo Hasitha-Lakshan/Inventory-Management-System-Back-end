@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cbl.backend.dto.UserDetailsResponse;
+import com.cbl.backend.dto.InvoiceDetailsResponse;
+import com.cbl.backend.dto.InvoiceSaveRequest;
+import com.cbl.backend.dto.InvoiceUpdateRequest;
 import com.cbl.backend.model.Invoice;
-import com.cbl.backend.reports.service.ReportService;
 import com.cbl.backend.repository.InvoiceRepository;
 import com.cbl.backend.service.InvoiceService;
 
@@ -31,44 +32,49 @@ public class InvoiceRestController {
 	
 	
 	@PostMapping("/savereport")
-    public Invoice addReport(@RequestBody Invoice invoice){
-        return service.saveReport(invoice);
+    public ResponseEntity<InvoiceDetailsResponse> addReport(@RequestBody InvoiceSaveRequest invoiceSaveRequest){
+        return new ResponseEntity<>(invoiceService.saveReport(invoiceSaveRequest),HttpStatus.OK);
     }
-    @PostMapping("/savereports")
-    public List<Invoice> addReport(@RequestBody List<Invoice> invoice){
-        return service.saveReport(invoice);
-    }
+//    @PostMapping("/savereports")
+//    public List<Invoice> addReport(@RequestBody List<Invoice> invoice){
+//        return invoiceService.saveReport(invoice);
+//    }
     
-    @GetMapping("/users")
-	public ResponseEntity<List<UserDetailsResponse>> getAllUsers(){
-		
-		return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
-	}
 
     @GetMapping("/get-invoice-reports")
     public ResponseEntity<List<InvoiceDetailsResponse>> getAllInvoiceReports(){
-    	return new ResponseEntity<>(invoiceService.getReports(), HttpStatus.OK)
+    	return new ResponseEntity<>(invoiceService.getReports(), HttpStatus.OK);
     }
-    public List<Invoice> getAllReports(){
-        return service.getReports();
-    }
+    
     @GetMapping("/findreportbyid/{id}")
-    public Invoice findReportbyId(@PathVariable int id){
-        return service.getReportById(id);
+    public ResponseEntity<InvoiceDetailsResponse> findReportbyId(@PathVariable int id){
+        return new ResponseEntity<>(invoiceService.getReportById(id),HttpStatus.OK);
     }
-    @GetMapping("/findreportbyshopname/{name}")
-    public Invoice findReportByName(@PathVariable String name){
-        return service.getReportByShopName(name);
+//    @GetMapping("/findreportbyshopname/{name}")
+//    public Invoice findReportByName(@PathVariable String name){
+//        return service.getReportByShopName(name);
+//    }
+    
+   
+    @PutMapping("/update-invoice/{id}")
+    public ResponseEntity<?> updateReport(@PathVariable int id, @RequestBody InvoiceUpdateRequest invoiceUpdateRequest){
+    	
+    	boolean successful = invoiceService.updateInvoiceReport(id, invoiceUpdateRequest);
+		if (successful) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    	
+     
     }
-
-    @PutMapping("/update")
-    public Invoice updateReport(@RequestBody Invoice invoice){
-        return service.updateReport(invoice);
-    }
-    @DeleteMapping("/delete/{id}")
-    public String deleteReport(@PathVariable int id){
-        return service.deleteReport(id);
-    }
+    
+    
+    
+//    @DeleteMapping("/delete/{id}")
+//    public String deleteReport(@PathVariable int id){
+//        return service.deleteReport(id);
+//    }
 	
 	
 	 
