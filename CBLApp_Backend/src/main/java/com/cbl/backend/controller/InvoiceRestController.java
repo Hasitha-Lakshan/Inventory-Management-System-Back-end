@@ -32,8 +32,8 @@ public class InvoiceRestController {
 	
 	
 	@PostMapping("/savereport")
-    public ResponseEntity<InvoiceDetailsResponse> addReport(@RequestBody InvoiceSaveRequest invoiceSaveRequest){
-        return new ResponseEntity<>(invoiceService.saveReport(invoiceSaveRequest),HttpStatus.OK);
+    public boolean addReport(@RequestBody InvoiceSaveRequest invoiceSaveRequest){
+        return invoiceService.saveReport(invoiceSaveRequest);
     }
 //    @PostMapping("/savereports")
 //    public List<Invoice> addReport(@RequestBody List<Invoice> invoice){

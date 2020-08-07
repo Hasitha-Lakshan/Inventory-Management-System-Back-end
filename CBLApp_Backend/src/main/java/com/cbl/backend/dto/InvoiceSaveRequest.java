@@ -8,11 +8,11 @@ public class InvoiceSaveRequest{
 	private String shopName;
 	private Date issuedDate;
 	private Date expireDate;
-	private boolean status;
+	
 	private int value;
 	private int cheque;
 	private int cash;
-	private int credits;
+	
 	
 	
 	
@@ -34,12 +34,7 @@ public class InvoiceSaveRequest{
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+	
 	public int getValue() {
 		return value;
 	}
@@ -57,12 +52,6 @@ public class InvoiceSaveRequest{
 	}
 	public void setCash(int cash) {
 		this.cash = cash;
-	}
-	public int getCredits() {
-		return credits;
-	}
-	public void setCredits(int credits) {
-		this.credits = credits;
 	}
 	
 	

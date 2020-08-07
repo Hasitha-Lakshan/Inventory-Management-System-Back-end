@@ -19,7 +19,7 @@ public class InvoiceService {
 	
 	
 	
-	public InvoiceDetailsResponse saveReport(InvoiceSaveRequest invoiceSaveRequest) {
+	public boolean saveReport(InvoiceSaveRequest invoiceSaveRequest) {
 		
 		Invoice invoice = new Invoice();
 		
@@ -38,7 +38,8 @@ public class InvoiceService {
 			invoice.setStatus(false);
 		}
 		
-		return this.mapFromInvoiceToDto(repository.save(invoice));
+		InvoiceDetailsResponse res = this.mapFromInvoiceToDto(repository.save(invoice));
+		return true;
 		
 	
 	}
@@ -87,11 +88,11 @@ public class InvoiceService {
 //		return repository.findByShopName(name);
 //	}*/
 	
-	public String deleteReport(int id){
+	/*public String deleteReport(int id){
         repository.deleteById(id);
         return "Report removed" +id;
     }
-	
+	*/
 	
 
     public boolean updateInvoiceReport(int id,InvoiceUpdateRequest invoiceUpdateRequest){
