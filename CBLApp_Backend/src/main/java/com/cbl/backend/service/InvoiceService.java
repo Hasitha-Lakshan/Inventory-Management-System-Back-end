@@ -1,4 +1,4 @@
-package com.cbl.backend.reports.service;
+package com.cbl.backend.service;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cbl.backend.model.Invoice;
-import com.cbl.backend.repository.ReportRepository;
+import com.cbl.backend.repository.InvoiceRepository;
 
 @Service
-public class ReportService {
+public class InvoiceService {
 	
 	@Autowired
-	private ReportRepository repository;
+	private InvoiceRepository repository;
 	
 	public Invoice saveReport(Invoice invoice) {
 		return repository.save(invoice);

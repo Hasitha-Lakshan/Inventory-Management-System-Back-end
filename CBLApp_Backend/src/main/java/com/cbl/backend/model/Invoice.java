@@ -33,6 +33,8 @@ public class Invoice {
 	private int cash;
 	private int credits;
 	
+	
+	
 	public int getInvoiceId() {
 		return invoiceId;
 	}
