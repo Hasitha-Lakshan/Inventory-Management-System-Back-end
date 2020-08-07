@@ -126,12 +126,12 @@ public class AdminService {
 		User user = userRepository.findByUserID(id);
 		
 		if(user!=null) {
-			int userId=user.getUserID();
 			
-			Admin admin=adminRepository.findByuser(userId);
-			Analyzer analyzer=analyzerRepository.findByuser(userId);
-			CashCollector cashcollector=cashCollectorRepository.findByuser(userId);
-			InventoryManager inventoryManager=inventoryManagerRepository.findByuser(userId);
+			
+			Admin admin=adminRepository.findByuser(user);
+			Analyzer analyzer=analyzerRepository.findByuser(user);
+			CashCollector cashcollector=cashCollectorRepository.findByuser(user);
+			InventoryManager inventoryManager=inventoryManagerRepository.findByuser(user);
 		
 			
 			if(admin!=null) {
@@ -171,7 +171,7 @@ public class AdminService {
 				
 			}
 		
-			phonenumberRepository.deleteByuser(userId);
+			phonenumberRepository.deleteByuser(user);
 				
 			return true;		
 			

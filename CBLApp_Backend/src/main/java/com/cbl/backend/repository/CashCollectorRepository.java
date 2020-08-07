@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 
 import com.cbl.backend.model.CashCollector;
+import com.cbl.backend.model.User;
 
 @Repository
 public interface CashCollectorRepository extends JpaRepository<CashCollector, Integer>{
-	public CashCollector findByuser(int userID);
+	public CashCollector findByuser(User user);
 }

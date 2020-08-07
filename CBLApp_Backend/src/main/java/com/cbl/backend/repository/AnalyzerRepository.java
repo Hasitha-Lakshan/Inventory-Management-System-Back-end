@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 
 import com.cbl.backend.model.Analyzer;
+import com.cbl.backend.model.User;
 
 @Repository
 public interface AnalyzerRepository extends JpaRepository<Analyzer, Integer>{
-	public Analyzer findByuser(int userID);
+	public Analyzer findByuser(User user);
 }
