@@ -11,9 +11,9 @@ public class ProductResponse {
 	private float unitSellingPrice;
 	private LocalDate date;
 	private int pieces;
-	private float buyingPrice=unitBuyingPrice*pieces;
-	private float sellingPrice=unitSellingPrice*pieces;
-	private float profit=sellingPrice-buyingPrice;
+	private float buyingPrice;
+	private float sellingPrice;
+	private float profit;
 //	private SalesItemsReport salesItemsReport;
 	
 	public int getProductID() {
@@ -55,21 +55,22 @@ public class ProductResponse {
 	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(float buyingPrice) {
-		this.buyingPrice = buyingPrice;
+	public void setBuyingPrice() {
+		this.buyingPrice = this.unitBuyingPrice*this.pieces;
 	}
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(float sellingPrice) {
-		this.sellingPrice = sellingPrice;
+	public void setSellingPrice() {
+		this.sellingPrice =this.unitSellingPrice*this.pieces;
 	}
 	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(float profit) {
-		this.profit = profit;
+	public void setProfit() {
+		this.profit = this.sellingPrice-this.buyingPrice;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProductResponse [productID=" + productID + ", productName=" + productName + ", unitBuyingPrice="

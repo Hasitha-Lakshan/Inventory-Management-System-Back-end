@@ -1,7 +1,7 @@
 package com.cbl.backend.model;
 
 import java.time.LocalDate;
-import java.util.Date;
+//import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,11 +37,11 @@ public class Product{
 	@Column
 	private int pieces;
 	@Column
-	private float buyingPrice=unitBuyingPrice*pieces;
+	private float buyingPrice;
 	@Column
-	private float sellingPrice=unitSellingPrice*pieces;
+	private float sellingPrice;
 	@Column
-	private float profit=sellingPrice-buyingPrice;
+	private float profit;
 	
 	@ManyToOne
 	@JoinColumn(name = "reportID")
@@ -87,20 +87,20 @@ public class Product{
 	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(float buyingPrice) {
-		this.buyingPrice = buyingPrice;
+	public void setBuyingPrice(float b) {
+		this.buyingPrice = this.unitBuyingPrice*this.pieces;
 	}
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(float sellingPrice) {
-		this.sellingPrice = sellingPrice;
+	public void setSellingPrice(float s) {
+		this.sellingPrice = this.unitSellingPrice*this.pieces;
 	}
 	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(float profit) {
-		this.profit = profit;
+	public void setProfit(float p) {
+		this.profit = this.sellingPrice-this.buyingPrice;
 	}
 	
 	

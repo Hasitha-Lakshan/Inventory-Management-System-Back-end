@@ -1,5 +1,7 @@
 package com.cbl.backend.service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,4 +33,28 @@ public class ProductService {
 		return "deleted";
 	}
 
+	//get totalprofit part
+	public List<Product> getDateSortedProducts(LocalDate startDate,LocalDate endDate){
+		List<Product> sorted = null;
+		List<Product> list = this.getAll();
+		for(int i = 0; i < list.size();i++) {
+			Product p = list.get(i);
+			if( (p.getDate().isAfter(startDate)) && (p.getDate().isBefore(endDate))) {
+				sorted.add(p);
+			}
+		}
+		return sorted;
+	}
+	
+	public float getTotalBuyingPrice(LocalDate startDate,LocalDate endDate) {
+		List<Product> sorted = this.getDateSortedProducts(startDate, endDate);
+		float totalBuyingPrice = 0;
+		for(int i=0;i < sorted.size(); i++) {
+			Product p = sorted.get(i);
+			totalBuyingPrice = totalBuyingPrice + p.getBuyingPrice();
+		}
+		return totalBuyingPrice;
+	}
+	
+	
 }
