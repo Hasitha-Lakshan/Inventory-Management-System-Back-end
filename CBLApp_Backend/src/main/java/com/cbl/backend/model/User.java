@@ -20,7 +20,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userID;
+	private  int userID;
 	@NotEmpty
 	@Column
 	private String firstName;
