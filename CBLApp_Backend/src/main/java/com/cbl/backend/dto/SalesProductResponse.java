@@ -1,19 +1,19 @@
 package com.cbl.backend.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class SalesProductResponse {
 	
 	private int salesProductID;
 	private String salesProductName;
-	private int unitBuyingPrice;
-	private int unitSellingPrice;
-	private Date date;
+	private float unitBuyingPrice;
+	private float unitSellingPrice;
+	private LocalDate date;
 	private int pieces;
-	private int boxes;
-	private int buyingPrice;
-	private int sellingPrice;
-	private int profit=sellingPrice-buyingPrice;
+ 	private float buyingPrice;
+	private float sellingPrice;
+	private float profit;
 //	private SalesItemsReport salesItemsReport;
 	
 	public int getSalesProductID() {
@@ -28,22 +28,22 @@ public class SalesProductResponse {
 	public void setSalesProductName(String salesProductName) {
 		this.salesProductName = salesProductName;
 	}
-	public int getUnitBuyingPrice() {
+	public float getUnitBuyingPrice() {
 		return unitBuyingPrice;
 	}
-	public void setUnitBuyingPrice(int unitBuyingPrice) {
+	public void setUnitBuyingPrice(float unitBuyingPrice) {
 		this.unitBuyingPrice = unitBuyingPrice;
 	}
-	public int getUnitSellingPrice() {
+	public float getUnitSellingPrice() {
 		return unitSellingPrice;
 	}
-	public void setUnitSellingPrice(int unitSellingPrice) {
+	public void setUnitSellingPrice(float unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public int getPieces() {
@@ -52,23 +52,30 @@ public class SalesProductResponse {
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
-	public int getProfit() {
+	public float getBuyingPrice() {
+		return buyingPrice;
+	}
+	public void setBuyingPrice(float buyingPrice) {
+		this.buyingPrice = buyingPrice;
+	}
+	public float getSellingPrice() {
+		return sellingPrice;
+	}
+	public void setSellingPrice(float sellingPrice) {
+		this.sellingPrice = sellingPrice;
+	}
+	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(int profit) {
+	public void setProfit(float profit) {
 		this.profit = profit;
 	}
-	public int getBoxes() {
-		return boxes;
-	}
-	public void setBoxes(int boxes) {
-		this.boxes = boxes;
-	}
+	 
 	@Override
 	public String toString() {
 		return "ProductResponse [salesProductID=" + salesProductID + ", salesProductName=" + salesProductName + ", date=" + date + 
 				", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",pieces=" + pieces + 
-				", boxes="+ boxes + ", buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit +" ]";
+				", buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit +" ]";
 	} 
 	
 

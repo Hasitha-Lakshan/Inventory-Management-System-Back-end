@@ -13,6 +13,7 @@ public class SalesItemsReportRequest{
 	private int buying_price;
 	private int selling_price;
 	private int profit;
+	
 	public int getSalesItemsReport_Id() {
 		return salesItemsReport_Id;
 	}
