@@ -25,21 +25,21 @@ public class SalesProduct{
 	private String salesProductName;
 	@NotEmpty
 	@Column
-	private int unitBuyingPrice;
+	private float unitBuyingPrice;
 	@NotEmpty
 	@Column
-	private int unitSellingPrice;
+	private float unitSellingPrice;
 	@NotEmpty
 	@Column
 	private LocalDate date;
 	@Column
 	private int pieces;
 	@Column
-	private int buyingPrice;
+	private float buyingPrice;
 	@Column
-	private int sellingPrice;
+	private float sellingPrice;
 	@Column
-	private int profit=sellingPrice-buyingPrice;
+	private float profit;
 
 	
 	@ManyToOne
@@ -60,23 +60,23 @@ public class SalesProduct{
 	public void setSalesProductName(String salesProductName) {
 		this.salesProductName = salesProductName;
 	}
-	public int getUnitBuyingPrice() {
+	public @NotEmpty float getUnitBuyingPrice() {
 		return unitBuyingPrice;
 	}
-	public void setUnitBuyingPrice(int unitBuyingPrice) {
+	public void setUnitBuyingPrice(float unitBuyingPrice) {
 		this.unitBuyingPrice = unitBuyingPrice;
 	}
-	public int getUnitSellingPrice() {
+	public float getUnitSellingPrice() {
 		return unitSellingPrice;
 	}
-	public void setUnitSellingPrice(int unitSellingPrice) {
+	public void setUnitSellingPrice(float unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
 	
-	public @NotEmpty LocalDate getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(@NotEmpty @NotEmpty LocalDate date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	
@@ -86,23 +86,23 @@ public class SalesProduct{
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
-	public int getBuyingPrice() {
+	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(int buyingPrice) {
-		this.buyingPrice = buyingPrice;
+	public void setBuyingPrice(float b) {
+		this.buyingPrice = this.unitBuyingPrice*this.pieces;
 	}
-	public int getSellingPrice() {
+	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(int sellingPrice) {
-		this.sellingPrice = sellingPrice;
+	public void setSellingPrice(float s) {
+		this.sellingPrice = this.unitSellingPrice*this.pieces;
 	}
-	public int getProfit() {
+	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(int profit) {
-		this.profit = profit;
+	public void setProfit(float p) {
+		this.profit = this.sellingPrice-this.buyingPrice;
 	}
 	
 	

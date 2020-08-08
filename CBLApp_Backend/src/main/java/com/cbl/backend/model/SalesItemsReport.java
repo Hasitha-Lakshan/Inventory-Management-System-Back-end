@@ -39,6 +39,14 @@ public class SalesItemsReport{
 	public void setSalesItemsReportID(int salesItemsReportID) {
 		this.salesItemsReportID = salesItemsReportID;
 	}
+	
+	public String getSalesItemsReportName() {
+		return salesItemsReportName;
+	}
+
+	public void setSalesItemsReportName(String salesItemsReportName) {
+		this.salesItemsReportName = salesItemsReportName;
+	}
 
 	public LocalDateTime getDateTime() {
 		return dateTime;
@@ -48,13 +56,7 @@ public class SalesItemsReport{
 		this.dateTime = dateTime;
 	}
 
-	public String getSalesItemsReportName() {
-		return salesItemsReportName;
-	}
-
-	public void setSalesItemsReportName(String salesItemsReportName) {
-		this.salesItemsReportName = salesItemsReportName;
-	}
+ 
 
 //	@Override
 //	public String toString() {
