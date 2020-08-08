@@ -70,7 +70,7 @@ public class AdminService {
 		if (user != null) {
 
 			// UPDATE ROLE TABLES /////////////////////////////////////////////////////
-			if (user.getRole() != rq.getRole()) {
+			if (!user.getRole().equals(rq.getRole())) {
 
 				if (rq.getRole().equals("ADMIN")) {
 					Admin admin = new Admin();
@@ -96,37 +96,32 @@ public class AdminService {
 					cashCollectorRepository.save(cashCollector);
 				}
 
-				// DELETE SESISTING ROLE ID ////////////////////////////////////////////////
+				// DELETE EXSISTING ROLE ID ////////////////////////////////////////////////
 				if (user.getRole().equals("ADMIN")) {
-					Admin admin = new Admin();
-					admin = adminRepository.findByuser(user);
+					Admin admin = adminRepository.findByuser(user);
 					admin.setUser(null);
 					adminRepository.save(admin);
 				}
 
 				else if (user.getRole().equals("ANALYZER")) {
-					Analyzer analyzer = new Analyzer();
-					analyzer = analyzerRepository.findByuser(user);
+					Analyzer analyzer = analyzerRepository.findByuser(user);
 					analyzer.setUser(null);
 					analyzerRepository.save(analyzer);
 				}
 
 				else if (user.getRole().equals("INVENTORY_MANAGER")) {
-					InventoryManager inventoryManager = new InventoryManager();
-					inventoryManager = inventoryManagerRepository.findByuser(user);
+					InventoryManager inventoryManager = inventoryManagerRepository.findByuser(user);
 					inventoryManager.setUser(null);
 					inventoryManagerRepository.save(inventoryManager);
 				}
 
 				else if (user.getRole().equals("CASH_COLLECTOR")) {
-					CashCollector cashCollector = new CashCollector();
-					cashCollector = cashCollectorRepository.findByuser(user);
+					CashCollector cashCollector = cashCollectorRepository.findByuser(user);
 					cashCollector.setUser(null);
 					cashCollectorRepository.save(cashCollector);
 				}
 			}
 
-			/* Updatable attributes */
 			user.setFirstName(rq.getFirstName());
 			user.setLastName(rq.getLastName());
 			user.setAddressLine1(rq.getAddressLine1());
@@ -146,11 +141,6 @@ public class AdminService {
 			}
 
 			user.setPhoneNumbers(phoneList);
-
-			/* Non updatable attributes */
-			user.setPassword(user.getPassword());
-			user.setUserID(user.getUserID());
-			user.setUsername(user.getUsername());
 
 			userRepository.save(user);
 			return true;
