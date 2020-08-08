@@ -105,6 +105,7 @@ public class AdminServiceTest {
 		phoneNumber.setUser(user);
 		phoneList.add(phoneNumber);
 
+		user.setUserID(1);
 		user.setFirstName("firstName");
 		user.setLastName("lastName");
 		user.setRole("Admin");
