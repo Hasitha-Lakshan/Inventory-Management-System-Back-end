@@ -1,9 +1,6 @@
 package com.cbl.backend.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,8 +34,6 @@ public class SalesProduct{
 	private LocalDate date;
 	@Column
 	private int pieces;
-	@Column
-	private int boxes;
 	@Column
 	private int buyingPrice;
 	@Column
