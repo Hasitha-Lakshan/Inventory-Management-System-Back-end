@@ -35,21 +35,12 @@ public class InvoiceService {
 		} else {
 			invoice.setStatus(false);
 		}
-<<<<<<< HEAD
-		
-		Invoice res =this.repository.save(invoice);
-		
-=======
-
-		this.mapFromInvoiceToDto(repository.save(invoice));
->>>>>>> branch 'master' of https://github.com/Hasitha-Lakshan/Inventory-Management-System-Back-end.git
+		this.repository.save(invoice);
 		return true;
-<<<<<<< HEAD
 		
-=======
 
->>>>>>> branch 'master' of https://github.com/Hasitha-Lakshan/Inventory-Management-System-Back-end.git
 	}
+
 
 	/*
 	 * public List<Invoice> saveReport(List<Invoice> invoice){ return
