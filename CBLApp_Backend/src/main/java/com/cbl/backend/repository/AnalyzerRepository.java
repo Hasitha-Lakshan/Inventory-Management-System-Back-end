@@ -10,4 +10,6 @@ import com.cbl.backend.model.User;
 @Repository
 public interface AnalyzerRepository extends JpaRepository<Analyzer, Integer>{
 	public Analyzer findByuser(User user);
+	public void deleteByuser(User user);
+	
 }

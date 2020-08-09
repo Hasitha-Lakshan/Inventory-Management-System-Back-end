@@ -117,8 +117,8 @@ public class AdminServiceTest {
 		user.setPhoneNumbers(phoneList);
 		user.setAccountStatus(false);
 
-		when(repository.findByUserID(1)).thenReturn(user);
-		assertEquals(true, service.deleteUser(1));
+		when(repository.findByusername("username")).thenReturn(user);
+		assertEquals(true, service.deleteUser("user"));
 
 	}
 

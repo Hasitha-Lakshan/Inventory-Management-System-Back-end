@@ -9,4 +9,5 @@ import com.cbl.backend.model.User;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer>{
 	public Admin findByuser(User user);
+	public void deleteByuser(User user);
 }

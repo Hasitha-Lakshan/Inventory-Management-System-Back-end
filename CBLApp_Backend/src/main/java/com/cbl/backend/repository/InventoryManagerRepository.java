@@ -9,4 +9,5 @@ import com.cbl.backend.model.User;
 @Repository
 public interface InventoryManagerRepository extends JpaRepository<InventoryManager, Integer>{
 	public InventoryManager findByuser(User user);
+	public void deleteByuser(User user);
 }
