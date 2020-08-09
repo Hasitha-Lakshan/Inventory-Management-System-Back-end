@@ -1,10 +1,14 @@
 package com.cbl.backend.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -31,6 +35,9 @@ public class Shops {
 	@NotEmpty
 	@Column
 	private String phoneNumber;
+	
+	@OneToMany(mappedBy="shops")
+	private List<Invoice> invoices = new ArrayList<Invoice>();
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -69,10 +76,19 @@ public class Shops {
 		this.address = address;
 	}
 	
+	
+	
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+	
 	@Override
 	public String toString() {
-		return "Shops [shopID=" +shopID +", shopName="+shopName + ", firstName=" + ownerFName + ", lastName=" + ownerLName
-				+ ", shopaddress=" + address + ", phoneNumbers=" + phoneNumber + "]";
+		return "Shops [shopID=" + shopID + ", shopName=" + shopName + ", ownerFName=" + ownerFName + ", ownerLName="
+				+ ownerLName + ", address=" + address + ", phoneNumber=" + phoneNumber + ", invoices=" + invoices + "]";
 	}
 }
 
