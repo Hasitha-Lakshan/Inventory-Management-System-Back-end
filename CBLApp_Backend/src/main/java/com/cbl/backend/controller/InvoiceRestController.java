@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.cbl.backend.dto.InvoiceUpdateRequest;
 import com.cbl.backend.service.InvoiceService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/cashCollector/")
 public class InvoiceRestController {
 
@@ -47,7 +49,7 @@ public class InvoiceRestController {
 //    public Invoice findReportByName(@PathVariable String name){
 //        return service.getReportByShopName(name);
 //    }
-
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PutMapping("/update-invoice/{id}")
 	public ResponseEntity<?> updateReport(@PathVariable int id,
 			@RequestBody InvoiceUpdateRequest invoiceUpdateRequest) {
