@@ -1,16 +1,25 @@
 package com.cbl.backend.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Product")
@@ -35,19 +44,17 @@ public class Product{
 	private int pieces;
 	@Column
 	private float buyingPrice=unitBuyingPrice*pieces;
+	
 	@Column
 	private float sellingPrice=unitSellingPrice*pieces;
 	@Column
 	private float profit=sellingPrice-buyingPrice;
-	
-	@ManyToOne
-	private LorryStock LorryStock;
-	
+	@ManyToMany(mappedBy="Product")
+	private List<LorryStock> lorryStock = new ArrayList<LorryStock>();
 	
 	public int getProductID() {
 		return productID;
 	}
-	
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
@@ -99,15 +106,15 @@ public class Product{
 	public void setProfit(float profit) {
 		this.profit = profit;
 	}
-	public LorryStock getLorryStock() {
-		return LorryStock;
-	}
-	public void setLorryStock(LorryStock lorryStock) {
-		LorryStock = lorryStock;
-	}
 	
+	public List<LorryStock> getLorryStock() {
+		return lorryStock;
+	}
+	public void setLorryStock(List<LorryStock> lorryStock) {
+		this.lorryStock = lorryStock;
+	}
 	@Override
 	public String toString() {
-		return "Product [productID=" + productID + ", productName=" + productName + ", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",date="+ date + ",pieces="+ pieces + ",buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit + "LorryStock=" + LorryStock + "]";
+		return "Product [productID=" + productID + ", productName=" + productName + ", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",date="+ date + ",pieces="+ pieces + ",buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit + ",lorryStock="+ lorryStock + "]";
 	}
 }

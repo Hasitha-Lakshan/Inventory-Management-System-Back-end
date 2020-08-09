@@ -21,8 +21,6 @@ public class LorryStockService {
 	public boolean submit(LorryStockRequest lorryStockRequest) {
 		LorryStock LorryStock = new LorryStock();
 		List<Product> productList = new ArrayList<Product>();
-		@SuppressWarnings("unused")
-		Optional<LorryStock> checkLorryStockID= LorryStockRepository.findByLorryStockName(lorryStockRequest.getLorryStockName());
 		
 		LorryStock.setLorryStockID(lorryStockRequest.getLorryStockID());
 		LorryStock.setLorryStockName(lorryStockRequest.getLorryStockName());
@@ -40,7 +38,7 @@ public class LorryStockService {
 			productList.add(product);
 		}
 		
-		LorryStock.setProduct(productList);
+		LorryStock.setProducts(productList);
 		LorryStockRepository.save(LorryStock);
 		
 	return true;

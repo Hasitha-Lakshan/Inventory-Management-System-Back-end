@@ -41,6 +41,7 @@ import javax.validation.constraints.NotEmpty;
 		@OneToMany(mappedBy = "lorry")
 		private List<LorryStock> lorrystock =new ArrayList<LorryStock>();
 		
+		
 		@ManyToOne
 		private InventoryManager inventoryManager;
 		
@@ -77,23 +78,23 @@ import javax.validation.constraints.NotEmpty;
 		public void setAccountStatus(boolean accountStatus) {
 			this.accountStatus = accountStatus;
 		}
+		
 		public List<LorryStock> getLorrystock() {
 			return lorrystock;
 		}
 		public void setLorrystock(List<LorryStock> lorrystock) {
 			this.lorrystock = lorrystock;
-		}	
-		
+		}
 		
 		public InventoryManager getInventoryManager() {
 			return inventoryManager;
 		}
 		public void setInventoryManager(InventoryManager inventoryManager) {
 			this.inventoryManager = inventoryManager;
-		}
+        }
 		@Override
 		public String toString() {
-			return "Lorry [lorryID=" + lorryID + ", firstName=" + firstName + ", lastName=" + lastName + ", phonenumber=" + phonenumber + ",lorrystock="+ lorrystock + ",inventoryManager="+ inventoryManager + "]";
+			return "Lorry [lorryID=" + lorryID + ", firstName=" + firstName + ", lastName=" + lastName + ", phonenumber=" + phonenumber + ", inventoryManager=" + inventoryManager + "lorrryStock=" + lorrystock + "]";
 		}
 
 	
