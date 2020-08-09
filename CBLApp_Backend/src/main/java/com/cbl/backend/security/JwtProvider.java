@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cbl.backend.exception.CBLAppBackendException;
 
@@ -22,6 +23,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 @Service
+@CrossOrigin(origins = "*")
 public class JwtProvider {
 	
 	private KeyStore keyStore;

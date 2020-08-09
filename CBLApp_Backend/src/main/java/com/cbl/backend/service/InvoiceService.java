@@ -35,11 +35,12 @@ public class InvoiceService {
 		} else {
 			invoice.setStatus(false);
 		}
-
-		this.mapFromInvoiceToDto(repository.save(invoice));
+		this.repository.save(invoice);
 		return true;
+		
 
 	}
+
 
 	/*
 	 * public List<Invoice> saveReport(List<Invoice> invoice){ return
