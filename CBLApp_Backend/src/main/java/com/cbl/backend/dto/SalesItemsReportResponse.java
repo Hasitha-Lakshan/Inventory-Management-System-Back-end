@@ -1,6 +1,9 @@
 package com.cbl.backend.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import com.cbl.backend.model.SalesProduct;
 
 public class SalesItemsReportResponse{
 	
@@ -13,6 +16,8 @@ public class SalesItemsReportResponse{
 	private int buying_price;
 	private int selling_price;
 	private int profit;
+	private List<SalesProduct> salesProduct;
+
 	
 	public int getSalesItemsReport_Id() {
 		return salesItemsReport_Id;
@@ -68,12 +73,19 @@ public class SalesItemsReportResponse{
 	public void setProfit(int profit) {
 		this.profit = profit;
 	}
+	public List<SalesProduct> getSalesProduct() {
+		return salesProduct;
+	}
+	public void setSalesProduct(List<SalesProduct> salesProduct) {
+		this.salesProduct = salesProduct;	
+	}
+	
 	@Override
 	public String toString() {
 		return "ReportResponse [salesItemsReport_Id=" + salesItemsReport_Id + ", date=" + date + ", salesProduct_name=" + salesProduct_name
 				+ ", unit_buying_price=" + unit_buying_price + ", unit_selling_price=" + unit_selling_price + ", quantity="
 				+ quantity + ", buying_price=" + buying_price + ", selling_price=" + selling_price + ", profit="
-				+ profit + "]";
+				+ profit + ", salesProduct=" + salesProduct +" ]";
 	}
 
 

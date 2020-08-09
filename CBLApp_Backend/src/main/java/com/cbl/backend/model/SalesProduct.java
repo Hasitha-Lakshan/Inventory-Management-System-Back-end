@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -45,7 +46,7 @@ public class SalesProduct{
 	@ManyToOne
 	@JoinColumn(name = "salesItemsReportID")
 	@JsonIgnore
-	//private SalesItemsReport;
+	private SalesItemsReport salesItemsReportID;
 	
 	
 	public int getSalesProductID() {

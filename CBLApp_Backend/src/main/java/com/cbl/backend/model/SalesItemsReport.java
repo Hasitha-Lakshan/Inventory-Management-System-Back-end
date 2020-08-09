@@ -10,9 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+
+import com.cbl.backend.dto.SalesProductResponse;
 
 @Entity
 @Table(name = "SalesItemsReport")
@@ -28,9 +31,8 @@ public class SalesItemsReport{
 	@Column
 	private LocalDateTime dateTime;
   
-
-//	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "salesItemsReport")
-//	private List<SalesProduct> products;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "salesItemsReportID")
+	private List<SalesProduct> salesProduct;
 
 	public int getSalesItemsReportID() {
 		return salesItemsReportID;
@@ -56,16 +58,23 @@ public class SalesItemsReport{
 		this.dateTime = dateTime;
 	}
 
- 
+	public List<SalesProduct> getSalesProduct() {
+		return salesProduct;
+	}
 
+	public void setSalesProduct(List<SalesProduct> salesProduct) {
+		this.salesProduct = salesProduct;
+	}
+ 
 //	@Override
 //	public String toString() {
-//		return "SalesItemsReport [salesItemsReportID=" + salesItemsReportID + ", dateTime=" + dateTime + ", salesItemsReportName=" + salesItemsReport + "]";
+//		return "ReportResponse [salesItemsReport_Id=" + salesItemsReport_Id + ", date=" + date + ", salesProduct_name=" + salesProduct_name
+//				+ ", unit_buying_price=" + unit_buying_price + ", unit_selling_price=" + unit_selling_price + ", quantity="
+//				+ quantity + ", buying_price=" + buying_price + ", selling_price=" + selling_price + ", profit="
+//				+ profit + ", ]";
 //	}
 
-	
-	
-	
+		
 		
 	
 }
