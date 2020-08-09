@@ -1,10 +1,14 @@
 package com.cbl.backend.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,11 +25,15 @@ public class CashCollector {
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
-	
+
 	@OneToOne
 	@JoinColumn(name = "lorryID")
 	@JsonIgnore
 	private Lorry lorry;
+
+	@OneToMany(mappedBy = "cashCollector")
+	@JsonIgnore
+	private List<Invoice> invoices = new ArrayList<Invoice>();
 
 	public int getCashCollectorID() {
 		return cashCollectorID;
@@ -42,6 +50,7 @@ public class CashCollector {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Lorry getLorry() {
 		return lorry;
 	}
@@ -50,8 +59,17 @@ public class CashCollector {
 		this.lorry = lorry;
 	}
 
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+
 	@Override
 	public String toString() {
-		return "CashCollector [cashCollectorID=" + cashCollectorID + ", user=" + user + ",lorry=" + lorry + "]";
+		return "CashCollector [cashCollectorID=" + cashCollectorID + ", user=" + user + ", lorry=" + lorry
+				+ ", invoices=" + invoices + "]";
 	}
 }
