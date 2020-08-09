@@ -25,13 +25,13 @@ public class CashCollector {
 	@JoinColumn(name = "userID")
 	@JsonIgnore
 	private User user;
-	
+
 	@OneToOne
 	@JoinColumn(name = "lorryID")
 	@JsonIgnore
 	private Lorry lorry;
-	
-	@OneToMany(mappedBy="cashCollector")
+
+	@OneToMany(mappedBy = "cashCollector")
 	@JsonIgnore
 	private List<Invoice> invoices = new ArrayList<Invoice>();
 
@@ -50,6 +50,7 @@ public class CashCollector {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Lorry getLorry() {
 		return lorry;
 	}
@@ -57,8 +58,6 @@ public class CashCollector {
 	public void setLorry(Lorry lorry) {
 		this.lorry = lorry;
 	}
-	
-	
 
 	public List<Invoice> getInvoices() {
 		return invoices;
@@ -67,7 +66,6 @@ public class CashCollector {
 	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
 	}
-	
 
 	@Override
 	public String toString() {

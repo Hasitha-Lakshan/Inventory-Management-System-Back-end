@@ -5,10 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cbl.backend.model.Invoice;
 
-
-
 @Repository
-public interface InvoiceRepository extends JpaRepository< Invoice, Integer> {
-    
+public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
+
 	Invoice findByInvoiceId(int InvoiceId);
 }
