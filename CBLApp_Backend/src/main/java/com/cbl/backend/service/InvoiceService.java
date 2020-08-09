@@ -38,10 +38,10 @@ public class InvoiceService {
 			invoice.setStatus(false);
 		}
 		
-		InvoiceDetailsResponse res = this.mapFromInvoiceToDto(repository.save(invoice));
+		Invoice res =this.repository.save(invoice);
+		
 		return true;
 		
-	
 	}
 	
 	/*public List<Invoice> saveReport(List<Invoice> invoice){

@@ -35,6 +35,7 @@ public class InvoiceServiceTest {
 		Invoice invoice = new Invoice();
 		InvoiceSaveRequest invoiceSaveRequest = new InvoiceSaveRequest();
 		
+		
 		invoiceSaveRequest.setShopName("test saman");
 		invoiceSaveRequest.setIssuedDate(new Date());
 		invoiceSaveRequest.setExpireDate(new Date());
@@ -43,7 +44,7 @@ public class InvoiceServiceTest {
 		invoiceSaveRequest.setCash(2000);
 		
 		when(invoiceRepository.save(invoice)).thenReturn(invoice);
-		assertEquals(false,invoiceService.saveReport(invoiceSaveRequest));
+		assertEquals(true,invoiceService.saveReport(invoiceSaveRequest));
 	}
 
 	
@@ -85,6 +86,8 @@ public class InvoiceServiceTest {
 		invoice.setValue(20000);
 		invoice.setCheque(1000);
 		invoice.setCash(2000);
+		
+		invoiceRepository.save(invoice);
 		
 		when(invoiceRepository.findByInvoiceId(invoice.getInvoiceId())).thenReturn(invoice);
 		assertEquals(false,invoiceService.updateInvoiceReport(invoice.getInvoiceId(),invoiceUpdateRequest));

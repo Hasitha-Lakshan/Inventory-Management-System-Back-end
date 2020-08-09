@@ -21,6 +21,7 @@ import com.cbl.backend.service.LorryService;
 
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/inventoryManager/distribution/")
 public class LorryController {
 

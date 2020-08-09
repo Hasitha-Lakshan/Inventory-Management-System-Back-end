@@ -23,6 +23,7 @@ import com.cbl.backend.repository.InvoiceRepository;
 import com.cbl.backend.service.InvoiceService;
 
 @RestController
+@CrossOrigin(origins= "*",allowedHeaders="*")
 @RequestMapping("/api/cashCollector/")
 public class InvoiceRestController {
 	
