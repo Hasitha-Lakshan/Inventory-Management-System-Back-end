@@ -10,6 +10,5 @@ public class DeleteRequest {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
 
 }

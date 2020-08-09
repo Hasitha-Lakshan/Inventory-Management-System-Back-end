@@ -2,6 +2,7 @@ package com.cbl.backend.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,41 +14,47 @@ import com.cbl.backend.repository.InvoiceRepository;
 
 @Service
 public class InvoiceService {
-	
+
 	@Autowired
 	private InvoiceRepository repository;
-	
-	
-	
+
 	public boolean saveReport(InvoiceSaveRequest invoiceSaveRequest) {
-		
+
 		Invoice invoice = new Invoice();
-		
-		
+
 		invoice.setShopName(invoiceSaveRequest.getShopName());
 		invoice.setIssuedDate(invoiceSaveRequest.getIssuedDate());
 		invoice.setExpireDate(invoiceSaveRequest.getExpireDate());
 		invoice.setValue(invoiceSaveRequest.getValue());
 		invoice.setCheque(invoiceSaveRequest.getCheque());
 		invoice.setCash(invoiceSaveRequest.getCash());
-		invoice.setCredits(invoice.getValue()-(invoice.getCash()+ invoice.getCheque()));
-		
-		if(invoice.getCredits()==0) {
+		invoice.setCredits(invoice.getValue() - (invoice.getCash() + invoice.getCheque()));
+
+		if (invoice.getCredits() == 0) {
 			invoice.setStatus(true);
-		}else {
+		} else {
 			invoice.setStatus(false);
 		}
+<<<<<<< HEAD
 		
 		Invoice res =this.repository.save(invoice);
 		
+=======
+
+		this.mapFromInvoiceToDto(repository.save(invoice));
+>>>>>>> branch 'master' of https://github.com/Hasitha-Lakshan/Inventory-Management-System-Back-end.git
 		return true;
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/Hasitha-Lakshan/Inventory-Management-System-Back-end.git
 	}
-	
-	/*public List<Invoice> saveReport(List<Invoice> invoice){
-		return repository.saveAll(invoice);
-	}*/
-	
+
+	/*
+	 * public List<Invoice> saveReport(List<Invoice> invoice){ return
+	 * repository.saveAll(invoice); }
+	 */
 
 	private InvoiceDetailsResponse mapFromInvoiceToDto(Invoice invoice) {
 
@@ -65,61 +72,59 @@ public class InvoiceService {
 
 		return invoiceResponse;
 	}
-	
-	public List<InvoiceDetailsResponse> getReports(){
-		List<Invoice> invoices  = repository.findAll();
-		
+
+	public List<InvoiceDetailsResponse> getReports() {
+		List<Invoice> invoices = repository.findAll();
+
 		return invoices.stream().map(this::mapFromInvoiceToDto).collect(Collectors.toList());
 	}
-	
+
 	public InvoiceDetailsResponse getReportById(int id) {
-		
+
 		Invoice invoice = repository.findById(id).orElse(null);
-		if(invoice != null) {
+		if (invoice != null) {
 			return this.mapFromInvoiceToDto(invoice);
-		}else {
+		} else {
 			return null;
 		}
-		
-		
-	}
-	
-/*	public Invoice getReportByShopName(String name) {
-//		return repository.findByShopName(name);
-//	}*/
-	
-	/*public String deleteReport(int id){
-        repository.deleteById(id);
-        return "Report removed" +id;
-    }
-	*/
-	
 
-    public boolean updateInvoiceReport(int id,InvoiceUpdateRequest invoiceUpdateRequest){
-        Invoice existingReport=repository.findById(id).orElse(null);
-        
-        if(existingReport != null) {
-        	existingReport.setShopName(invoiceUpdateRequest.getShopName());
-            existingReport.setExpireDate(invoiceUpdateRequest.getExpireDate());
-            
-            existingReport.setValue(invoiceUpdateRequest.getValue());
-            existingReport.setCheque(invoiceUpdateRequest.getCheque());
-            existingReport.setCash(invoiceUpdateRequest.getCash());
-            existingReport.setCredits(invoiceUpdateRequest.getValue()-(invoiceUpdateRequest.getCheque()+ invoiceUpdateRequest.getCash()));
-            if(existingReport.getCredits()==0) {
-            	 existingReport.setStatus(true);
-            }else {
-            	 existingReport.setStatus(false);
-            }
-            
-            repository.save(existingReport);
-            return true;
-            
-        }else {
-        	return false;
-        }
-       
-    }
-	
+	}
+
+	/*
+	 * public Invoice getReportByShopName(String name) { // return
+	 * repository.findByShopName(name); // }
+	 */
+
+	/*
+	 * public String deleteReport(int id){ repository.deleteById(id); return
+	 * "Report removed" +id; }
+	 */
+
+	public boolean updateInvoiceReport(int id, InvoiceUpdateRequest invoiceUpdateRequest) {
+		Invoice existingReport = repository.findById(id).orElse(null);
+
+		if (existingReport != null) {
+			existingReport.setShopName(invoiceUpdateRequest.getShopName());
+			existingReport.setExpireDate(invoiceUpdateRequest.getExpireDate());
+
+			existingReport.setValue(invoiceUpdateRequest.getValue());
+			existingReport.setCheque(invoiceUpdateRequest.getCheque());
+			existingReport.setCash(invoiceUpdateRequest.getCash());
+			existingReport.setCredits(invoiceUpdateRequest.getValue()
+					- (invoiceUpdateRequest.getCheque() + invoiceUpdateRequest.getCash()));
+			if (existingReport.getCredits() == 0) {
+				existingReport.setStatus(true);
+			} else {
+				existingReport.setStatus(false);
+			}
+
+			repository.save(existingReport);
+			return true;
+
+		} else {
+			return false;
+		}
+
+	}
 
 }
