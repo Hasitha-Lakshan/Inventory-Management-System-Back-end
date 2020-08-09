@@ -97,30 +97,30 @@ public class AdminService {
 					cashCollectorRepository.save(cashCollector);
 				}
 
-				// DELETE SESISTING ROLE ID ////////////////////////////////////////////////
+				// DELETE EXSISTING ROLE ID ////////////////////////////////////////////////
 				if (user.getRole().equals("ADMIN")) {
-					
+
 					Admin admin = adminRepository.findByuser(user);
 					admin.setUser(null);
 					adminRepository.save(admin);
 				}
 
 				else if (user.getRole().equals("ANALYZER")) {
-					
+
 					Analyzer analyzer = analyzerRepository.findByuser(user);
 					analyzer.setUser(null);
 					analyzerRepository.save(analyzer);
 				}
 
 				else if (user.getRole().equals("INVENTORY_MANAGER")) {
-					
+
 					InventoryManager inventoryManager = inventoryManagerRepository.findByuser(user);
 					inventoryManager.setUser(null);
 					inventoryManagerRepository.save(inventoryManager);
 				}
 
 				else if (user.getRole().equals("CASH_COLLECTOR")) {
-					
+
 					CashCollector cashCollector = cashCollectorRepository.findByuser(user);
 					cashCollector.setUser(null);
 					cashCollectorRepository.save(cashCollector);
@@ -128,7 +128,6 @@ public class AdminService {
 			}
 			
 
-			/* Updatable attributes */
 			user.setFirstName(rq.getFirstName());
 			user.setLastName(rq.getLastName());
 			user.setAddressLine1(rq.getAddressLine1());
@@ -149,7 +148,7 @@ public class AdminService {
 
 			user.setPhoneNumbers(phoneList);
 
-			
+
 			userRepository.save(user);
 			return true;
 

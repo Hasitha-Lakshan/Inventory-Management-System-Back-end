@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,9 @@ import com.cbl.backend.dto.LorryRequest;
 import com.cbl.backend.dto.LorryResponse;
 import com.cbl.backend.service.LorryService;
 
+
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/inventoryManager/distribution/")
 public class LorryController {
 
@@ -37,6 +40,7 @@ public class LorryController {
 		return new ResponseEntity<>(lorryService.getAllLorries(), HttpStatus.OK);
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PutMapping("/updatelorry/{id}")
 	public ResponseEntity<?> updateLorryInfo(@PathVariable int id, @RequestBody LorryInfoUpdateRequest rq) {
 
