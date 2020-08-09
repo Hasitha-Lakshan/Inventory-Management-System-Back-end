@@ -55,19 +55,19 @@ public class ProductResponse {
 	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice() {
+	public void setBuyingPrice(float f) {
 		this.buyingPrice = this.unitBuyingPrice*this.pieces;
 	}
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice() {
+	public void setSellingPrice(float f) {
 		this.sellingPrice =this.unitSellingPrice*this.pieces;
 	}
 	public float getProfit() {
 		return profit;
 	}
-	public void setProfit() {
+	public void setProfit(float f) {
 		this.profit = this.sellingPrice-this.buyingPrice;
 	}
 	
