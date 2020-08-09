@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -43,10 +44,11 @@ public class Product{
 	@Column
 	private float profit;
 	
+	//@ManyToOne
 	@ManyToOne
 	@JoinColumn(name = "reportID")
 	@JsonIgnore
-	//private Report;
+	private Report reportID;
 	
 	public int getProductID() {
 		return productID;
@@ -101,6 +103,12 @@ public class Product{
 	}
 	public void setProfit(float p) {
 		this.profit = this.sellingPrice-this.buyingPrice;
+	}
+	public Report getReportID() {
+		return reportID;
+	}
+	public void setReportID(Report reportID) {
+		this.reportID = reportID;
 	}
 	
 	

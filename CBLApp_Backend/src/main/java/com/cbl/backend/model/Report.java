@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -28,8 +29,9 @@ public class Report{
 	@Column
 	private LocalDateTime dateTime;
 	
-	//@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "report")
-	//private List<Report> report;
+	//@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "reportID")
+	private List<Product> product;
 	
 	public int getReportID() {
 		return reportID;
@@ -50,9 +52,20 @@ public class Report{
 		this.dateTime = dateTime;
 	}
 	
-	//@Override
-	//public String toString() {
-	//	return "Report [reportID=" + reportID + ", reportName=" + reportName + ", dateTime=" + dateTime + "]";
-	//}
+	public List<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(List<Product> product) {
+		this.product = product;
+	}
+	
+	@Override
+	public String toString() {
+		return "Report [reportID=" + reportID + ", reportName=" + reportName + ", dateTime=" + dateTime + ", product="
+				+ product + "]";
+	}
+	
+	
+	
 	
 }
