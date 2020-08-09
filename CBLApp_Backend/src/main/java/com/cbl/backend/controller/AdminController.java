@@ -25,7 +25,6 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminService;
-	@CrossOrigin(origins="*",allowedHeaders="*")
 	@GetMapping("/users")
 	public ResponseEntity<List<UserDetailsResponse>> getAllUsers() {
 
