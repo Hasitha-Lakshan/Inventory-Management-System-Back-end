@@ -149,6 +149,10 @@ public class AdminService {
 			user.setPhoneNumbers(phoneList);
 
 
+
+
+			userRepository.save(user);
+
 			return true;
 
 		} else {
