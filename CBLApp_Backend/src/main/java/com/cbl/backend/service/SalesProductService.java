@@ -32,7 +32,7 @@ public class SalesProductService {
 		return "deleted";
 	}
 	
-	//get totalprofit part
+	//totalprofit part
 	public List<SalesProduct> getDateSortedProducts(LocalDate startDate,LocalDate endDate){
 		List<SalesProduct> sorted = null;
 		List<SalesProduct> list = this.getAll();
