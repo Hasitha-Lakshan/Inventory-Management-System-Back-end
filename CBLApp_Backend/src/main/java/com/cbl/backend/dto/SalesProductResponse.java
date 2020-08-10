@@ -3,6 +3,12 @@ package com.cbl.backend.dto;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.cbl.backend.model.SalesItemsReport;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class SalesProductResponse {
 	
 	private int salesProductID;
@@ -15,6 +21,13 @@ public class SalesProductResponse {
 	private float sellingPrice;
 	private float profit;
 //	private SalesItemsReport salesItemsReport;
+	
+	@ManyToOne
+	@JoinColumn(name = "salesItemsReportID")
+	@JsonIgnore
+	private SalesItemsReport salesItemsReportID;
+	
+
 	
 	public int getSalesProductID() {
 		return salesProductID;
@@ -76,8 +89,9 @@ public class SalesProductResponse {
 		return "ProductResponse [salesProductID=" + salesProductID + ", salesProductName=" + salesProductName + ", date=" + date + 
 				", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",pieces=" + pieces + 
 				", buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit +" ]";
-	} 
+	}
 	
+
 
 	
 	 

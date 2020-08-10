@@ -20,17 +20,18 @@ public class AdminService {
 		
 		List<User> users = userRepository.findAll();
 		
-		return users.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
+		return users.stream().map(this::mapFromUserToDto1).collect(Collectors.toList());
 	}
+	
+	private UserDetailsResponse mapFromUserToDto1(User user) {
+	
 
-	private UserDetailsResponse mapFromUserToDto(User user) {
-		
 		UserDetailsResponse userDetailsRequest = new UserDetailsResponse();
 
 		userDetailsRequest.setUserID(user.getUserID());
 		userDetailsRequest.setFirstName(user.getFirstName());
 		userDetailsRequest.setLastName(user.getLastName());
-		userDetailsRequest.setRole(user.getRole());
+ 		userDetailsRequest.setRole(user.getRole());
 		userDetailsRequest.setUsername(user.getUsername());
 		userDetailsRequest.setAccountStatus(user.isAccountStatus());
 		userDetailsRequest.setAddressLine1(user.getAddressLine1());
