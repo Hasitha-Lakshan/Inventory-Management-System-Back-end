@@ -10,10 +10,6 @@ import com.cbl.backend.model.LorryStock;
 import com.cbl.backend.model.User;
 
 @Repository
-public interface LorryStockRepository extends JpaRepository<LorryStock, String>{
-	
-	//LorryStock findByProductName (String ProductName);
-	//Optional<LorryStock> findByProductName(String ProductName);
-	//Optional<LorryStock> findByLorryStockName(String lorryStockName);
-	
+public interface LorryStockRepository extends JpaRepository<LorryStock, Integer>{
+	Optional<LorryStock> findByLorryStockID(int lorryStockID);	
 }

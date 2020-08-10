@@ -16,7 +16,7 @@ import com.cbl.backend.repository.LorryStockRepository;
 public class LorryStockService {
 	
 	@Autowired
-	private LorryStockRepository LorryStockRepository;
+	private LorryStockRepository lorryStockRepository;
 	
 	public boolean submit(LorryStockRequest lorryStockRequest) {
 		LorryStock LorryStock = new LorryStock();
@@ -26,7 +26,7 @@ public class LorryStockService {
 		LorryStock.setLorryStockName(lorryStockRequest.getLorryStockName());
 		LorryStock.setDateTime(lorryStockRequest.getDateTime());
 		
-		for(Product product : lorryStockRequest.getProduct()) {
+		for(Product product : lorryStockRequest.getProducts()) {
 			
 			Product Product = new Product();
 			
@@ -39,7 +39,7 @@ public class LorryStockService {
 		}
 		
 		LorryStock.setProducts(productList);
-		LorryStockRepository.save(LorryStock);
+		lorryStockRepository.save(LorryStock);
 		
 	return true;
 		

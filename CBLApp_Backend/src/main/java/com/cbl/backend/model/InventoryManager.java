@@ -26,9 +26,9 @@ public class InventoryManager {
 	
 	@OneToMany(mappedBy = "inventoryManager")
 	private List<Lorry> lorry =new ArrayList<Lorry>();
+	
 	@OneToMany(mappedBy = "inventoryManager")
 	private List<LorryStock> lorryStock =new ArrayList<LorryStock>();
-	
 	
 	public int getInventoryManagerID() {
 		return inventoryManagerID;

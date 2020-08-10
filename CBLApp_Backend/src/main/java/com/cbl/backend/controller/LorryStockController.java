@@ -20,9 +20,9 @@ public class LorryStockController {
 	private LorryStockService LorryStockService;
 	
 	@PostMapping("/submit")
-	public boolean submit(@RequestBody LorryStockRequest LorryStockRequest) {
+	public boolean submit(@RequestBody LorryStockRequest lorryStockRequest) {
 		
-		return LorryStockService.submit(LorryStockRequest);
+		return LorryStockService.submit(lorryStockRequest);
 	
 	}	
 }

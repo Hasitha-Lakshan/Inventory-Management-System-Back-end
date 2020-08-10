@@ -19,11 +19,11 @@ public class LorryStock {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int lorryStockID;
 	@NotEmpty
-	@Column(name="DateTime")
-	private LocalDateTime DateTime;
+	@Column
+	private LocalDateTime dateTime;
 	@NotEmpty
-	@Column(name="LorryStockName")
-	private String LorryStockName;
+	@Column
+	private String lorryStockName;
 	
 	@ManyToMany
 	private List<Product> products = new ArrayList<Product>();
@@ -37,23 +37,9 @@ public class LorryStock {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
-
 	@ManyToOne
 	private Lorry lorry;
 	
-	public Lorry getLorry() {
-		return lorry;
-	}
-	public void setLorry(Lorry lorry) {
-		this.lorry = lorry;
-	}
-	public InventoryManager getInventoryManager() {
-		return inventoryManager;
-	}
-	public void setInventoryManager(InventoryManager inventoryManager) {
-		this.inventoryManager = inventoryManager;
-	}
 	public int getLorryStockID() {
 		return lorryStockID;
 	}
@@ -61,22 +47,32 @@ public class LorryStock {
 		this.lorryStockID = lorryStockID;
 	}
 	public LocalDateTime getDateTime() {
-		return DateTime;
+		return dateTime;
 	}
 	public void setDateTime(LocalDateTime dateTime) {
-		DateTime = dateTime;
+		this.dateTime = dateTime;
 	}
 	public String getLorryStockName() {
-		return LorryStockName;
+		return lorryStockName;
 	}
 	public void setLorryStockName(String lorryStockName) {
-		LorryStockName = lorryStockName;
+		this.lorryStockName = lorryStockName;
 	}
-	
-	
+	public InventoryManager getInventoryManager() {
+		return inventoryManager;
+	}
+	public void setInventoryManager(InventoryManager inventoryManager) {
+		this.inventoryManager = inventoryManager;
+	}
+	public Lorry getLorry() {
+		return lorry;
+	}
+	public void setLorry(Lorry lorry) {
+		this.lorry = lorry;
+	}
 	@Override
 	public String toString() {
-		return "LorryStock [LorryStockID=" + lorryStockID + ", DatTime=" + DateTime + ", LorryStockName=" +
-	LorryStockName + "inventoryManager=" + inventoryManager + "lorry=" + lorry + "product=" + products + "]";
+		return "LorryStock [LorryStockID=" + lorryStockID + ", DatTime=" + dateTime + ", LorryStockName=" +
+	lorryStockName + "inventoryManager=" + inventoryManager + "lorry=" + lorry + "product=" + products + "]";
 	}
 }

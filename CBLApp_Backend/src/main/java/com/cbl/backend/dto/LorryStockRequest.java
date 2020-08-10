@@ -6,35 +6,32 @@ import java.util.List;
 import com.cbl.backend.model.Product;
 
 public class LorryStockRequest {
-	private int LorryStockID;
-	private LocalDateTime DateTime;
-	private String LorryStockName;
-	private List<Product> Products;
-	
-	
+	private int lorryStockID;
+	private LocalDateTime dateTime;
+	private String lorryStockName;
+	private List<Product> products;
 	public int getLorryStockID() {
-		return LorryStockID;
+		return lorryStockID;
 	}
 	public void setLorryStockID(int lorryStockID) {
-		LorryStockID = lorryStockID;
+		this.lorryStockID = lorryStockID;
 	}
 	public LocalDateTime getDateTime() {
-		return DateTime;
+		return dateTime;
 	}
 	public void setDateTime(LocalDateTime dateTime) {
-		DateTime = dateTime;
+		this.dateTime = dateTime;
 	}
 	public String getLorryStockName() {
-		return LorryStockName;
+		return lorryStockName;
 	}
 	public void setLorryStockName(String lorryStockName) {
-		LorryStockName = lorryStockName;
+		this.lorryStockName = lorryStockName;
 	}
-	public List<Product> getProduct() {
-		return Products;
+	public List<Product> getProducts() {
+		return products;
 	}
-	public void setProduct(List<Product> product) {
-		Products = product;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
-	
 }
