@@ -1,5 +1,6 @@
 package com.cbl.backend.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import com.cbl.backend.model.Product;
 public class ReportResponse{
 	
 	private int report_Id;
-	private Date date;
+	private LocalDateTime date;
+	private String reportName;
+	/*
 	private String product_name;
 	private int unit_buying_price;
 	private int unit_selling_price;
@@ -17,6 +20,7 @@ public class ReportResponse{
 	private int buying_price;
 	private int selling_price;
 	private int profit;
+	*/
 	private List<Product> product;
 	
 	
@@ -28,14 +32,23 @@ public class ReportResponse{
 		this.report_Id = report_Id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
+	
+	public String getReportName() {
+		return reportName;
+	}
 
+	public void setReportName(String reportName) {
+		this.reportName = reportName;
+	}
+
+/*
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -92,8 +105,11 @@ public class ReportResponse{
 		this.profit = profit;
 	}
 
+	*/
 	
 	
+	
+
 	public List<Product> getProduct() {
 		return product;
 	}
@@ -104,11 +120,12 @@ public class ReportResponse{
 
 	@Override
 	public String toString() {
-		return "ReportResponse [report_Id=" + report_Id + ", date=" + date + ", product_name=" + product_name
-				+ ", unit_buying_price=" + unit_buying_price + ", unit_selling_price=" + unit_selling_price
-				+ ", quantity=" + quantity + ", buying_price=" + buying_price + ", selling_price=" + selling_price
-				+ ", profit=" + profit + ", product=" + product + "]";
+		return "ReportResponse [report_Id=" + report_Id + ", date=" + date + ", reportName=" + reportName + ", product="
+				+ product + "]";
 	}
+
+	
+	
 
 	
 	
