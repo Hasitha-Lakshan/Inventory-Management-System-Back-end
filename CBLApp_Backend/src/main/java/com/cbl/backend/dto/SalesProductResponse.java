@@ -1,8 +1,6 @@
 package com.cbl.backend.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -69,19 +67,19 @@ public class SalesProductResponse {
 		return buyingPrice;
 	}
 	public void setBuyingPrice(float buyingPrice) {
-		this.buyingPrice = buyingPrice;
+		this.buyingPrice = this.unitBuyingPrice*this.pieces;
 	}
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
 	public void setSellingPrice(float sellingPrice) {
-		this.sellingPrice = sellingPrice;
+		this.sellingPrice =this.unitSellingPrice*this.pieces;
 	}
 	public float getProfit() {
 		return profit;
 	}
 	public void setProfit(float profit) {
-		this.profit = profit;
+		this.profit = this.sellingPrice-this.buyingPrice;
 	}
 	 
 	@Override

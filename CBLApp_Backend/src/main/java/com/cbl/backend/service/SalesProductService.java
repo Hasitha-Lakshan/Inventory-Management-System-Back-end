@@ -34,28 +34,32 @@ public class SalesProductService {
 	}
 	
 	
-//	//totalprofit part
-//	public List<SalesProduct> getDateSortedProducts(LocalDate startDate,LocalDate endDate){
-//		List<SalesProduct> sorted = null;
-//		List<SalesProduct> list = this.getAll();
-//		for(int i = 0; i < list.size();i++) {
-//			SalesProduct p = list.get(i);
-//			if( (p.getDate().isAfter(startDate)) && (p.getDate().isBefore(endDate))) {
-//				sorted.add(p);
-//			}
-//		}
-//		return sorted;
-//	}
-//	
-//	public float getTotalBuyingPrice(LocalDate startDate,LocalDate endDate) {
-//		List<SalesProduct> sorted = this.getDateSortedProducts(startDate, endDate);
-//		float totalBuyingPrice = 0;
-//		for(int i=0;i < sorted.size(); i++) {
-//			SalesProduct p = sorted.get(i);
-//			totalBuyingPrice = totalBuyingPrice + p.getBuyingPrice();
-//		}
-//		return totalBuyingPrice;
-//	}
+	// Search in a Date range part
+	
+	public List<SalesProduct> getDateSortedProducts(LocalDate startDate,LocalDate endDate){
+		List<SalesProduct> sorted = null;
+		List<SalesProduct> list = this.getAll();
+		for(int i = 0; i < list.size();i++) {
+			SalesProduct p = list.get(i);
+			if( (p.getDate().isAfter(startDate)) && (p.getDate().isBefore(endDate))) {
+				sorted.add(p);
+			}
+		}
+		return sorted;
+	}
+	
+	
+	// Total buying price
+	
+	public float getTotalBuyingPrice(LocalDate startDate,LocalDate endDate) {
+		List<SalesProduct> sorted = this.getDateSortedProducts(startDate, endDate);
+		float totalBuyingPrice = 0;
+		for(int i=0;i < sorted.size(); i++) {
+			SalesProduct p = sorted.get(i);
+			totalBuyingPrice = totalBuyingPrice + p.getBuyingPrice();
+		}
+		return totalBuyingPrice;
+	}
 
 	
 }

@@ -4,12 +4,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+
+import com.cbl.backend.dto.SalesProductResponse;
+import com.cbl.backend.dto.SalesItemsReportResponse;
+import com.cbl.backend.dto.SalesProductResponse;
 import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.model.SalesItemsReport;
+import com.cbl.backend.model.SalesProduct;
 import com.cbl.backend.model.User;
 import com.cbl.backend.repository.ReportRepository;
+import com.cbl.backend.repository.ProductRepository;
 import com.cbl.backend.repository.UserRepository;
 @Service
 public class SalesItemsReportService {
@@ -31,5 +38,32 @@ public class SalesItemsReportService {
 		return "deleted";
 	}
 	
-	
+	@Autowired
+	private ProductRepository productRepository;
+
+	public List<SalesProductResponse> getAllPoducts() {
+		
+		List<SalesProduct> users = productRepository.findAll();
+
+ 				return users.stream().map(this::mapFromSalesProductToDto).collect(Collectors.toList());
+	}
+
+	private SalesProductResponse mapFromSalesProductToDto(SalesProduct salesProduct) {
+		
+		SalesProductResponse salesProductResponse = new SalesProductResponse();
+
+		salesProductResponse.setSalesProductID(salesProduct.getSalesProductID());
+		salesProductResponse.setDate(salesProduct.getDate());
+		salesProductResponse.setSalesProductName(salesProduct.getSalesProductName());
+		salesProductResponse.setUnitBuyingPrice(salesProduct.getUnitBuyingPrice());
+		salesProductResponse.setUnitSellingPrice(salesProduct.getUnitSellingPrice());
+		salesProductResponse.setPieces(salesProduct.getPieces());
+		
+		salesProductResponse.setBuyingPrice(salesProduct.getBuyingPrice());
+		salesProductResponse.setSellingPrice(salesProduct.getSellingPrice());
+		salesProductResponse.setProfit(salesProduct.getProfit());
+
+		
+		return salesProductResponse;
+	}
 }
