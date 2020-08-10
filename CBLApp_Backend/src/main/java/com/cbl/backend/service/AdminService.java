@@ -133,6 +133,7 @@ public class AdminService {
 			user.setAddressLine1(rq.getAddressLine1());
 			user.setAddressLine2(rq.getAddressLine2());
 			user.setAddressLine3(rq.getAddressLine3());
+			user.setRole(rq.getRole());
 			
 			List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 

@@ -118,7 +118,7 @@ public class AdminServiceTest {
 		user.setAccountStatus(false);
 
 		when(repository.findByusername("username")).thenReturn(user);
-		assertEquals(true, service.deleteUser("user"));
+		assertEquals(true, service.deleteUser("username"));
 
 	}
 

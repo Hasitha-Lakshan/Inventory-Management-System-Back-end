@@ -42,7 +42,13 @@ public class AnalyzerService {
 
 		User user = userRepo.findByUserID(userID);
 
-		return this.mapFromUserToDto(user);
+		if (user != null) {
+			return this.mapFromUserToDto(user);
+		}
+
+		else {
+			return null;
+		}
 
 	}
 
