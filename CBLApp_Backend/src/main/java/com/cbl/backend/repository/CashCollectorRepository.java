@@ -10,4 +10,5 @@ import com.cbl.backend.model.User;
 @Repository
 public interface CashCollectorRepository extends JpaRepository<CashCollector, Integer>{
 	public CashCollector findByuser(User user);
+	public void deleteByuser(User user);
 }

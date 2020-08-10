@@ -66,7 +66,7 @@ public class AdminService {
 	public boolean updateUserInfo(UserInfoUpdateRequest rq) {
 
 		User user = userRepository.findByusername(rq.getUsername());
-
+		
 		if (user != null) {
 
 			// UPDATE ROLE TABLES /////////////////////////////////////////////////////
@@ -76,6 +76,7 @@ public class AdminService {
 					Admin admin = new Admin();
 					admin.setUser(user);
 					adminRepository.save(admin);
+					
 
 				} else if (rq.getRole().equals("ANALYZER")) {
 
@@ -98,36 +99,41 @@ public class AdminService {
 
 				// DELETE EXSISTING ROLE ID ////////////////////////////////////////////////
 				if (user.getRole().equals("ADMIN")) {
+
 					Admin admin = adminRepository.findByuser(user);
 					admin.setUser(null);
 					adminRepository.save(admin);
 				}
 
 				else if (user.getRole().equals("ANALYZER")) {
+
 					Analyzer analyzer = analyzerRepository.findByuser(user);
 					analyzer.setUser(null);
 					analyzerRepository.save(analyzer);
 				}
 
 				else if (user.getRole().equals("INVENTORY_MANAGER")) {
+
 					InventoryManager inventoryManager = inventoryManagerRepository.findByuser(user);
 					inventoryManager.setUser(null);
 					inventoryManagerRepository.save(inventoryManager);
 				}
 
 				else if (user.getRole().equals("CASH_COLLECTOR")) {
+
 					CashCollector cashCollector = cashCollectorRepository.findByuser(user);
 					cashCollector.setUser(null);
 					cashCollectorRepository.save(cashCollector);
 				}
 			}
+			
 
 			user.setFirstName(rq.getFirstName());
 			user.setLastName(rq.getLastName());
 			user.setAddressLine1(rq.getAddressLine1());
 			user.setAddressLine2(rq.getAddressLine2());
 			user.setAddressLine3(rq.getAddressLine3());
-			user.setRole(rq.getRole());
+			
 			List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
 
 			for (PhoneNumber phonenumber : rq.getPhoneNumbers()) {
@@ -142,7 +148,11 @@ public class AdminService {
 
 			user.setPhoneNumbers(phoneList);
 
+
+
+
 			userRepository.save(user);
+
 			return true;
 
 		} else {
@@ -166,9 +176,9 @@ public class AdminService {
 
 	}
 
-	public boolean deleteUser(int id) {
+	public boolean deleteUser(String username) {
 
-		User user = userRepository.findByUserID(id);
+		User user = userRepository.findByusername(username);
 
 		if (user != null) {
 

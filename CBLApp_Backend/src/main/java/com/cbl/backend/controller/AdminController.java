@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +25,12 @@ public class AdminController {
 
 	@Autowired
 	AdminService adminService;
-
 	@GetMapping("/users")
 	public ResponseEntity<List<UserDetailsResponse>> getAllUsers() {
 
 		return new ResponseEntity<>(adminService.getAllUsers(), HttpStatus.OK);
 	}
-
+	
 	@PutMapping("/updateuser")
 	public ResponseEntity<?> updateUserInfo(@RequestBody UserInfoUpdateRequest rq) {
 
@@ -42,7 +42,7 @@ public class AdminController {
 		}
 
 	}
-
+	@CrossOrigin(origins="*",allowedHeaders="*")
 	@PutMapping("/setaccountstatus")
 	public ResponseEntity<?> setAccountStatus(@RequestBody SetAccountStatusRequest rq) {
 
@@ -54,11 +54,11 @@ public class AdminController {
 		}
 
 	}
+	@CrossOrigin(origins="*",allowedHeaders="*")
+	@DeleteMapping("/deleteuser/{username}")
+	public ResponseEntity<?> deleteUserByUsername(@PathVariable String username) {
 
-	@DeleteMapping("/deleteuser/{id}")
-	public ResponseEntity<?> deleteUserByUsername(@PathVariable int id) {
-
-		boolean successful = adminService.deleteUser(id);
+		boolean successful = adminService.deleteUser(username);
 		if (successful) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
