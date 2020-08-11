@@ -8,9 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 
-import com.cbl.backend.dto.SalesProductResponse;
 import com.cbl.backend.dto.SalesItemsReportResponse;
-import com.cbl.backend.dto.SalesProductResponse;
 import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.model.SalesItemsReport;
 import com.cbl.backend.model.SalesProduct;
@@ -41,16 +39,16 @@ public class SalesItemsReportService {
 	@Autowired
 	private ProductRepository productRepository;
 
-	public List<SalesProductResponse> getAllPoducts() {
+	public List<SalesProduct> getAllPoducts() {
 		
 		List<SalesProduct> users = productRepository.findAll();
 
  				return users.stream().map(this::mapFromSalesProductToDto).collect(Collectors.toList());
 	}
 
-	private SalesProductResponse mapFromSalesProductToDto(SalesProduct salesProduct) {
+	private SalesProduct mapFromSalesProductToDto(SalesProduct salesProduct) {
 		
-		SalesProductResponse salesProductResponse = new SalesProductResponse();
+		SalesProduct salesProductResponse = new SalesProduct();
 
 		salesProductResponse.setSalesProductID(salesProduct.getSalesProductID());
 		salesProductResponse.setDate(salesProduct.getDate());
