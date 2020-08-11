@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cbl.backend.dto.SalesProductResponse;
 import com.cbl.backend.dto.UserDetailsResponse;
 import com.cbl.backend.model.SalesProduct;
 import com.cbl.backend.model.User;

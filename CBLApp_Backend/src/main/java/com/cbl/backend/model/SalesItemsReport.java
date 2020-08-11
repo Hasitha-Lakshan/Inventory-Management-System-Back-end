@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.cbl.backend.dto.SalesProductResponse;
-
 @Entity
 @Table(name = "SalesItemsReport")
 public class SalesItemsReport{
