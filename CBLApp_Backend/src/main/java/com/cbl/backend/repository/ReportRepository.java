@@ -8,4 +8,5 @@ import com.cbl.backend.model.Report;
 @Repository 
 public interface ReportRepository extends JpaRepository<Report, Integer>{
 	
+	Report findByReportID(int reportID);
 }

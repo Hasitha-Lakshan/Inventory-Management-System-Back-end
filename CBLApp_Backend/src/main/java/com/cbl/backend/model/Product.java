@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -17,9 +16,9 @@ import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Product")
-public class Product{
-	
+@Table(name = "Product")
+public class Product {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productID;
@@ -43,76 +42,89 @@ public class Product{
 	private float sellingPrice;
 	@Column
 	private float profit;
-	
-	//@ManyToOne
+
 	@ManyToOne
 	@JoinColumn(name = "reportID")
 	@JsonIgnore
-	private Report reportID;
-	
+	private Report report;
+
 	public int getProductID() {
 		return productID;
 	}
+
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+
 	public String getProductName() {
 		return productName;
 	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	public float getUnitBuyingPrice() {
 		return unitBuyingPrice;
 	}
+
 	public void setUnitBuyingPrice(float unitBuyingPrice) {
 		this.unitBuyingPrice = unitBuyingPrice;
 	}
+
 	public float getUnitSellingPrice() {
 		return unitSellingPrice;
 	}
+
 	public void setUnitSellingPrice(float unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 	public int getPieces() {
 		return pieces;
 	}
+
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
+
 	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(float b) {
-		this.buyingPrice = this.unitBuyingPrice*this.pieces;
+
+	public void setBuyingPrice(float unitBuyingPrice, int pieces) {
+		this.buyingPrice = unitBuyingPrice * pieces;
 	}
+
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(float s) {
-		this.sellingPrice = this.unitSellingPrice*this.pieces;
+
+	public void setSellingPrice(float unitSellingPrice, int pieces) {
+		this.sellingPrice = unitSellingPrice * pieces;
 	}
+
 	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(float p) {
-		this.profit = this.sellingPrice-this.buyingPrice;
+
+	public void setProfit(float sellingPrice, float buyingPrice) {
+		this.profit = sellingPrice - buyingPrice;
 	}
-	public Report getReportID() {
-		return reportID;
-	}
-	public void setReportID(Report reportID) {
-		this.reportID = reportID;
-	}
-	
-	
-	
-	
-	
 }

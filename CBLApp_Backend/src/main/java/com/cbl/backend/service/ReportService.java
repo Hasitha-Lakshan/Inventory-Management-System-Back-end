@@ -1,7 +1,6 @@
 
 package com.cbl.backend.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,107 +8,114 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cbl.backend.dto.ProductResponse;
+import com.cbl.backend.dto.ReportRequest;
 import com.cbl.backend.dto.ReportResponse;
-import com.cbl.backend.dto.UserDetailsResponse;
-import com.cbl.backend.model.PhoneNumber;
 import com.cbl.backend.model.Product;
 import com.cbl.backend.model.Report;
-import com.cbl.backend.model.User;
-import com.cbl.backend.repository.ProductRepository;
 import com.cbl.backend.repository.ReportRepository;
-import com.cbl.backend.repository.UserRepository;
+
 @Service
 public class ReportService {
-	
+
 	@Autowired
 	private ReportRepository reportRepository;
 
-	
-	
 	public List<ReportResponse> getAllReports() {
 		List<Report> reports = reportRepository.findAll();
-		return reports.stream().map(this::mapFromReportToDto).collect(Collectors.toList());
-	}
-	
-	private ReportResponse mapFromReportToDto(Report report) {
-		
-		ReportResponse reportResponse = new ReportResponse();
-		
-		reportResponse.setReport_Id(report.getReportID());
-		reportResponse.setDate(report.getDateTime());
-		reportResponse.setReportName(report.getReportName());
-		
-		List<Product> productlist = new ArrayList<Product>();
-		
-		for(Product product : reportResponse.getProduct()) {
-			
-			Product product1 = new Product();
-			
-			product1.setProductID(product.getProductID());
-			product1.setProductName(product.getProductName());
-			product1.setUnitBuyingPrice(product.getUnitBuyingPrice());
-			product1.setUnitSellingPrice(product.getUnitSellingPrice());
-			product1.setDate(product.getDate());
-			product1.setPieces(product.getPieces());
-			product1.setBuyingPrice(product.getBuyingPrice());
-			product1.setSellingPrice(product.getSellingPrice());
-			product1.setProfit(product.getProfit());
-			productlist.add(product1);
-			
+
+		if (!reports.equals(null)) {
+			return reports.stream().map(this::mapFromReportToDto).collect(Collectors.toList());
+		} else {
+			return null;
 		}
-		
-		reportResponse.setProduct(productlist);
-		
-		System.out.println("AUA");
-		return reportResponse;
-	}
-	
-	
-	public Report save(Report report) {
-		return reportRepository.save(report);
-	}
-	
-	public String delete(int id) {
-		reportRepository.deleteById(id);
-		return "deleted";
-	}
-	
-	//Not sure	
-	/*
-	@Autowired
-	private ProductRepository productRepository;
-
-	public List<ProductResponse> getAllProducts() {
-		
-		List<Product> products = productRepository.findAll();
-		
-		return products.stream().map(this::mapFromProductToDto).collect(Collectors.toList());
 	}
 
-	private ProductResponse mapFromProductToDto(Product product) {
-		
-		ProductResponse productResponse = new ProductResponse();
+	private ReportResponse mapFromReportToDto(Report report) {
 
-		productResponse.setProductID(product.getProductID());
-		productResponse.setDate(product.getDate());
-		productResponse.setProductName(product.getProductName());
-		productResponse.setUnitBuyingPrice(product.getUnitBuyingPrice());
-		productResponse.setUnitSellingPrice(product.getUnitSellingPrice());
-		productResponse.setPieces(product.getPieces());
-		
-		productResponse.setBuyingPrice(product.getBuyingPrice());
-		productResponse.setSellingPrice(product.getSellingPrice());
-		productResponse.setProfit(product.getProfit());
+		if (!report.equals(null)) {
 
-		
-		return productResponse;
+			ReportResponse reportResponse = new ReportResponse();
+
+			reportResponse.setReport_Id(report.getReportID());
+			reportResponse.setDate(report.getDateTime());
+			reportResponse.setReportName(report.getReportName());
+
+			List<Product> productlist = new ArrayList<Product>();
+			for (Product product : report.getProduct()) {
+
+				Product productdto = new Product();
+
+				productdto.setProductID(product.getProductID());
+				productdto.setProductName(product.getProductName());
+				productdto.setUnitBuyingPrice(product.getUnitBuyingPrice());
+				productdto.setUnitSellingPrice(product.getUnitSellingPrice());
+				productdto.setDate(product.getDate());
+				productdto.setPieces(product.getPieces());
+				productdto.setBuyingPrice(product.getUnitBuyingPrice(), product.getPieces());
+				productdto.setSellingPrice(product.getUnitSellingPrice(), product.getPieces());
+				productdto.setProfit(product.getSellingPrice(), product.getBuyingPrice());
+				productdto.setReport(product.getReport());
+				productlist.add(productdto);
+
+			}
+
+			reportResponse.setProduct(productlist);
+
+			return reportResponse;
+		} else {
+			return null;
+		}
+
 	}
-	
-*/
-	
-	
-	
-	
-	
+
+	public boolean saveReport(ReportRequest reportRequest) {
+
+		if (!reportRequest.equals(null)) {
+
+			Report report = new Report();
+
+			report.setReportName(reportRequest.getReportName());
+			report.setDateTime(reportRequest.getDate());
+
+			List<Product> productlist = new ArrayList<Product>();
+
+			for (Product productDto : reportRequest.getProducts()) {
+
+				Product product = new Product();
+
+				product.setProductName(productDto.getProductName());
+				product.setUnitBuyingPrice(productDto.getUnitBuyingPrice());
+				product.setUnitSellingPrice(productDto.getUnitSellingPrice());
+				product.setDate(productDto.getDate());
+				product.setPieces(productDto.getPieces());
+				product.setBuyingPrice(productDto.getUnitBuyingPrice(), productDto.getPieces());
+				product.setSellingPrice(productDto.getUnitSellingPrice(), productDto.getPieces());
+				product.setProfit(productDto.getSellingPrice(), productDto.getBuyingPrice());
+				product.setReport(productDto.getReport());
+				product.setReport(report);
+				productlist.add(product);
+
+			}
+
+			report.setProduct(productlist);
+			reportRepository.save(report);
+
+			return true;
+
+		} else {
+			return false;
+		}
+
+	}
+
+	public ReportResponse findReport(int reportId) {
+
+		Report report = reportRepository.findByReportID(reportId);
+
+		if (report != null) {
+			return this.mapFromReportToDto(report);
+		} else {
+			return null;
+		}
+	}
 }
