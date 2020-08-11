@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "LorryStock")
+@Table(name = "LorryStocks")
 public class LorryStock {
 	
 	@Id
