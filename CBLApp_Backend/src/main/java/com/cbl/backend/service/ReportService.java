@@ -90,8 +90,7 @@ public class ReportService {
 				product.setPieces(productDto.getPieces());
 				product.setBuyingPrice(productDto.getUnitBuyingPrice(), productDto.getPieces());
 				product.setSellingPrice(productDto.getUnitSellingPrice(), productDto.getPieces());
-				product.setProfit(productDto.getSellingPrice(), productDto.getBuyingPrice());
-				product.setReport(productDto.getReport());
+				product.setProfit(product.getSellingPrice(), product.getBuyingPrice());
 				product.setReport(report);
 				productlist.add(product);
 
