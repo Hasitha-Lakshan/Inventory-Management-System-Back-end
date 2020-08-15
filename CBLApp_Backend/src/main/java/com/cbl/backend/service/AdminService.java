@@ -19,7 +19,6 @@ import com.cbl.backend.repository.AdminRepository;
 import com.cbl.backend.repository.AnalyzerRepository;
 import com.cbl.backend.repository.CashCollectorRepository;
 import com.cbl.backend.repository.InventoryManagerRepository;
-import com.cbl.backend.repository.PhoneNumberRepository;
 import com.cbl.backend.repository.UserRepository;
 
 @Service
@@ -36,7 +35,7 @@ public class AdminService {
 	@Autowired
 	private InventoryManagerRepository inventoryManagerRepository;
 	@Autowired
-	private PhoneNumberRepository phonenumberRepository;
+	
 
 	public List<UserDetailsResponse> getAllUsers() {
 
@@ -224,7 +223,7 @@ public class AdminService {
 
 			}
 
-			phonenumberRepository.deleteByuser(user);
+			
 
 			return true;
 
