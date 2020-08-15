@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.cbl.backend.dto.SetAccountStatusRequest;
 import com.cbl.backend.dto.UserInfoUpdateRequest;
 import com.cbl.backend.dto.UserDetailsResponse;
@@ -133,9 +134,11 @@ public class AdminService {
 			user.setAddressLine1(rq.getAddressLine1());
 			user.setAddressLine2(rq.getAddressLine2());
 			user.setAddressLine3(rq.getAddressLine3());
+		
 			
+					
 			List<PhoneNumber> phoneList = new ArrayList<PhoneNumber>();
-
+			
 			for (PhoneNumber phonenumber : rq.getPhoneNumbers()) {
 
 				PhoneNumber phoneNumber = new PhoneNumber();
@@ -145,14 +148,10 @@ public class AdminService {
 				phoneNumber.setUser(user);
 				phoneList.add(phoneNumber);
 			}
-
+			
 			user.setPhoneNumbers(phoneList);
-
-
-
-
+			
 			userRepository.save(user);
-
 			return true;
 
 		} else {
@@ -160,6 +159,9 @@ public class AdminService {
 		}
 
 	}
+
+	
+	
 
 	public boolean setAccountStatus(SetAccountStatusRequest rq) {
 

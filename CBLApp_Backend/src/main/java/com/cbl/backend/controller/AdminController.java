@@ -32,6 +32,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/updateuser")
+	@CrossOrigin(origins="*",allowedHeaders="*")
 	public ResponseEntity<?> updateUserInfo(@RequestBody UserInfoUpdateRequest rq) {
 
 		boolean successful = adminService.updateUserInfo(rq);
