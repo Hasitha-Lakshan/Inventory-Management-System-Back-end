@@ -1,20 +1,14 @@
 package com.cbl.backend.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
+//import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -22,9 +16,9 @@ import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Product")
-public class Product{
-	
+@Table(name = "Products")
+public class Product {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productID;
@@ -43,78 +37,107 @@ public class Product{
 	@Column
 	private int pieces;
 	@Column
-	private float buyingPrice=unitBuyingPrice*pieces;
-	
+	private float buyingPrice;
 	@Column
-	private float sellingPrice=unitSellingPrice*pieces;
+	private float sellingPrice;
 	@Column
-	private float profit=sellingPrice-buyingPrice;
-	@ManyToMany(mappedBy="Product")
-	private List<LorryStock> lorryStock = new ArrayList<LorryStock>();
+	private float profit;
+
+	@ManyToOne
+	@JoinColumn(name = "reportID")
+	@JsonIgnore
+	private Report report;
 	
+	@ManyToOne
+	@JoinColumn(name = "lorryStockID")
+	@JsonIgnore
+	private LorryStock lorryStock;
+
 	public int getProductID() {
 		return productID;
 	}
+
+	public LorryStock getLorryStock() {
+		return lorryStock;
+	}
+
+	public void setLorryStock(LorryStock lorryStock) {
+		this.lorryStock = lorryStock;
+	}
+
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+
 	public String getProductName() {
 		return productName;
 	}
+
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	public float getUnitBuyingPrice() {
 		return unitBuyingPrice;
 	}
+
 	public void setUnitBuyingPrice(float unitBuyingPrice) {
 		this.unitBuyingPrice = unitBuyingPrice;
 	}
+
 	public float getUnitSellingPrice() {
 		return unitSellingPrice;
 	}
+
 	public void setUnitSellingPrice(float unitSellingPrice) {
 		this.unitSellingPrice = unitSellingPrice;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 	public int getPieces() {
 		return pieces;
 	}
+
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
+
 	public float getBuyingPrice() {
 		return buyingPrice;
 	}
-	public void setBuyingPrice(float buyingPrice) {
-		this.buyingPrice = buyingPrice;
+
+	public void setBuyingPrice(float unitBuyingPrice, int pieces) {
+		this.buyingPrice = unitBuyingPrice * pieces;
 	}
+
 	public float getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(float sellingPrice) {
-		this.sellingPrice = sellingPrice;
+
+	public void setSellingPrice(float unitSellingPrice, int pieces) {
+		this.sellingPrice = unitSellingPrice * pieces;
 	}
+
 	public float getProfit() {
 		return profit;
 	}
-	public void setProfit(float profit) {
-		this.profit = profit;
-	}
-	
-	public List<LorryStock> getLorryStock() {
-		return lorryStock;
-	}
-	public void setLorryStock(List<LorryStock> lorryStock) {
-		this.lorryStock = lorryStock;
-	}
-	@Override
-	public String toString() {
-		return "Product [productID=" + productID + ", productName=" + productName + ", unitBuyingPrice=" + unitBuyingPrice + ", unitSellingPrice=" + unitSellingPrice + ",date="+ date + ",pieces="+ pieces + ",buyingPrice=" + buyingPrice + ", sellingPrice=" + sellingPrice + ", profit=" + profit + ",lorryStock="+ lorryStock + "]";
+
+	public void setProfit(float sellingPrice, float buyingPrice) {
+		this.profit = sellingPrice - buyingPrice;
 	}
 }
