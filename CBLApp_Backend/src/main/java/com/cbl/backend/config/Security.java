@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.cbl.backend.security.JwtAuthenticationFilter;
 
 @Configuration
@@ -39,11 +38,11 @@ public class Security extends WebSecurityConfigurerAdapter{
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/auth/**").permitAll();
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/admin/**").hasRole("ADMIN");
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/analyzer/**").hasRole("ANALYZER");
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/inventoryManager/**").hasRole("INVENTORY_MANAGER");
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/cashCollector/**").hasRole("CASH_COLLECTOR");
-		
+        //httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/admin/**").hasRole("ADMIN");
+		//httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/analyzer/**").hasRole("ANALYZER");
+		//httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/inventoryManager/**").hasRole("INVENTORY_MANAGER");
+		//httpSecurity.csrf().disable().authorizeRequests().antMatchers("/api/cashCollector/**").hasRole("CASH_COLLECTOR");
+
 		httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
@@ -58,4 +57,9 @@ public class Security extends WebSecurityConfigurerAdapter{
 	
 		return new BCryptPasswordEncoder();
 	}
+	
+
+
+
+    
 }

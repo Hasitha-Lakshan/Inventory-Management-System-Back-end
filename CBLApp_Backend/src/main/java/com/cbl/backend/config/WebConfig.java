@@ -17,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer{
 		corsRegistry.addMapping("/**").allowedOrigins("*").maxAge(3600L).allowedHeaders("*").exposedHeaders("Authorization").allowCredentials(true);
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		// TODO Auto-generated method stub
@@ -32,4 +33,6 @@ public class WebConfig implements WebMvcConfigurer{
 	}
 	
 	
+=======
+>>>>>>> 2846202df6ab3f42c1f825654bf42426e7a3baaf
 }
