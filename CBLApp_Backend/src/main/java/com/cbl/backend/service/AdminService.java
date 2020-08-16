@@ -41,20 +41,16 @@ public class AdminService {
 	public List<UserDetailsResponse> getAllUsers() {
 
 		List<User> users = userRepository.findAll();
-<<<<<<< HEAD
-		
+ 		
 		return users.stream().map(this::mapFromUserToDto1).collect(Collectors.toList());
-=======
-
-		return users.stream().map(this::mapFromUserToDto).collect(Collectors.toList());
->>>>>>> 2846202df6ab3f42c1f825654bf42426e7a3baaf
+ 
+ 
 	}
 	
 	private UserDetailsResponse mapFromUserToDto1(User user) {
 	
 
-<<<<<<< HEAD
-		UserDetailsResponse userDetailsRequest = new UserDetailsResponse();
+ 		UserDetailsResponse userDetailsRequest = new UserDetailsResponse();
 
 		userDetailsRequest.setUserID(user.getUserID());
 		userDetailsRequest.setFirstName(user.getFirstName());
@@ -68,7 +64,8 @@ public class AdminService {
 		userDetailsRequest.setPhoneNumbers(user.getPhoneNumbers());
 		
 		return userDetailsRequest;
-=======
+	}
+
 	private UserDetailsResponse mapFromUserToDto(User user) {
 
 		UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
@@ -255,7 +252,7 @@ public class AdminService {
 		} else {
 			return false;
 		}
->>>>>>> 2846202df6ab3f42c1f825654bf42426e7a3baaf
+
 	}
 
 }
